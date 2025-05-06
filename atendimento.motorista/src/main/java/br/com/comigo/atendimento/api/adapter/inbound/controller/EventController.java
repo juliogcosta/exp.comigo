@@ -13,7 +13,6 @@ import br.com.comigo.atendimento.api.adapter.inbound.dto.EventResponseDTO;
 import br.com.comigo.atendimento.api.application.service.CouponServiceImpl;
 import br.com.comigo.atendimento.api.application.service.EventServiceImpl;
 import br.com.comigo.atendimento.api.domain.data.Coupon;
-import br.com.comigo.atendimento.api.domain.data.Event;
 
 import java.util.Date;
 import java.util.List;

@@ -18,25 +18,25 @@ import br.com.comigo.atendimento.api.domain.data.Coupon;
 @NoArgsConstructor
 public class JpaCoupon {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  @Column(name = "id", updatable = false, nullable = false)
-  private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", updatable = false, nullable = false)
+    private Long id;
 
-  private String code;
-  private Integer discount;
-  private Date valid;
+    private String code;
+    private Integer discount;
+    private Date valid;
 
     @ManyToOne
     @JoinColumn(name = "event_id", nullable = false) // Cria a coluna "event_id" na tabela "address"
     private JpaEvent jpaEvent;
 
-  public JpaCoupon(Coupon coupon) {
-      this.code = coupon.getCode();
-      this.discount = coupon.getDiscount();
-      this.valid = coupon.getValid();
-      if (coupon.getEvent() != null) {
-          this.jpaEvent = new JpaEvent(coupon.getEvent());
-      }
-  }
+    public JpaCoupon(Coupon coupon) {
+        this.code = coupon.getCode();
+        this.discount = coupon.getDiscount();
+        this.valid = coupon.getValid();
+        if (coupon.getEvent() != null) {
+            this.jpaEvent = new JpaEvent(coupon.getEvent());
+        }
+    }
 }
