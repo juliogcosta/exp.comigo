@@ -6,6 +6,8 @@ import br.com.comigo.atendimento.api.adapter.outbound.util.JpaCpf;
 import br.com.comigo.atendimento.api.adapter.outbound.util.JpaEmail;
 import br.com.comigo.atendimento.api.adapter.outbound.util.JpaEndereco;
 import br.com.comigo.atendimento.api.adapter.outbound.util.JpaTelefone;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -40,9 +42,17 @@ public class JpaCliente {
     private JpaCpf cpf;
 
     @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "numero", column = @Column(name = "telefone_numero")),
+        @AttributeOverride(name = "tipo", column = @Column(name = "telefone_tipo"))
+    })
     private JpaTelefone telefone;
 
     @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "numero", column = @Column(name = "telefone_numero")),
+        @AttributeOverride(name = "tipo", column = @Column(name = "telefone_tipo"))
+    })
     private JpaTelefone whatsapp;
     
     @Embedded

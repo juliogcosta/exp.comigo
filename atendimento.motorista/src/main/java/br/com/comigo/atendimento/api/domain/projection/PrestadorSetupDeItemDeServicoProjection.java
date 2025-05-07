@@ -1,11 +1,20 @@
 package br.com.comigo.atendimento.api.domain.projection;
 
 public interface PrestadorSetupDeItemDeServicoProjection {
-  String getNomePrestador();
-  String getCnpjPrestador();
-  String getTelefonePrestador();
-  String getEmailPrestador();
-  String getEnderecoPrestador();
-  String getPrecoUnitarioSetupDeItemDeServico();
-  String getItemDeServicoIdSetupDeItemDeServico(); 
+  Long getPrestadorId();
+  String getPrestadorNome();
+  String getPrestadorCnpj();
+  String getPrestadorTelefoneNumero();
+  String getPrestadorTelefoneTipo();
+  String getPrestadorEmail();
+  String getPrestadorEnderecoRua();
+  String getPrestadorEnderecoNumero();
+  String getPrestadorEnderecoComplemento();
+  String getPrestadorEnderecoBairro();
+  String getPrestadorEnderecoCidade();
+  String getPrestadorEnderecoEstado();
+  String getPrestadorEnderecoCep();
+  String getSetupDeItemDeServicoStatus();
+  Integer getSetupDeItemDeServicoPrecoUnitario();
+  Long getSetupDeItemDeServicoItemDeServicoId();
 }

@@ -17,10 +17,10 @@ import lombok.Setter;
 @AllArgsConstructor
 public class JpaTelefone {
 
-    @Column(nullable = true, length = 15)
-    private String numero;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = true, length = 15)
     private TipoDeTelefone tipo;
+
+    @Column(nullable = true, length = 15)
+    private String numero;
 }

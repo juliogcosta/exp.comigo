@@ -15,24 +15,24 @@ import lombok.Setter;
 @AllArgsConstructor
 public class JpaEndereco {
 
-    @Column(nullable = false)
+    @Column(name = "endereco_rua", nullable = false)
     private String rua;
 
-    @Column(nullable = false)
+    @Column(name = "endereco_numero", nullable = false)
     private String numero;
 
-    @Column
+    @Column(name = "endereco_complemento", nullable = true)
     private String complemento;
 
-    @Column(nullable = false)
+    @Column(name = "endereco_bairro", nullable = false)
     private String bairro;
 
-    @Column(nullable = false)
+    @Column(name = "endereco_cidade", nullable = false)
     private String cidade;
 
-    @Column(nullable = false)
+    @Column(name = "endereco_estado", nullable = false)
     private String estado;
 
-    @Column(nullable = false, length = 8)
+    @Column(name = "endereco_cep", nullable = false, length = 8)
     private String cep;
 }

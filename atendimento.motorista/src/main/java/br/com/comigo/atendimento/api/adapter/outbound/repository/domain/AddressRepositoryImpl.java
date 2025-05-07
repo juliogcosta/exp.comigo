@@ -1,10 +1,11 @@
-package br.com.comigo.atendimento.api.adapter.outbound.repository;
+package br.com.comigo.atendimento.api.adapter.outbound.repository.domain;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
 import br.com.comigo.atendimento.api.adapter.outbound.entity.JpaAddress;
+import br.com.comigo.atendimento.api.adapter.outbound.repository.jpa.JpaAddressRepository;
 import br.com.comigo.atendimento.api.domain.data.Address;
 import br.com.comigo.atendimento.api.domain.data.Event;
 import br.com.comigo.atendimento.api.domain.repository.AddressRepository;

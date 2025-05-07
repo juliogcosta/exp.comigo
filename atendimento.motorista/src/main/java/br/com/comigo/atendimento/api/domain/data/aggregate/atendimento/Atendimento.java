@@ -9,7 +9,6 @@ import br.com.comigo.atendimento.api.domain.util.Telefone;
 public class Atendimento {
     private Long id;
     private Long prestadorId;
-    private Long setupDeItemDeServicoId;
     private Long clienteId;
     private String clienteNome;
     private Telefone clienteTelefone;
@@ -57,14 +56,6 @@ public class Atendimento {
 
     public void setPrestadorId(Long prestadorId) {
       this.prestadorId = prestadorId;
-    }
-
-    public Long getSetupDeItemDeServicoId() {
-      return this.setupDeItemDeServicoId;
-    }
-    
-    public Long setSetupDeItemDeServicoId() {
-      return this.setupDeItemDeServicoId;
     }
 
     public String getClienteNome() {

@@ -6,10 +6,10 @@ import br.com.comigo.atendimento.api.domain.util.StatusDeAtendimento;
 public record AtendimentoDTO(
     Long id,
     PrestadorDTO prestadorDTO,
-    SetupDeItemDeServicoDTO setupDeItemDeServicoDTO,
     ClienteDTO clienteDTO,
     VeiculoDTO veiculoDTO,
     String tipoOcorrencia,
+    String tipoServico,
     StatusDeAtendimento status,
     Long dataHoraChamado,
     Long dataHoraAutorizado,

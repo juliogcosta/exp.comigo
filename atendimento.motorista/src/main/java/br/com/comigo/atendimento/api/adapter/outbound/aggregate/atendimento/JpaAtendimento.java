@@ -5,6 +5,8 @@ import java.util.Date;
 import br.com.comigo.atendimento.api.adapter.outbound.util.JpaEndereco;
 import br.com.comigo.atendimento.api.adapter.outbound.util.JpaTelefone;
 import br.com.comigo.atendimento.api.domain.util.StatusDeAtendimento;
+import jakarta.persistence.AttributeOverride;
+import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -37,9 +39,6 @@ public class JpaAtendimento {
     @Column(name = "prestador_id", nullable = false)
     private Long prestadorId;
 
-    @Column(name = "setup_de_item_de_servico_id", nullable = false)
-    private Long setupDeItemDeServicoId;
-
     @Column(name = "cliente_id", nullable = true)
     private Long clienteId;
 
@@ -47,9 +46,17 @@ public class JpaAtendimento {
     private String clienteNome;
 
     @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "numero", column = @Column(name = "telefone_numero")),
+        @AttributeOverride(name = "tipo", column = @Column(name = "telefone_tipo"))
+    })
     private JpaTelefone clienteTelefone;
 
     @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "numero", column = @Column(name = "telefone_numero")),
+        @AttributeOverride(name = "tipo", column = @Column(name = "telefone_tipo"))
+    })
     private JpaTelefone clienteWhatsapp;
 
     @Column(name = "veiculo_id", nullable = true)
@@ -60,6 +67,9 @@ public class JpaAtendimento {
 
     @Column(nullable = false)
     private String tipoOcorrencia;
+
+    @Column(nullable = false)
+    private String tipoServico;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -89,11 +99,38 @@ public class JpaAtendimento {
     private String descricao;
 
     @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "rua", column = @Column(name = "endereco_base_rua")),
+        @AttributeOverride(name = "numero", column = @Column(name = "endereco_base_numero")),
+        @AttributeOverride(name = "complemento", column = @Column(name = "endereco_base_complemento")),
+        @AttributeOverride(name = "bairro", column = @Column(name = "endereco_base_bairro")),
+        @AttributeOverride(name = "cidade", column = @Column(name = "endereco_base_cidade")),
+        @AttributeOverride(name = "estado", column = @Column(name = "endereco_base_estado")),
+        @AttributeOverride(name = "cep", column = @Column(name = "endereco_base_cep"))
+    })
     private JpaEndereco base;
 
     @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "rua", column = @Column(name = "endereco_origem_rua")),
+        @AttributeOverride(name = "numero", column = @Column(name = "endereco_origem_numero")),
+        @AttributeOverride(name = "complemento", column = @Column(name = "endereco_origem_complemento")),
+        @AttributeOverride(name = "bairro", column = @Column(name = "endereco_origem_bairro")),
+        @AttributeOverride(name = "cidade", column = @Column(name = "endereco_origem_cidade")),
+        @AttributeOverride(name = "estado", column = @Column(name = "endereco_origem_estado")),
+        @AttributeOverride(name = "cep", column = @Column(name = "endereco_origem_cep"))
+    })
     private JpaEndereco origem;
 
     @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "rua", column = @Column(name = "endereco_destino_rua")),
+        @AttributeOverride(name = "numero", column = @Column(name = "endereco_destino_numero")),
+        @AttributeOverride(name = "complemento", column = @Column(name = "endereco_destino_complemento")),
+        @AttributeOverride(name = "bairro", column = @Column(name = "endereco_destino_bairro")),
+        @AttributeOverride(name = "cidade", column = @Column(name = "endereco_destino_cidade")),
+        @AttributeOverride(name = "estado", column = @Column(name = "endereco_destino_estado")),
+        @AttributeOverride(name = "cep", column = @Column(name = "endereco_destino_cep"))
+    })
     private JpaEndereco destino;
 }

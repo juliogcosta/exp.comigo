@@ -1,4 +1,4 @@
-package br.com.comigo.atendimento.api.adapter.outbound.repository;
+package br.com.comigo.atendimento.api.adapter.outbound.repository.domain;
 
 import java.util.Date;
 import java.util.List;
@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
 import br.com.comigo.atendimento.api.adapter.outbound.entity.JpaCoupon;
+import br.com.comigo.atendimento.api.adapter.outbound.repository.jpa.JpaCouponRepository;
 import br.com.comigo.atendimento.api.domain.data.Coupon;
 import br.com.comigo.atendimento.api.domain.data.Event;
 import br.com.comigo.atendimento.api.domain.repository.CouponRepository;

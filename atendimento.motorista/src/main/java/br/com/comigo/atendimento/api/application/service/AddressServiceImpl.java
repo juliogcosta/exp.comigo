@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.comigo.atendimento.api.adapter.inbound.dto.AddressRequestDTO;
 import br.com.comigo.atendimento.api.adapter.outbound.entity.JpaEvent;
-import br.com.comigo.atendimento.api.adapter.outbound.repository.JpaEventRepository;
+import br.com.comigo.atendimento.api.adapter.outbound.repository.jpa.JpaEventRepository;
 import br.com.comigo.atendimento.api.domain.data.Address;
 import br.com.comigo.atendimento.api.domain.data.Event;
 import br.com.comigo.atendimento.api.domain.repository.AddressRepository;

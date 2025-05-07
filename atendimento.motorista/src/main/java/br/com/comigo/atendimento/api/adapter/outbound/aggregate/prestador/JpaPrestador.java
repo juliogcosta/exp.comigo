@@ -31,9 +31,17 @@ public class JpaPrestador {
     private JpaCnpj cnpj;
 
     @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "numero", column = @Column(name = "telefone_numero")),
+        @AttributeOverride(name = "tipo", column = @Column(name = "telefone_tipo"))
+    })
     private JpaTelefone telefone;
 
     @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name = "numero", column = @Column(name = "telefone_numero")),
+        @AttributeOverride(name = "tipo", column = @Column(name = "telefone_tipo"))
+    })
     private JpaTelefone whatsapp;
     
     @Embedded

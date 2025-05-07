@@ -1,4 +1,4 @@
-package br.com.comigo.atendimento.api.adapter.outbound.repository;
+package br.com.comigo.atendimento.api.adapter.outbound.repository.domain;
 
 import java.util.Date;
 import java.util.List;
@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 
 import br.com.comigo.atendimento.api.adapter.outbound.entity.JpaEvent;
+import br.com.comigo.atendimento.api.adapter.outbound.repository.jpa.JpaEventRepository;
 import br.com.comigo.atendimento.api.domain.data.Event;
 import br.com.comigo.atendimento.api.domain.projection.EventAddressProjection;
 import br.com.comigo.atendimento.api.domain.repository.EventRepository;
