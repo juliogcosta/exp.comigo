@@ -3,7 +3,6 @@ package br.com.comigo.atendimento.api.adapter.outbound.util;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,7 +11,6 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
 public class JpaEndereco {
 
     @Column(name = "endereco_rua", nullable = false)
@@ -35,4 +33,14 @@ public class JpaEndereco {
 
     @Column(name = "endereco_cep", nullable = false, length = 8)
     private String cep;
+
+    public JpaEndereco(String rua, String numero, String complemento, String bairro, String cidade, String estado, String cep) {
+        this.rua = rua;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.cep = cep;
+    }
 }

@@ -1,6 +1,5 @@
 package br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.cliente;
 
-
 import java.util.Date;
 
 import br.com.comigo.atendimento.api.domain.util.Cpf;

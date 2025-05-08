@@ -17,10 +17,13 @@ public class Cliente {
     private Endereco endereco;
     private Date dataNascimento;
     
-    public Cliente(String nome, Cpf cpf, Telefone telefone, Endereco endereco, Date dataNascimento) {
+    public Cliente(Long id, String nome, Cpf cpf, Telefone telefone, Telefone whatsapp, Email email, Endereco endereco, Date dataNascimento) {
+        this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;
+        this.whatsapp = whatsapp;
+        this.email = email;
         this.endereco = endereco;
         this.dataNascimento = dataNascimento;
     }
@@ -37,12 +40,24 @@ public class Cliente {
         return this.nome;
     }
 
+    public void setNome(String nome) {
+      this.nome = nome;
+    }
+
     public Cpf getCpf() {
         return this.cpf;
     }
 
+    public void setCpf(Cpf cpf) {
+      this.cpf = cpf;
+    }
+
     public Telefone getTelefone() {
         return this.telefone;
+    }
+
+    public void setTelefone(Telefone telefone) {
+      this.telefone = telefone;
     }
 
     public Telefone getWhatsapp() {
@@ -50,15 +65,23 @@ public class Cliente {
     }
 
     public void setWhatsapp(Telefone whatsapp) {
-      this.whatsapp = whatsapp;
+        this.whatsapp = whatsapp;
     }
 
     public Email getEmail() {
         return this.email;
     }
 
+    public void setEmail(Email email) {
+        this.email = email;
+    }
+
     public Endereco getEndereco() {
         return this.endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+      this.endereco = endereco;
     }
 
     public Date getDataNascimento() {

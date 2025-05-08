@@ -6,6 +6,7 @@ import br.com.comigo.atendimento.api.adapter.outbound.util.JpaCpf;
 import br.com.comigo.atendimento.api.adapter.outbound.util.JpaEmail;
 import br.com.comigo.atendimento.api.adapter.outbound.util.JpaEndereco;
 import br.com.comigo.atendimento.api.adapter.outbound.util.JpaTelefone;
+import br.com.comigo.atendimento.api.domain.data.aggregate.cliente.Cliente;
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
 import jakarta.persistence.Column;
@@ -63,4 +64,20 @@ public class JpaCliente {
 
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
+
+    public JpaCliente(Cliente cliente) {
+        this.nome = cliente.getNome();
+        this.cpf = new JpaCpf(cliente.getCpf().value());
+        this.telefone = new JpaTelefone(cliente.getTelefone().numero(), cliente.getTelefone().tipo());
+        this.whatsapp = new JpaTelefone(cliente.getWhatsapp().numero(), cliente.getWhatsapp().tipo());
+        this.email = new JpaEmail(cliente.getEmail().value());
+        this.endereco = new JpaEndereco(cliente.getEndereco().rua(), 
+                cliente.getEndereco().rua(),
+                cliente.getEndereco().numero(),
+                cliente.getEndereco().complemento(),
+                cliente.getEndereco().bairro(),
+                cliente.getEndereco().estado(),
+                cliente.getEndereco().cep());
+        this.dataNascimento = cliente.getDataNascimento();
+    }
 }

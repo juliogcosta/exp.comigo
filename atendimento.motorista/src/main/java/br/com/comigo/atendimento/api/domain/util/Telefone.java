@@ -2,17 +2,20 @@ package br.com.comigo.atendimento.api.domain.util;
 
 import java.util.regex.Pattern;
 
-public record Telefone(String value) {
-
+public record Telefone(String numero, TipoDeTelefone tipo) {
+    
     private static final Pattern TELEFONE_PATTERN = Pattern.compile(
         "^\\+?\\d{1,3}?[-.\\s]?\\(?\\d{2}\\)?[-.\\s]?\\d{4,5}[-.\\s]?\\d{4}$"
     );
 
     public Telefone {
-        if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException("Telefone não pode ser nulo ou vazio");
+        if (tipo == null) {
+            throw new IllegalArgumentException("Tipo de Telefone não pode ser nulo");
         }
-        if (!TELEFONE_PATTERN.matcher(value).matches()) {
+        if (numero == null || numero.isBlank()) {
+            throw new IllegalArgumentException("Numero de Telefone não pode ser nulo ou vazio");
+        }
+        if (!TELEFONE_PATTERN.matcher(numero).matches()) {
             throw new IllegalArgumentException("Telefone inválido");
         }
     }
