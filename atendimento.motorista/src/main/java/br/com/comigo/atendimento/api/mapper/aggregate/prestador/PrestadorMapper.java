@@ -4,8 +4,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.prestador.PrestadorDTO;
-import br.com.comigo.atendimento.api.adapter.outbound.entity.aggregate.prestador.JpaPrestador;
+import br.com.comigo.atendimento.api.adapter.aggregate.prestador.dto.PrestadorDTO;
+import br.com.comigo.atendimento.api.adapter.aggregate.prestador.outbound.JpaPrestador;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.Prestador;
 import br.com.comigo.atendimento.api.domain.util.Cnpj;
 import br.com.comigo.atendimento.api.domain.util.Email;

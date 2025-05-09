@@ -5,10 +5,10 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.Named;
 
-import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.event.EventDTO;
-import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.event.EventRequestDTO;
-import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.event.EventResponseDTO;
-import br.com.comigo.atendimento.api.adapter.outbound.entity.aggregate.event.JpaEvent;
+import br.com.comigo.atendimento.api.adapter.aggregate.event.dto.EventDTO;
+import br.com.comigo.atendimento.api.adapter.aggregate.event.dto.EventRequestDTO;
+import br.com.comigo.atendimento.api.adapter.aggregate.event.dto.EventResponseDTO;
+import br.com.comigo.atendimento.api.adapter.aggregate.event.outbound.JpaEvent;
 import br.com.comigo.atendimento.api.domain.aggregate.event.Address;
 import br.com.comigo.atendimento.api.domain.aggregate.event.Coupon;
 import br.com.comigo.atendimento.api.domain.aggregate.event.Event;

@@ -7,9 +7,9 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 import org.mapstruct.Named;
 
-import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.event.CouponRequestDTO;
-import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.event.CouponResponseDTO;
-import br.com.comigo.atendimento.api.adapter.outbound.entity.aggregate.event.JpaCoupon;
+import br.com.comigo.atendimento.api.adapter.aggregate.event.dto.CouponRequestDTO;
+import br.com.comigo.atendimento.api.adapter.aggregate.event.dto.CouponResponseDTO;
+import br.com.comigo.atendimento.api.adapter.aggregate.event.outbound.JpaCoupon;
 import br.com.comigo.atendimento.api.domain.aggregate.event.Coupon;
 
 @Mapper(componentModel = "spring")

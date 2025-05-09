@@ -4,8 +4,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.servico.ServicoDTO;
-import br.com.comigo.atendimento.api.adapter.outbound.entity.aggregate.servico.JpaServico;
+import br.com.comigo.atendimento.api.adapter.aggregate.servico.dto.ServicoDTO;
+import br.com.comigo.atendimento.api.adapter.aggregate.servico.outbound.JpaServico;
 import br.com.comigo.atendimento.api.domain.aggregate.servico.Servico;
 
 @Mapper(componentModel = "spring")

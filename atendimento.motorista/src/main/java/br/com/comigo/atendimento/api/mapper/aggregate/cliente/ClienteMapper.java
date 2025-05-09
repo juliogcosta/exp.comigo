@@ -6,8 +6,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.cliente.ClienteDTO;
-import br.com.comigo.atendimento.api.adapter.outbound.entity.aggregate.cliente.JpaCliente;
+import br.com.comigo.atendimento.api.adapter.aggregate.cliente.dto.ClienteDTO;
+import br.com.comigo.atendimento.api.adapter.aggregate.cliente.outbound.JpaCliente;
 import br.com.comigo.atendimento.api.domain.aggregate.cliente.Cliente;
 import br.com.comigo.atendimento.api.domain.util.Cpf;
 import br.com.comigo.atendimento.api.domain.util.Email;
