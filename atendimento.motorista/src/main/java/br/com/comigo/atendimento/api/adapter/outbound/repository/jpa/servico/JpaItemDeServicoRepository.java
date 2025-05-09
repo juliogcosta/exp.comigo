@@ -1,4 +1,4 @@
-package br.com.comigo.atendimento.api.adapter.outbound.repository.jpa;
+package br.com.comigo.atendimento.api.adapter.outbound.repository.jpa.servico;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

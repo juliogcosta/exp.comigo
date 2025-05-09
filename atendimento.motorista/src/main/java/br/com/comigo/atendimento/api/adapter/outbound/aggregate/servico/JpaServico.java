@@ -1,5 +1,6 @@
 package br.com.comigo.atendimento.api.adapter.outbound.aggregate.servico;
 
+import br.com.comigo.atendimento.api.domain.data.aggregate.servico.Servico;
 import br.com.comigo.atendimento.api.domain.util.StatusDeServico;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,7 @@ public class JpaServico {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
-    private String id;
+    private Long id;
 
     @Column(nullable = false)
     private String nome;
@@ -28,4 +29,11 @@ public class JpaServico {
 
     @Column(nullable = false)
     private StatusDeServico status;
+
+    public JpaServico(Servico servico) {
+        this.id = servico.getId();
+        this.nome = servico.getNome();
+        this.descricao = servico.getDescricao();
+        this.status = servico.getStatus();
+    }
 }

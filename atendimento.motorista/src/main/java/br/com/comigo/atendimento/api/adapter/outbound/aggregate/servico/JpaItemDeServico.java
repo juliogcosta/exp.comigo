@@ -1,5 +1,6 @@
 package br.com.comigo.atendimento.api.adapter.outbound.aggregate.servico;
 
+import br.com.comigo.atendimento.api.domain.data.aggregate.servico.ItemDeServico;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,4 +32,11 @@ public class JpaItemDeServico {
     @ManyToOne
     @JoinColumn(name = "servico_id", nullable = false)
     private JpaServico servico;
+
+    public JpaItemDeServico(ItemDeServico itemDeServico) {
+        this.nome = itemDeServico.getNome();
+        this.descricao = itemDeServico.getDescricao();
+        this.unidadeMedida = itemDeServico.getUnidadeMedida();
+        this.servico = new JpaServico(itemDeServico.getServico());
+    }
 }

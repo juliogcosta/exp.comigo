@@ -16,10 +16,13 @@ public class Prestador {
     private Endereco endereco;
     private StatusDePrestador status;
 
-    public Prestador(String nome, Cnpj cnpj, Telefone telefone, Endereco endereco) {
+    public Prestador(Long id, String nome, Cnpj cnpj, Telefone telefone, Telefone whatsapp, Email email, Endereco endereco) {
+        this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
         this.telefone = telefone;
+        this.whatsapp = whatsapp;
+        this.email = email;
         this.endereco = endereco;
         this.status = StatusDePrestador.ATIVO;
     }

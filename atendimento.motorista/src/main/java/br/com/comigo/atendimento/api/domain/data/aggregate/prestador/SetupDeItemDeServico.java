@@ -9,9 +9,10 @@ public class SetupDeItemDeServico {
     private Long itemDeServicoId = null;
     private Prestador prestador = null;
     
-    public SetupDeItemDeServico(Integer precoUnitario, Long itemDeServicoId) {
+    public SetupDeItemDeServico(Long id, Integer precoUnitario, StatusDeSetupDeItemDeServico status, Long itemDeServicoId) {
+        this.id = id;
         this.precoUnitario = precoUnitario;
-        this.status = StatusDeSetupDeItemDeServico.ATIVO;
+        this.status = status;
         this.itemDeServicoId = itemDeServicoId;
     }
 
@@ -27,16 +28,31 @@ public class SetupDeItemDeServico {
         return this.precoUnitario;
     }
 
+    public void setPrecoUnitario(Integer precoUnitario) {
+      this.precoUnitario = precoUnitario;
+    }
+
     public StatusDeSetupDeItemDeServico getStatus() {
         return this.status;
+    }
+
+    public void setStatus(StatusDeSetupDeItemDeServico status) {
+      this.status = status;
     }
 
     public Long getItemDeServicoId() {
         return this.itemDeServicoId;
     }
 
+    public void setItemDeServicoId(Long itemDeServicoId) {
+      this.itemDeServicoId = itemDeServicoId;
+    }
+
     public Prestador getPrestador() {
         return this.prestador;
     }
 
+    public void setPrestador(Prestador prestador) {
+      this.prestador = prestador;
+    }
 }

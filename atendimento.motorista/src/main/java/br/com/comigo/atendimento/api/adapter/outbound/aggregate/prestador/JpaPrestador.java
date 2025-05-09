@@ -4,6 +4,7 @@ import br.com.comigo.atendimento.api.adapter.outbound.util.JpaCnpj;
 import br.com.comigo.atendimento.api.adapter.outbound.util.JpaEmail;
 import br.com.comigo.atendimento.api.adapter.outbound.util.JpaEndereco;
 import br.com.comigo.atendimento.api.adapter.outbound.util.JpaTelefone;
+import br.com.comigo.atendimento.api.domain.data.aggregate.prestador.Prestador;
 import br.com.comigo.atendimento.api.domain.util.StatusDePrestador;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -53,4 +54,20 @@ public class JpaPrestador {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusDePrestador status;
+
+    public JpaPrestador(Prestador prestador) {
+        this.nome = prestador.getNome();
+        this.cnpj = new JpaCnpj(prestador.getCnpj().value());
+        this.telefone = new JpaTelefone(prestador.getTelefone().numero(), prestador.getTelefone().tipo());
+        this.whatsapp = new JpaTelefone(prestador.getWhatsapp().numero(), prestador.getWhatsapp().tipo());
+        this.email = new JpaEmail(prestador.getEmail().value());
+        this.endereco = new JpaEndereco(prestador.getEndereco().rua(), 
+                prestador.getEndereco().rua(),
+                prestador.getEndereco().numero(),
+                prestador.getEndereco().complemento(),
+                prestador.getEndereco().bairro(),
+                prestador.getEndereco().estado(),
+                prestador.getEndereco().cep());
+        this.status = StatusDePrestador.ATIVO;
+    }
 }

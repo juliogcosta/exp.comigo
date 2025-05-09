@@ -8,7 +8,7 @@ import br.com.comigo.atendimento.api.domain.util.Email;
 import br.com.comigo.atendimento.api.domain.util.Endereco;
 import br.com.comigo.atendimento.api.domain.util.Telefone;
 
-public record ClienteDTO(
+public record ClienteVeiculoProjectionDTO(
     Long id,
     String nome,
     Cpf cpf,
@@ -19,4 +19,12 @@ public record ClienteDTO(
     Date dataNascimento,
     List<VeiculoDTO> veiculos
 ) {
+    public record VeiculoDTO(
+        String marca,
+        String modelo,
+        String cor,
+        String placa,
+        String ano
+    ) {
+    }
 }

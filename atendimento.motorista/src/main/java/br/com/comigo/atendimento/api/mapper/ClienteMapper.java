@@ -1,5 +1,7 @@
 package br.com.comigo.atendimento.api.mapper;
 
+import java.util.ArrayList;
+
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -107,7 +109,8 @@ public interface ClienteMapper {
             whatsapp,
             email,
             endereco,
-            jpaCliente.getDataNascimento()
+            jpaCliente.getDataNascimento(),
+            new ArrayList<>()
         );
     }
 

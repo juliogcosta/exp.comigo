@@ -4,13 +4,21 @@ import java.util.List;
 import java.util.Optional;
 
 import br.com.comigo.atendimento.api.domain.data.aggregate.cliente.Cliente;
+import br.com.comigo.atendimento.api.domain.util.Cpf;
+import br.com.comigo.atendimento.api.domain.util.Telefone;
 
 public interface ClienteRepository {
-    Cliente save(Cliente event);
+    public Cliente create(Cliente event);
 
-    Optional<Cliente> findById(Long id);
+    public void update(Cliente event);
 
-    List<Cliente> findAll();
+    public Optional<Cliente> findById(Long id);
 
-    void deleteById(Long id);
+    public Optional<Cliente> findByCpf(Cpf cpf);
+
+    public List<Cliente> findByNome(String nome);
+
+    public List<Cliente> findByTelefone(Telefone telefone);
+
+    public void deleteById(Long id);
 }

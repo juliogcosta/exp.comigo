@@ -1,5 +1,6 @@
 package br.com.comigo.atendimento.api.adapter.outbound.aggregate.cliente;
 
+import br.com.comigo.atendimento.api.domain.data.aggregate.cliente.Veiculo;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,4 +45,14 @@ public class JpaVeiculo {
     @ManyToOne
     @JoinColumn(name = "cliente_id", nullable = false)
     private JpaCliente cliente;
+
+    public JpaVeiculo(Veiculo veiculo) {
+        this.id = veiculo.getId();
+        this.marca = veiculo.getMarca();
+        this.modelo = veiculo.getModelo();
+        this.cor = veiculo.getCor();
+        this.placa = veiculo.getPlaca();
+        this.ano = veiculo.getAno();
+        this.cliente = new JpaCliente(veiculo.getCliente());
+    }
 }

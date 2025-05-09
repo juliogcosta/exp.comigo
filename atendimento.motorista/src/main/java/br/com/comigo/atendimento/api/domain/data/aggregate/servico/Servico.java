@@ -3,23 +3,23 @@ package br.com.comigo.atendimento.api.domain.data.aggregate.servico;
 import br.com.comigo.atendimento.api.domain.util.StatusDeServico;
 
 public class Servico {
-    private String id = null;
+    private Long id = null;
     private String nome = null;
     private String descricao;
     private StatusDeServico status = null;
 
-    public Servico(String id, String nome, String descricao, String categoria) {
+    public Servico(Long id, String nome, String descricao, StatusDeServico status) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.status = StatusDeServico.ATIVO;
+        this.status = status;
     }
 
-    public String getId() {
+    public Long getId() {
         return this.id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -27,8 +27,16 @@ public class Servico {
         return this.nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public String getDescricao() {
         return this.descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public StatusDeServico getStatus() {

@@ -1,6 +1,7 @@
 package br.com.comigo.atendimento.api.domain.data.aggregate.cliente;
 
 import java.util.Date;
+import java.util.List;
 
 import br.com.comigo.atendimento.api.domain.util.Cpf;
 import br.com.comigo.atendimento.api.domain.util.Email;
@@ -16,6 +17,7 @@ public class Cliente {
     private Email email;
     private Endereco endereco;
     private Date dataNascimento;
+    private List<Veiculo> veiculos;
     
     public Cliente(Long id, String nome, Cpf cpf, Telefone telefone, Telefone whatsapp, Email email, Endereco endereco, Date dataNascimento) {
         this.id = id;
@@ -92,4 +94,11 @@ public class Cliente {
         this.dataNascimento = dataNascimento;
     }
 
+    public List<Veiculo> getVeiculos() {
+      return veiculos;
+    }
+
+    public void setVeiculos(List<Veiculo> veiculos) {
+      this.veiculos = veiculos;
+    }
 }

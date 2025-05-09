@@ -1,5 +1,6 @@
 package br.com.comigo.atendimento.api.adapter.outbound.aggregate.prestador;
 
+import br.com.comigo.atendimento.api.domain.data.aggregate.prestador.SetupDeItemDeServico;
 import br.com.comigo.atendimento.api.domain.util.StatusDeSetupDeItemDeServico;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -32,4 +33,12 @@ public class JpaSetupDeItemDeServico {
     @ManyToOne
     @JoinColumn(name = "prestador_id", nullable = false)
     private JpaPrestador prestador;
+
+    public JpaSetupDeItemDeServico(SetupDeItemDeServico setupDeItemDeServico) {
+        this.id = setupDeItemDeServico.getId();
+        this.precoUnitario = setupDeItemDeServico.getPrecoUnitario();
+        this.status = setupDeItemDeServico.getStatus();
+        this.itemDeServicoId = setupDeItemDeServico.getItemDeServicoId();
+        this.prestador = new JpaPrestador(setupDeItemDeServico.getPrestador());
+    }
 }
