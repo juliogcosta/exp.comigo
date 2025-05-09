@@ -1,5 +1,6 @@
-package br.com.comigo.atendimento.api.adapter.aggregate.atendimento.outbound;
+package br.com.comigo.atendimento.api.adapter.aggregate.atendimento.outbound.repository;
 
+import br.com.comigo.atendimento.api.adapter.aggregate.atendimento.outbound.JpaAtendimento;
 import br.com.comigo.atendimento.api.domain.projection.AtendimentoItemDeServicoDoAtendimentoProjection;
 
 import org.springframework.data.domain.Page;
