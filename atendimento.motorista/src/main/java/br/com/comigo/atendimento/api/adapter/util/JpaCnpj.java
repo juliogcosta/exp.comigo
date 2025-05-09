@@ -2,15 +2,14 @@ package br.com.comigo.atendimento.api.adapter.util;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.NoArgsConstructor;
 
 @Embeddable
+@NoArgsConstructor
 public class JpaCnpj {
 
     @Column(nullable = false, unique = true, length = 14)
     private String cnpj;
-
-    public JpaCnpj() {
-    }
 
     public JpaCnpj(String cnpj) {
         this.setCnpj(cnpj);

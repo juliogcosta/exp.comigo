@@ -2,8 +2,10 @@ package br.com.comigo.atendimento.api.adapter.util;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import lombok.NoArgsConstructor;
 
 @Embeddable
+@NoArgsConstructor
 public class JpaCpf {
 
     @Column(nullable = false, unique = true, length = 11)

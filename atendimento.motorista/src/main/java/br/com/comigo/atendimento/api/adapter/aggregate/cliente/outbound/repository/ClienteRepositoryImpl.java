@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
 import br.com.comigo.atendimento.api.adapter.aggregate.cliente.outbound.JpaCliente;
+import br.com.comigo.atendimento.api.adapter.util.JpaCpf;
+import br.com.comigo.atendimento.api.adapter.util.JpaEmail;
+import br.com.comigo.atendimento.api.adapter.util.JpaEndereco;
+import br.com.comigo.atendimento.api.adapter.util.JpaTelefone;
 import br.com.comigo.atendimento.api.domain.aggregate.cliente.Cliente;
 import br.com.comigo.atendimento.api.domain.aggregate.cliente.repository.ClienteRepository;
 import br.com.comigo.atendimento.api.domain.util.Cpf;
@@ -30,8 +34,18 @@ public class ClienteRepositoryImpl implements ClienteRepository {
 
     @Override
     public void update(Cliente cliente) {
-        JpaCliente jpaCliente = new JpaCliente(cliente);
-        this.jpaClienteRepository.update(jpaCliente);
+        JpaCliente jpaCliente = this.jpaClienteRepository.findById(cliente.getId())
+            .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
+        jpaCliente.setCpf(new JpaCpf(cliente.getCpf().value()));
+        jpaCliente.setNome(cliente.getNome());
+        jpaCliente.setEmail(new JpaEmail(cliente.getEmail().value()));
+        jpaCliente.setTelefone(new JpaTelefone(cliente.getTelefone().numero(), cliente.getTelefone().tipo()));
+        jpaCliente.setWhatsapp(new JpaTelefone(cliente.getWhatsapp().numero(), cliente.getWhatsapp().tipo()));
+        jpaCliente.setEndereco(new JpaEndereco(cliente.getEndereco().rua(), cliente.getEndereco().numero(),
+            cliente.getEndereco().complemento(), cliente.getEndereco().bairro(), cliente.getEndereco().cidade(),
+            cliente.getEndereco().estado(), cliente.getEndereco().cep()));
+        jpaCliente.setDataNascimento(cliente.getDataNascimento());
+        this.jpaClienteRepository.save(jpaCliente);
     }
 
     @Override

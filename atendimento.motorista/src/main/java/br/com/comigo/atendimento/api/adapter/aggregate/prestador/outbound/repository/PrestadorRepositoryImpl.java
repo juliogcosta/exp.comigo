@@ -6,7 +6,14 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
+import br.com.comigo.atendimento.api.adapter.aggregate.cliente.outbound.JpaCliente;
 import br.com.comigo.atendimento.api.adapter.aggregate.prestador.outbound.JpaPrestador;
+import br.com.comigo.atendimento.api.adapter.util.JpaCnpj;
+import br.com.comigo.atendimento.api.adapter.util.JpaCpf;
+import br.com.comigo.atendimento.api.adapter.util.JpaEmail;
+import br.com.comigo.atendimento.api.adapter.util.JpaEndereco;
+import br.com.comigo.atendimento.api.adapter.util.JpaTelefone;
+import br.com.comigo.atendimento.api.domain.aggregate.cliente.Cliente;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.Prestador;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.repository.PrestadorRepository;
 import br.com.comigo.atendimento.api.domain.util.Cnpj;
@@ -27,11 +34,21 @@ public class PrestadorRepositoryImpl implements PrestadorRepository {
         prestador.setId(jpaPrestador.getId());
         return prestador;
     }
-    
+
     @Override
     public void update(Prestador prestador) {
-        JpaPrestador jpaPrestador = new JpaPrestador(prestador);
-        this.jpaPrestadorRepository.update(jpaPrestador);
+        JpaPrestador jpaPrestador = this.jpaPrestadorRepository.findById(prestador.getId())
+            .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
+        jpaPrestador.setCnpj(new JpaCnpj(prestador.getCnpj().value()));
+        jpaPrestador.setNome(prestador.getNome());
+        jpaPrestador.setEmail(new JpaEmail(prestador.getEmail().value()));
+        jpaPrestador.setTelefone(new JpaTelefone(prestador.getTelefone().numero(), prestador.getTelefone().tipo()));
+        jpaPrestador.setWhatsapp(new JpaTelefone(prestador.getWhatsapp().numero(), prestador.getWhatsapp().tipo()));
+        jpaPrestador.setEndereco(new JpaEndereco(prestador.getEndereco().rua(), prestador.getEndereco().numero(),
+            prestador.getEndereco().complemento(), prestador.getEndereco().bairro(), prestador.getEndereco().cidade(),
+            prestador.getEndereco().estado(), prestador.getEndereco().cep()));
+        jpaPrestador.setStatus(prestador.getStatus());
+        this.jpaPrestadorRepository.save(jpaPrestador);
     }
 
     @Override

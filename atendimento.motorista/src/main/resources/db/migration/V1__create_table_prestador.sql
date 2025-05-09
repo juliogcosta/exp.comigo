@@ -1,4 +1,4 @@
-CREATE TABLE prestador (
+CREATE TABLE atendimento.prestador (
     id BIGSERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     cnpj VARCHAR(14) NOT NULL UNIQUE,

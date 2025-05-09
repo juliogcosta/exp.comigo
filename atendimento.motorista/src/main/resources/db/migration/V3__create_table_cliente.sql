@@ -1,4 +1,4 @@
-CREATE TABLE cliente (
+CREATE TABLE atendimento.cliente (
     id BIGSERIAL PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     cpf VARCHAR(11) NOT NULL UNIQUE,

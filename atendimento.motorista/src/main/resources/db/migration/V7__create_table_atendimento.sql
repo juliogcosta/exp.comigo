@@ -1,12 +1,12 @@
-CREATE TABLE atendimento (
+CREATE TABLE atendimento.atendimento (
     id BIGSERIAL PRIMARY KEY,
     prestador_id BIGINT NOT NULL,
     cliente_id BIGINT,
     cliente_nome VARCHAR(255),
-    telefone_numero VARCHAR(15),
-    telefone_tipo VARCHAR(15),
-    whatsapp_numero VARCHAR(15),
-    whatsapp_tipo VARCHAR(15),
+    cliente_telefone_numero VARCHAR(15),
+    cliente_telefone_tipo VARCHAR(15),
+    cliente_whatsapp_numero VARCHAR(15),
+    cliente_whatsapp_tipo VARCHAR(15),
     veiculo_id BIGINT,
     veiculo_placa VARCHAR(20),
     tipo_ocorrencia VARCHAR(255) NOT NULL,

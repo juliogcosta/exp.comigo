@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "setup_de_item_do_servico")
+@Table(name = "setup_de_item_do_servico", schema = "atendimento")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -24,6 +24,7 @@ public class JpaSetupDeItemDoServico {
     @Column(nullable = false)
     private Integer precoUnitario;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusDeSetupDeItemDoServico status;
 

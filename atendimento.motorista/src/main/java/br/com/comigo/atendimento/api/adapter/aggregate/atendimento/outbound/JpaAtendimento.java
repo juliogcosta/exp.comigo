@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "atendimento")
+@Table(name = "atendimento", schema = "atendimento")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -47,15 +47,15 @@ public class JpaAtendimento {
 
     @Embedded
     @AttributeOverrides({
-        @AttributeOverride(name = "numero", column = @Column(name = "telefone_numero")),
-        @AttributeOverride(name = "tipo", column = @Column(name = "telefone_tipo"))
+        @AttributeOverride(name = "numero", column = @Column(name = "cliente_telefone_numero")),
+        @AttributeOverride(name = "tipo", column = @Column(name = "cliente_telefone_tipo"))
     })
     private JpaTelefone clienteTelefone;
 
     @Embedded
     @AttributeOverrides({
-        @AttributeOverride(name = "numero", column = @Column(name = "telefone_numero")),
-        @AttributeOverride(name = "tipo", column = @Column(name = "telefone_tipo"))
+        @AttributeOverride(name = "numero", column = @Column(name = "cliente_whatsapp_numero")),
+        @AttributeOverride(name = "tipo", column = @Column(name = "cliente_whatsapp_tipo"))
     })
     private JpaTelefone clienteWhatsapp;
 

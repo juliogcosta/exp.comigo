@@ -31,8 +31,6 @@ public interface JpaPrestadorRepository extends JpaRepository<JpaPrestador, Long
         + "WHERE p.cnpj.cnpj = :cnpj")
     public Page<PrestadorSetupDeItemDeServicoProjection> findSetupDeItemDeServicoByPrestadorCnpj(@Param("cnpj") String cnpj);*/
 
-    public void update(JpaPrestador jpaPrestador);
-
     public Optional<JpaPrestador> findByCnpj_Cnpj(String cnpj);
 
     public List<JpaPrestador> findByNome(String nome);

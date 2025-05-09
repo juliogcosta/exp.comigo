@@ -15,9 +15,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Repository
 public class ServicoRepositoryImpl implements ServicoRepository {
+
     private final JpaServicoRepository jpaServicoRepository;
     private final ServicoMapper servicoMapper;
-    
+
     @Override
     public Servico create(Servico servico) {
         JpaServico jpaServico = new JpaServico(servico);
@@ -28,8 +29,12 @@ public class ServicoRepositoryImpl implements ServicoRepository {
 
     @Override
     public void update(Servico servico) {
-        JpaServico jpaServico = new JpaServico(servico);
-        this.jpaServicoRepository.update(jpaServico);
+        JpaServico jpaServico = this.jpaServicoRepository.findById(servico.getId())
+            .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
+        jpaServico.setNome(servico.getNome());
+        jpaServico.setDescricao(servico.getDescricao());
+        jpaServico.setStatus(servico.getStatus());
+        this.jpaServicoRepository.save(jpaServico);
     }
 
     @Override

@@ -8,8 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import br.com.comigo.atendimento.api.adapter.aggregate.cliente.outbound.JpaCliente;
 
 public interface JpaClienteRepository extends JpaRepository<JpaCliente, Long> {
-    public void update(JpaCliente jpaCliente); 
-
     public Optional<JpaCliente> findByCpf_Cpf(String cpf);
 
     public List<JpaCliente> findByNome(String nome);

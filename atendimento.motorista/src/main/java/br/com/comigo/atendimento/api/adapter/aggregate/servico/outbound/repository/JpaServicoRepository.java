@@ -22,7 +22,5 @@ public interface JpaServicoRepository extends JpaRepository<JpaServico, Long> {
         + "WHERE s.id = :servicoId")
     public Page<ServicoItemDeServicoProjection> findItemDeServicoByServicoId(@Param("servicoId") String servicoId, Pageable pageable);*/
 
-    public void update(JpaServico jpaServico);
-
     public Optional<JpaServico> findByNome(String nome);
 }

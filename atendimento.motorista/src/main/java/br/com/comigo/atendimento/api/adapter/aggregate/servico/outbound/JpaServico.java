@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "servico")
+@Table(name = "servico", schema = "atendimento")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -27,6 +27,7 @@ public class JpaServico {
     @Column(nullable = false)
     private String descricao;
 
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusDeServico status;
 
