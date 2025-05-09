@@ -6,13 +6,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import br.com.comigo.atendimento.api.adapter.inbound.dto.CouponRequestDTO;
-import br.com.comigo.atendimento.api.adapter.inbound.dto.EventDTO;
-import br.com.comigo.atendimento.api.adapter.inbound.dto.EventRequestDTO;
-import br.com.comigo.atendimento.api.adapter.inbound.dto.EventResponseDTO;
-import br.com.comigo.atendimento.api.application.service.CouponServiceImpl;
-import br.com.comigo.atendimento.api.application.service.EventServiceImpl;
-import br.com.comigo.atendimento.api.domain.data.Coupon;
+import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.event.CouponRequestDTO;
+import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.event.EventDTO;
+import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.event.EventRequestDTO;
+import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.event.EventResponseDTO;
+import br.com.comigo.atendimento.api.application.service.event.CouponServiceImpl;
+import br.com.comigo.atendimento.api.application.service.event.EventServiceImpl;
+import br.com.comigo.atendimento.api.domain.aggregate.event.Coupon;
 
 import java.util.Date;
 import java.util.List;

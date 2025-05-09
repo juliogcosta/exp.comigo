@@ -3,9 +3,9 @@ package br.com.comigo.atendimento.api.application.usecase;
 import java.util.Date;
 import java.util.List;
 
-import br.com.comigo.atendimento.api.adapter.inbound.dto.EventDTO;
-import br.com.comigo.atendimento.api.adapter.inbound.dto.EventRequestDTO;
-import br.com.comigo.atendimento.api.adapter.inbound.dto.EventResponseDTO;
+import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.event.EventDTO;
+import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.event.EventRequestDTO;
+import br.com.comigo.atendimento.api.adapter.inbound.dto.aggregate.event.EventResponseDTO;
 
 public interface EventUseCases {
     EventResponseDTO create(EventRequestDTO dto);
