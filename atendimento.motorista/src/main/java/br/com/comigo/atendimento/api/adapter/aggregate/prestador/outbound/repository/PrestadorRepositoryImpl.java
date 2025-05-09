@@ -6,14 +6,11 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.comigo.atendimento.api.adapter.aggregate.cliente.outbound.JpaCliente;
 import br.com.comigo.atendimento.api.adapter.aggregate.prestador.outbound.JpaPrestador;
 import br.com.comigo.atendimento.api.adapter.util.JpaCnpj;
-import br.com.comigo.atendimento.api.adapter.util.JpaCpf;
 import br.com.comigo.atendimento.api.adapter.util.JpaEmail;
 import br.com.comigo.atendimento.api.adapter.util.JpaEndereco;
 import br.com.comigo.atendimento.api.adapter.util.JpaTelefone;
-import br.com.comigo.atendimento.api.domain.aggregate.cliente.Cliente;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.Prestador;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.repository.PrestadorRepository;
 import br.com.comigo.atendimento.api.domain.util.Cnpj;
