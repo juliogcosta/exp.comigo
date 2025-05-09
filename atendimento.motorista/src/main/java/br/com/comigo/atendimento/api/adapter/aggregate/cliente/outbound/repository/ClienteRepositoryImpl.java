@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
 import br.com.comigo.atendimento.api.adapter.aggregate.cliente.outbound.JpaCliente;
-import br.com.comigo.atendimento.api.adapter.aggregate.cliente.outbound.JpaClienteRepository;
 import br.com.comigo.atendimento.api.domain.aggregate.cliente.Cliente;
 import br.com.comigo.atendimento.api.domain.aggregate.cliente.repository.ClienteRepository;
 import br.com.comigo.atendimento.api.domain.util.Cpf;

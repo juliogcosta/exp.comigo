@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
 import br.com.comigo.atendimento.api.adapter.aggregate.cliente.outbound.JpaVeiculo;
-import br.com.comigo.atendimento.api.adapter.aggregate.cliente.outbound.JpaVeiculoRepository;
 import br.com.comigo.atendimento.api.domain.aggregate.cliente.Veiculo;
 import br.com.comigo.atendimento.api.domain.aggregate.cliente.repository.VeiculoRepository;
 import br.com.comigo.atendimento.api.mapper.aggregate.cliente.VeiculoMapper;

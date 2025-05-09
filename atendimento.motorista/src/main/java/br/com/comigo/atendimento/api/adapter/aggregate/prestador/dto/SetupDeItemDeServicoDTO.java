@@ -1,11 +1,11 @@
 package br.com.comigo.atendimento.api.adapter.aggregate.prestador.dto;
 
-import br.com.comigo.atendimento.api.domain.util.StatusDeSetupDeItemDeServico;
+import br.com.comigo.atendimento.api.domain.util.StatusDeSetupDeItemDoServico;
 
 public record SetupDeItemDeServicoDTO(
     Long id,
     Integer precoUnitario,
-    StatusDeSetupDeItemDeServico status,
+    StatusDeSetupDeItemDoServico status,
     Long itemDeServicoId
 ) {
 }

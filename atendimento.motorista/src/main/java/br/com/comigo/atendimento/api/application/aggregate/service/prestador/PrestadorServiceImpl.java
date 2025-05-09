@@ -8,13 +8,13 @@ import br.com.comigo.atendimento.api.adapter.aggregate.prestador.dto.PrestadorDT
 import br.com.comigo.atendimento.api.adapter.aggregate.prestador.dto.SetupDeItemDeServicoDTO;
 import br.com.comigo.atendimento.api.application.usecase.prestador.PrestadorUseCases;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.Prestador;
-import br.com.comigo.atendimento.api.domain.aggregate.prestador.SetupDeItemDeServico;
+import br.com.comigo.atendimento.api.domain.aggregate.prestador.SetupDeItemDoServico;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.repository.PrestadorRepository;
-import br.com.comigo.atendimento.api.domain.aggregate.prestador.repository.SetupDeItemDeServicoRepository;
+import br.com.comigo.atendimento.api.domain.aggregate.prestador.repository.SetupDeItemDoServicoRepository;
 import br.com.comigo.atendimento.api.domain.util.Cnpj;
 import br.com.comigo.atendimento.api.domain.util.Telefone;
 import br.com.comigo.atendimento.api.mapper.aggregate.prestador.PrestadorMapper;
-import br.com.comigo.atendimento.api.mapper.aggregate.prestador.SetupDeItemDeServicoMapper;
+import br.com.comigo.atendimento.api.mapper.aggregate.prestador.SetupDeItemDoServicoMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,9 +24,9 @@ import lombok.extern.slf4j.Slf4j;
 public class PrestadorServiceImpl implements PrestadorUseCases {
 
     private final PrestadorRepository prestadorRepository;
-    private final SetupDeItemDeServicoRepository setupDeItemDeServicoRepository;
+    private final SetupDeItemDoServicoRepository setupDeItemDoServicoRepository;
     private final PrestadorMapper prestadorMapper;
-    private final SetupDeItemDeServicoMapper setupDeItemDeServicoMapper;
+    private final SetupDeItemDoServicoMapper setupDeItemDoServicoMapper;
 
     @Override
     public PrestadorDTO create(PrestadorDTO dto) {
@@ -71,17 +71,17 @@ public class PrestadorServiceImpl implements PrestadorUseCases {
     }
 
     @Override
-    public void addSetupDeItemDoServicoToPrestador(SetupDeItemDeServicoDTO setupDeItemDeServicoDTO, Long prestadorId) {
+    public void addSetupDeItemDoServicoToPrestador(SetupDeItemDeServicoDTO setupDeItemDoServicoDTO, Long prestadorId) {
         Prestador prestador = this.prestadorRepository.findById(prestadorId)
             .orElseThrow(() -> new RuntimeException("Crestador not found"));
         
-        SetupDeItemDeServico setupDeItemDeServico = this.setupDeItemDeServicoMapper.toDomain(setupDeItemDeServicoDTO);
-        setupDeItemDeServico.setPrestador(prestador);
-        this.setupDeItemDeServicoRepository.create(setupDeItemDeServico);
+        SetupDeItemDoServico setupDeItemDoServico = this.setupDeItemDoServicoMapper.toDomain(setupDeItemDoServicoDTO);
+        setupDeItemDoServico.setPrestador(prestador);
+        this.setupDeItemDoServicoRepository.create(setupDeItemDoServico);
     }
 
     @Override
     public void deleteSetupDeItemDoServico(Long id) {
-        this.setupDeItemDeServicoRepository.deleteById(id);
+        this.setupDeItemDoServicoRepository.deleteById(id);
     }
 }

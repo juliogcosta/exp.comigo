@@ -17,9 +17,9 @@ public interface VeiculoMapper {
         @Mapping(source = "veiculoDTO.modelo", target = "modelo"),
         @Mapping(source = "veiculoDTO.cor", target = "cor"),
         @Mapping(source = "veiculoDTO.placa", target = "placa"),
-        @Mapping(target = "ano", ignore = true)
+        @Mapping(source = "veiculoDTO.ano", target = "ano"),
+        @Mapping(target = "cliente", ignore = true)
     })
-    @SuppressWarnings("UnmappedTargetProperties")
     Veiculo toDomain(VeiculoDTO veiculoDTO);
 
     @Mappings({
@@ -30,7 +30,6 @@ public interface VeiculoMapper {
         @Mapping(source = "veiculo.placa", target = "placa"),
         @Mapping(source = "veiculo.ano", target = "ano")
     })
-    @SuppressWarnings("UnmappedTargetProperties")
     VeiculoDTO toDto(Veiculo veiculo);
 
     @Mappings({
@@ -40,8 +39,7 @@ public interface VeiculoMapper {
         @Mapping(source = "jpaVeiculo.cor", target = "cor"),
         @Mapping(source = "jpaVeiculo.placa", target = "placa"),
         @Mapping(source = "jpaVeiculo.ano", target = "ano"),
-        @Mapping(target = "cliente.cpf.value", ignore = true),
-        @Mapping(target = "cliente.email.value", ignore = true),
+        @Mapping(target = "cliente", ignore = true),
     })
     Veiculo fromJpaToDomain(JpaVeiculo jpaVeiculo);
 

@@ -25,9 +25,9 @@ public interface ClienteMapper {
         @Mapping(source = "clienteDTO.whatsapp", target = "whatsapp"),
         @Mapping(source = "clienteDTO.email", target = "email"),
         @Mapping(source = "clienteDTO.endereco", target = "endereco"),
-        @Mapping(source = "clienteDTO.dataNascimento", target = "dataNascimento")
+        @Mapping(source = "clienteDTO.dataNascimento", target = "dataNascimento"),
+        @Mapping(target = "veiculos", ignore = true)
     })
-    @SuppressWarnings("UnmappedTargetProperties")
     Cliente toDomain(ClienteDTO clienteDTO);
 
     @Mappings({
@@ -40,7 +40,6 @@ public interface ClienteMapper {
         @Mapping(source = "cliente.endereco", target = "endereco"),
         @Mapping(source = "cliente.dataNascimento", target = "dataNascimento")
     })
-    @SuppressWarnings("UnmappedTargetProperties")
     ClienteDTO toDto(Cliente cliente);
 
     default Cliente fromJpaToDomain(JpaCliente jpaCliente) {

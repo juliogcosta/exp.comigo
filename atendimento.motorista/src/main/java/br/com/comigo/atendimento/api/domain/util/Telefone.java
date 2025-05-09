@@ -9,9 +9,6 @@ public record Telefone(String numero, TipoDeTelefone tipo) {
     );
 
     public Telefone {
-        if (tipo == null) {
-            throw new IllegalArgumentException("Tipo de Telefone não pode ser nulo");
-        }
         if (numero == null || numero.isBlank()) {
             throw new IllegalArgumentException("Numero de Telefone não pode ser nulo ou vazio");
         }

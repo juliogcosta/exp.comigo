@@ -33,13 +33,13 @@ public class JpaVeiculo {
     @Column(nullable = false)
     private String modelo;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String cor;
 
     @Column(nullable = false, unique = true)
     private String placa;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String ano;
 
     @ManyToOne
