@@ -24,5 +24,5 @@ public interface PrestadorUseCases {
 
     public void addSetupDeItemDoServicoToPrestador(SetupDeItemDeServicoDTO setupDeItemDeServicoDTO, Long prestadorId);
 
-    public void deleteSetupDeItemDeServico(Long id);
+    public void deleteSetupDeItemDoServico(Long id);
 }

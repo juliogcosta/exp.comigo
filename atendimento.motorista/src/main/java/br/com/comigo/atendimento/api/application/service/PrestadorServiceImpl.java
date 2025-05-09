@@ -41,14 +41,14 @@ public class PrestadorServiceImpl implements PrestadorUseCases {
 
     @Override
     public PrestadorDTO getPrestadorDetailsById(Long id) {
-        Prestador crestador = this.prestadorRepository.findById(id).orElseThrow(() -> new RuntimeException("Prestador not found"));
-        return this.prestadorMapper.toDto(crestador);
+        Prestador prestador = this.prestadorRepository.findById(id).orElseThrow(() -> new RuntimeException("Prestador not found"));
+        return this.prestadorMapper.toDto(prestador);
     }
 
     @Override
     public PrestadorDTO getPrestadorDetailsByCnpj(Cnpj cnpj) {
-        Prestador crestador = this.prestadorRepository.findByCnpj(cnpj).orElseThrow(() -> new RuntimeException("Prestador not found"));
-        return this.prestadorMapper.toDto(crestador);
+        Prestador prestador = this.prestadorRepository.findByCnpj(cnpj).orElseThrow(() -> new RuntimeException("Prestador not found"));
+        return this.prestadorMapper.toDto(prestador);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class PrestadorServiceImpl implements PrestadorUseCases {
     }
 
     @Override
-    public void deleteSetupDeItemDeServico(Long id) {
+    public void deleteSetupDeItemDoServico(Long id) {
         this.setupDeItemDeServicoRepository.deleteById(id);
     }
 }

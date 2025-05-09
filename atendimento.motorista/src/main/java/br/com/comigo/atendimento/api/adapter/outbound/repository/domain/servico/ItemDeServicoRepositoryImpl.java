@@ -20,7 +20,7 @@ public class ItemDeServicoRepositoryImpl implements ItemDeServicoRepository {
     private final ItemDeServicoMapper itemDeServicoMapper;
     
     @Override
-    public ItemDeServico save(ItemDeServico itemDeServico) {
+    public ItemDeServico create(ItemDeServico itemDeServico) {
         JpaItemDeServico jpaItemDeServico = new JpaItemDeServico(itemDeServico);
         jpaItemDeServico = this.jpaItemDeServicoRepository.save(jpaItemDeServico);
         itemDeServico.setId(jpaItemDeServico.getId());

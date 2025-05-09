@@ -49,4 +49,8 @@ public class ItemDeServico {
     public Servico getServico() {
         return this.servico;
     }
+
+    public void setServico(Servico servico) {
+      this.servico = servico;
+    }
 }

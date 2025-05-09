@@ -6,11 +6,11 @@ import java.util.Optional;
 import br.com.comigo.atendimento.api.domain.data.aggregate.servico.ItemDeServico;
 
 public interface ItemDeServicoRepository {
-    ItemDeServico save(ItemDeServico itemDeServico);
+    public ItemDeServico create(ItemDeServico itemDeServico);
 
-    Optional<ItemDeServico> findById(Long id);
+    public Optional<ItemDeServico> findById(Long id);
 
-    List<ItemDeServico> findAll();
+    public List<ItemDeServico> findAll();
 
-    void deleteById(Long id);
+    public void deleteById(Long id);
 }
