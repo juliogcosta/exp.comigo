@@ -25,6 +25,12 @@ public class ClienteController {
         return ResponseEntity.ok(newCliente);
     }
 
+    @PutMapping
+    public ResponseEntity<ClienteDTO> update(@Valid @RequestBody ClienteDTO clienteDTO) {
+        this.clienteService.update(clienteDTO);
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ClienteDTO> getClienteDetailsById(@PathVariable Long id) {
         ClienteDTO clienteDTO = this.clienteService.getClienteDetailsById(id);
@@ -52,13 +58,13 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteEvent(@PathVariable Long id) {
+    public ResponseEntity<Void> deletCliente(@PathVariable Long id) {
         this.clienteService.deleteCliente(id);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/{id}/veiculo")
-    public ResponseEntity<Void> addCouponsToEvent(@PathVariable Long id, @RequestBody VeiculoDTO veiculoDTO) {
+    public ResponseEntity<Void> addVeiculoToCliente(@PathVariable Long id, @RequestBody VeiculoDTO veiculoDTO) {
         this.clienteService.addVeiculoToCliente(veiculoDTO, id);
         return ResponseEntity.ok().build();
     }

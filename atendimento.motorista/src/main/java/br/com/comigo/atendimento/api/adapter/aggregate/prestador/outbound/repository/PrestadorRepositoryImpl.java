@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 public class PrestadorRepositoryImpl implements PrestadorRepository {
     private final JpaPrestadorRepository jpaPrestadorRepository;
     private final PrestadorMapper prestadorMapper;
-    
+
     @Override
     public Prestador create(Prestador prestador) {
         JpaPrestador jpaPrestador = new JpaPrestador(prestador);
@@ -35,15 +35,16 @@ public class PrestadorRepositoryImpl implements PrestadorRepository {
     @Override
     public void update(Prestador prestador) {
         JpaPrestador jpaPrestador = this.jpaPrestadorRepository.findById(prestador.getId())
-            .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
-        jpaPrestador.setCnpj(new JpaCnpj(prestador.getCnpj().value()));
+                .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
+        jpaPrestador.setCnpj(new JpaCnpj(prestador.getCnpj().valor()));
         jpaPrestador.setNome(prestador.getNome());
-        jpaPrestador.setEmail(new JpaEmail(prestador.getEmail().value()));
+        jpaPrestador.setEmail(new JpaEmail(prestador.getEmail().valor()));
         jpaPrestador.setTelefone(new JpaTelefone(prestador.getTelefone().numero(), prestador.getTelefone().tipo()));
         jpaPrestador.setWhatsapp(new JpaTelefone(prestador.getWhatsapp().numero(), prestador.getWhatsapp().tipo()));
-        jpaPrestador.setEndereco(new JpaEndereco(prestador.getEndereco().rua(), prestador.getEndereco().numero(),
-            prestador.getEndereco().complemento(), prestador.getEndereco().bairro(), prestador.getEndereco().cidade(),
-            prestador.getEndereco().estado(), prestador.getEndereco().cep()));
+        jpaPrestador.setEndereco(new JpaEndereco(prestador.getEndereco().logradouro(), prestador.getEndereco().numero(),
+                prestador.getEndereco().complemento(), prestador.getEndereco().bairro(),
+                prestador.getEndereco().cidade(),
+                prestador.getEndereco().estado(), prestador.getEndereco().cep()));
         jpaPrestador.setStatus(prestador.getStatus());
         this.jpaPrestadorRepository.save(jpaPrestador);
     }
@@ -53,7 +54,7 @@ public class PrestadorRepositoryImpl implements PrestadorRepository {
         Optional<JpaPrestador> optional = this.jpaPrestadorRepository.findById(id);
         return optional.map(prestadorMapper::fromJpaToDomain);
     }
-    
+
     @Override
     public void deleteById(Long id) {
         this.jpaPrestadorRepository.deleteById(id);
@@ -61,21 +62,21 @@ public class PrestadorRepositoryImpl implements PrestadorRepository {
 
     @Override
     public Optional<Prestador> findByCnpj(Cnpj cnpj) {
-        Optional<JpaPrestador> optional = this.jpaPrestadorRepository.findByCnpj_Cnpj(cnpj.value());
+        Optional<JpaPrestador> optional = this.jpaPrestadorRepository.findByCnpj_Cnpj(cnpj.valor());
         return optional.map(prestadorMapper::fromJpaToDomain);
     }
 
     @Override
     public List<Prestador> findByNome(String nome) {
         return this.jpaPrestadorRepository.findByNome(nome).stream()
-            .map(prestadorMapper::fromJpaToDomain)
-            .collect(Collectors.toList());
+                .map(prestadorMapper::fromJpaToDomain)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Prestador> findByTelefone(Telefone telefone) {
         return this.jpaPrestadorRepository.findByTelefone_Numero(telefone.numero()).stream()
-            .map(prestadorMapper::fromJpaToDomain)
-            .collect(Collectors.toList());
+                .map(prestadorMapper::fromJpaToDomain)
+                .collect(Collectors.toList());
     }
 }

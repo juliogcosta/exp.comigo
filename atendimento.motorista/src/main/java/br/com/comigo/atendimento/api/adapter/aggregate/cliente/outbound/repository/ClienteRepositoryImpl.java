@@ -16,8 +16,11 @@ import br.com.comigo.atendimento.api.domain.aggregate.cliente.repository.Cliente
 import br.com.comigo.atendimento.api.domain.util.Cpf;
 import br.com.comigo.atendimento.api.domain.util.Telefone;
 import br.com.comigo.atendimento.api.mapper.aggregate.cliente.ClienteMapper;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Repository
 public class ClienteRepositoryImpl implements ClienteRepository {
@@ -35,15 +38,15 @@ public class ClienteRepositoryImpl implements ClienteRepository {
     @Override
     public void update(Cliente cliente) {
         JpaCliente jpaCliente = this.jpaClienteRepository.findById(cliente.getId())
-            .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
-        jpaCliente.setCpf(new JpaCpf(cliente.getCpf().value()));
+                .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
+        jpaCliente.setCpf(new JpaCpf(cliente.getCpf().valor()));
         jpaCliente.setNome(cliente.getNome());
-        jpaCliente.setEmail(new JpaEmail(cliente.getEmail().value()));
+        jpaCliente.setEmail(new JpaEmail(cliente.getEmail().valor()));
         jpaCliente.setTelefone(new JpaTelefone(cliente.getTelefone().numero(), cliente.getTelefone().tipo()));
         jpaCliente.setWhatsapp(new JpaTelefone(cliente.getWhatsapp().numero(), cliente.getWhatsapp().tipo()));
-        jpaCliente.setEndereco(new JpaEndereco(cliente.getEndereco().rua(), cliente.getEndereco().numero(),
-            cliente.getEndereco().complemento(), cliente.getEndereco().bairro(), cliente.getEndereco().cidade(),
-            cliente.getEndereco().estado(), cliente.getEndereco().cep()));
+        jpaCliente.setEndereco(new JpaEndereco(cliente.getEndereco().logradouro(), cliente.getEndereco().numero(),
+                cliente.getEndereco().complemento(), cliente.getEndereco().bairro(), cliente.getEndereco().cidade(),
+                cliente.getEndereco().estado(), cliente.getEndereco().cep()));
         jpaCliente.setDataNascimento(cliente.getDataNascimento());
         this.jpaClienteRepository.save(jpaCliente);
     }
@@ -56,24 +59,24 @@ public class ClienteRepositoryImpl implements ClienteRepository {
 
     @Override
     public Optional<Cliente> findByCpf(Cpf cpf) {
-        Optional<JpaCliente> optional = this.jpaClienteRepository.findByCpf_Cpf(cpf.value());
+        Optional<JpaCliente> optional = this.jpaClienteRepository.findByCpf_Cpf(cpf.valor());
         return optional.map(clienteMapper::fromJpaToDomain);
     }
 
     @Override
     public List<Cliente> findByNome(String nome) {
         return this.jpaClienteRepository.findByNome(nome).stream()
-            .map(clienteMapper::fromJpaToDomain)
-            .collect(Collectors.toList());
+                .map(clienteMapper::fromJpaToDomain)
+                .collect(Collectors.toList());
     }
 
     @Override
     public List<Cliente> findByTelefone(Telefone telefone) {
         return this.jpaClienteRepository.findByTelefone_Numero(telefone.numero()).stream()
-            .map(clienteMapper::fromJpaToDomain)
-            .collect(Collectors.toList());
+                .map(clienteMapper::fromJpaToDomain)
+                .collect(Collectors.toList());
     }
-    
+
     @Override
     public void deleteById(Long id) {
         this.jpaClienteRepository.deleteById(id);

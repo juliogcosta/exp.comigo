@@ -1,29 +1,29 @@
 package br.com.comigo.atendimento.api.domain.util;
 
-public record Cpf(String value) {
+public record Cpf(String valor) {
 
     public Cpf {
-        if (value == null || value.isBlank()) {
+        if (valor == null || valor.isBlank()) {
             throw new IllegalArgumentException("CPF não pode ser nulo ou vazio");
         }
-        if (!value.matches("\\d{11}")) {
+        if (!valor.matches("\\d{11}")) {
             throw new IllegalArgumentException("CPF deve conter 11 dígitos numéricos");
         }
-        if (!isValidCpf(value)) {
+        if (!isValidCpf(valor)) {
             throw new IllegalArgumentException("CPF inválido");
         }
     }
 
-    private static boolean isValidCpf(String value) {
+    private static boolean isValidCpf(String valor) {
         // Verifica se todos os dígitos são iguais (ex.: 11111111111)
-        if (value.chars().distinct().count() == 1) {
+        if (valor.chars().distinct().count() == 1) {
             return false;
         }
 
         // Calcula o primeiro dígito verificador
         int sum1 = 0;
         for (int i = 0; i < 9; i++) {
-            sum1 += (value.charAt(i) - '0') * (10 - i);
+            sum1 += (valor.charAt(i) - '0') * (10 - i);
         }
         int checkDigit1 = 11 - (sum1 % 11);
         if (checkDigit1 >= 10) {
@@ -31,14 +31,14 @@ public record Cpf(String value) {
         }
 
         // Verifica o primeiro dígito
-        if (checkDigit1 != (value.charAt(9) - '0')) {
+        if (checkDigit1 != (valor.charAt(9) - '0')) {
             return false;
         }
 
         // Calcula o segundo dígito verificador
         int sum2 = 0;
         for (int i = 0; i < 10; i++) {
-            sum2 += (value.charAt(i) - '0') * (11 - i);
+            sum2 += (valor.charAt(i) - '0') * (11 - i);
         }
         int checkDigit2 = 11 - (sum2 % 11);
         if (checkDigit2 >= 10) {
@@ -46,6 +46,6 @@ public record Cpf(String value) {
         }
 
         // Verifica o segundo dígito
-        return checkDigit2 == (value.charAt(10) - '0');
+        return checkDigit2 == (valor.charAt(10) - '0');
     }
 }

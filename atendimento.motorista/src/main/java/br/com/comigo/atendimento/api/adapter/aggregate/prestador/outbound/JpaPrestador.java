@@ -20,54 +20,54 @@ import lombok.Setter;
 @AllArgsConstructor
 public class JpaPrestador {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false, nullable = false)
-    private Long id;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @Column(name = "id", updatable = false, nullable = false)
+        private Long id;
 
-    @Column(nullable = false)
-    private String nome;
+        @Column(nullable = false)
+        private String nome;
 
-    @Embedded
-    private JpaCnpj cnpj;
+        @Embedded
+        private JpaCnpj cnpj;
 
-    @Embedded
-    @AttributeOverrides({
-        @AttributeOverride(name = "numero", column = @Column(name = "telefone_numero")),
-        @AttributeOverride(name = "tipo", column = @Column(name = "telefone_tipo"))
-    })
-    private JpaTelefone telefone;
+        @Embedded
+        @AttributeOverrides({
+                        @AttributeOverride(name = "numero", column = @Column(name = "telefone_numero")),
+                        @AttributeOverride(name = "tipo", column = @Column(name = "telefone_tipo"))
+        })
+        private JpaTelefone telefone;
 
-    @Embedded
-    @AttributeOverrides({
-        @AttributeOverride(name = "numero", column = @Column(name = "whatsapp_numero")),
-        @AttributeOverride(name = "tipo", column = @Column(name = "whatsapp_tipo"))
-    })
-    private JpaTelefone whatsapp;
-    
-    @Embedded
-    private JpaEmail email;
+        @Embedded
+        @AttributeOverrides({
+                        @AttributeOverride(name = "numero", column = @Column(name = "whatsapp_numero")),
+                        @AttributeOverride(name = "tipo", column = @Column(name = "whatsapp_tipo"))
+        })
+        private JpaTelefone whatsapp;
 
-    @Embedded
-    private JpaEndereco endereco;
+        @Embedded
+        private JpaEmail email;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private StatusDePrestador status;
+        @Embedded
+        private JpaEndereco endereco;
 
-    public JpaPrestador(Prestador prestador) {
-        this.nome = prestador.getNome();
-        this.cnpj = new JpaCnpj(prestador.getCnpj().value());
-        this.telefone = new JpaTelefone(prestador.getTelefone().numero(), prestador.getTelefone().tipo());
-        this.whatsapp = new JpaTelefone(prestador.getWhatsapp().numero(), prestador.getWhatsapp().tipo());
-        this.email = new JpaEmail(prestador.getEmail().value());
-        this.endereco = new JpaEndereco(prestador.getEndereco().rua(), 
-                prestador.getEndereco().rua(),
-                prestador.getEndereco().numero(),
-                prestador.getEndereco().complemento(),
-                prestador.getEndereco().bairro(),
-                prestador.getEndereco().estado(),
-                prestador.getEndereco().cep());
-        this.status = StatusDePrestador.ATIVO;
-    }
+        @Enumerated(EnumType.STRING)
+        @Column(nullable = false)
+        private StatusDePrestador status;
+
+        public JpaPrestador(Prestador prestador) {
+                this.nome = prestador.getNome();
+                this.cnpj = new JpaCnpj(prestador.getCnpj().valor());
+                this.telefone = new JpaTelefone(prestador.getTelefone().numero(), prestador.getTelefone().tipo());
+                this.whatsapp = new JpaTelefone(prestador.getWhatsapp().numero(), prestador.getWhatsapp().tipo());
+                this.email = new JpaEmail(prestador.getEmail().valor());
+                this.endereco = new JpaEndereco(prestador.getEndereco().logradouro(),
+                                prestador.getEndereco().numero(),
+                                prestador.getEndereco().complemento(),
+                                prestador.getEndereco().bairro(),
+                                prestador.getEndereco().cidade(),
+                                prestador.getEndereco().estado(),
+                                prestador.getEndereco().cep());
+                this.status = StatusDePrestador.ATIVO;
+        }
 }

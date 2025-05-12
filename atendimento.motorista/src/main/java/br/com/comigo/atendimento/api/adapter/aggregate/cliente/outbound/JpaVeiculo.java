@@ -55,4 +55,17 @@ public class JpaVeiculo {
         this.ano = veiculo.getAno();
         this.cliente = new JpaCliente(veiculo.getCliente());
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                " id='" + getId() + "'" +
+                ", marca='" + getMarca() + "'" +
+                ", modelo='" + getModelo() + "'" +
+                ", cor='" + getCor() + "'" +
+                ", placa='" + getPlaca() + "'" +
+                ", ano='" + getAno() + "'" +
+                "}";
+    }
+
 }
