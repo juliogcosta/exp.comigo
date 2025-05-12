@@ -1,5 +1,7 @@
 package br.com.comigo.atendimento.api.domain.aggregate.prestador;
 
+import java.util.List;
+
 import br.com.comigo.atendimento.api.domain.util.Cnpj;
 import br.com.comigo.atendimento.api.domain.util.Email;
 import br.com.comigo.atendimento.api.domain.util.Endereco;
@@ -15,8 +17,10 @@ public class Prestador {
     private Email email;
     private Endereco endereco;
     private StatusDePrestador status;
+    private List<SetupDeItemDoServico> setupDeItemDoServicos;
 
-    public Prestador(Long id, String nome, Cnpj cnpj, Telefone telefone, Telefone whatsapp, Email email, Endereco endereco) {
+    public Prestador(Long id, String nome, Cnpj cnpj, Telefone telefone, Telefone whatsapp, Email email,
+            Endereco endereco) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
@@ -39,12 +43,24 @@ public class Prestador {
         return this.nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public Cnpj getCnpj() {
         return this.cnpj;
     }
 
+    public void setCnpj(Cnpj cnpj) {
+        this.cnpj = cnpj;
+    }
+
     public Telefone getTelefone() {
         return this.telefone;
+    }
+
+    public void setTelefone(Telefone telefone) {
+        this.telefone = telefone;
     }
 
     public Telefone getWhatsapp() {
@@ -52,7 +68,7 @@ public class Prestador {
     }
 
     public void setWhatsapp(Telefone whatsapp) {
-      this.whatsapp = whatsapp;
+        this.whatsapp = whatsapp;
     }
 
     public Email getEmail() {
@@ -67,11 +83,39 @@ public class Prestador {
         return this.endereco;
     }
 
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
     public StatusDePrestador getStatus() {
-      return status;
+        return this.status;
     }
 
     public void setStatus(StatusDePrestador status) {
-      this.status = status;
+        this.status = status;
     }
+
+    public List<SetupDeItemDoServico> getSetupDeItemDoServicos() {
+        return this.setupDeItemDoServicos;
+    }
+
+    public void setSetupDeItemDoServicos(List<SetupDeItemDoServico> setupDeItemDoServicos) {
+        this.setupDeItemDoServicos = setupDeItemDoServicos;
+    }
+
+    @Override
+    public String toString() {
+        return "{" +
+                " id=" + getId() + "" +
+                ", nome='" + getNome() + "'" +
+                ", cnpj='" + getCnpj() + "'" +
+                ", telefone='" + getTelefone() + "'" +
+                ", whatsapp='" + getWhatsapp() + "'" +
+                ", email='" + getEmail() + "'" +
+                ", endereco='" + getEndereco() + "'" +
+                ", status='" + getStatus() + "'" +
+                ", setupDeItemDoServicos='" + getSetupDeItemDoServicos() + "'" +
+                "}";
+    }
+
 }

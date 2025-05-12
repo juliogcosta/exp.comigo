@@ -1,5 +1,8 @@
 package br.com.comigo.atendimento.api.adapter.aggregate.prestador.outbound;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.comigo.atendimento.api.adapter.util.JpaCnpj;
 import br.com.comigo.atendimento.api.adapter.util.JpaEmail;
 import br.com.comigo.atendimento.api.adapter.util.JpaEndereco;
@@ -55,6 +58,9 @@ public class JpaPrestador {
         @Column(nullable = false)
         private StatusDePrestador status;
 
+        @OneToMany(mappedBy = "prestador", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+        private List<JpaSetupDeItemDoServico> setupDeItemDoServicos = new ArrayList<>();
+
         public JpaPrestador(Prestador prestador) {
                 this.nome = prestador.getNome();
                 this.cnpj = new JpaCnpj(prestador.getCnpj().valor());
@@ -70,4 +76,20 @@ public class JpaPrestador {
                                 prestador.getEndereco().cep());
                 this.status = StatusDePrestador.ATIVO;
         }
+
+        @Override
+        public String toString() {
+                return "{" +
+                                " id='" + getId() + "'" +
+                                ", nome='" + getNome() + "'" +
+                                ", cnpj='" + getCnpj() + "'" +
+                                ", telefone='" + getTelefone() + "'" +
+                                ", whatsapp='" + getWhatsapp() + "'" +
+                                ", email='" + getEmail() + "'" +
+                                ", endereco='" + getEndereco() + "'" +
+                                ", status='" + getStatus() + "'" +
+                                ", setupDeItemDoServicos='" + getSetupDeItemDoServicos() + "'" +
+                                "}";
+        }
+
 }

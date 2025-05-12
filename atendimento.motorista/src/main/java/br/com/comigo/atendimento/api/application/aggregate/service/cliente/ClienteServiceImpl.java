@@ -1,5 +1,6 @@
 package br.com.comigo.atendimento.api.application.aggregate.service.cliente;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -80,6 +81,10 @@ public class ClienteServiceImpl implements ClienteUseCases {
 
         Cliente cliente = this.clienteRepository.findById(clienteId)
                 .orElseThrow(() -> new RuntimeException("Cliente not found"));
+        if (cliente.getVeiculos() == null) {
+            cliente.setVeiculos(new ArrayList<>());
+        }
+
         veiculo.setCliente(cliente);
         cliente.getVeiculos().add(veiculo);
 

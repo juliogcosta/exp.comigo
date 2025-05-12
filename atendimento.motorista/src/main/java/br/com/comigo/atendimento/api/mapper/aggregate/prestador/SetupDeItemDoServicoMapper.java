@@ -4,44 +4,44 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-import br.com.comigo.atendimento.api.adapter.aggregate.prestador.dto.SetupDeItemDeServicoDTO;
+import br.com.comigo.atendimento.api.adapter.aggregate.prestador.dto.SetupDeItemDoServicoDTO;
 import br.com.comigo.atendimento.api.adapter.aggregate.prestador.outbound.JpaSetupDeItemDoServico;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.SetupDeItemDoServico;
 
 @Mapper(componentModel = "spring")
 public interface SetupDeItemDoServicoMapper {
 
-    @Mappings({
-        @Mapping(target = "id", ignore = true),
-        @Mapping(source = "setupDeItemDeServicoDTO.precoUnitario", target = "precoUnitario"),
-        @Mapping(source = "setupDeItemDeServicoDTO.status", target = "status"),
-        @Mapping(source = "setupDeItemDeServicoDTO.itemDeServicoId", target = "itemDeServicoId"),
-        @Mapping(target = "prestador", ignore = true)
-    })
-    SetupDeItemDoServico toDomain(SetupDeItemDeServicoDTO setupDeItemDeServicoDTO);
+        @Mappings({
+                        @Mapping(target = "id", ignore = true),
+                        @Mapping(source = "setupDeItemDoServicoDTO.precoUnitario", target = "precoUnitario"),
+                        @Mapping(source = "setupDeItemDoServicoDTO.status", target = "status"),
+                        @Mapping(source = "setupDeItemDoServicoDTO.itemDeServicoId", target = "itemDeServicoId"),
+                        @Mapping(target = "prestador", ignore = true)
+        })
+        SetupDeItemDoServico toDomain(SetupDeItemDoServicoDTO setupDeItemDoServicoDTO);
 
-    @Mappings({
-        @Mapping(target = "id", ignore = true),
-        @Mapping(source = "setupDeItemDeServicoDTO.precoUnitario", target = "precoUnitario"),
-        @Mapping(source = "setupDeItemDeServicoDTO.status", target = "status"),
-        @Mapping(source = "setupDeItemDeServicoDTO.itemDeServicoId", target = "itemDeServicoId")
-    })
-    SetupDeItemDeServicoDTO toDto(SetupDeItemDoServico setupDeItemDeServicoDTO);
+        @Mappings({
+                        @Mapping(target = "id", ignore = true),
+                        @Mapping(source = "setupDeItemDoServicoDTO.precoUnitario", target = "precoUnitario"),
+                        @Mapping(source = "setupDeItemDoServicoDTO.status", target = "status"),
+                        @Mapping(source = "setupDeItemDoServicoDTO.itemDeServicoId", target = "itemDeServicoId")
+        })
+        SetupDeItemDoServicoDTO toDto(SetupDeItemDoServico setupDeItemDoServicoDTO);
 
-    @Mappings({
-        @Mapping(source = "jpaSetupDeItemDeServico.id", target = "id"),
-        @Mapping(source = "jpaSetupDeItemDeServico.precoUnitario", target = "precoUnitario"),
-        @Mapping(source = "jpaSetupDeItemDeServico.status", target = "status"),
-        @Mapping(source = "jpaSetupDeItemDeServico.itemDeServicoId", target = "itemDeServicoId"),
-        @Mapping(target = "prestador", ignore = true),
-    })
-    SetupDeItemDoServico fromJpaToDomain(JpaSetupDeItemDoServico jpaSetupDeItemDeServico);
+        @Mappings({
+                        @Mapping(source = "jpaSetupDeItemDoServico.id", target = "id"),
+                        @Mapping(source = "jpaSetupDeItemDoServico.precoUnitario", target = "precoUnitario"),
+                        @Mapping(source = "jpaSetupDeItemDoServico.status", target = "status"),
+                        @Mapping(source = "jpaSetupDeItemDoServico.itemDeServicoId", target = "itemDeServicoId"),
+                        @Mapping(target = "prestador", ignore = true),
+        })
+        SetupDeItemDoServico fromJpaToDomain(JpaSetupDeItemDoServico jpaSetupDeItemDoServico);
 
-    @Mappings({
-        @Mapping(source = "jpaSetupDeItemDeServico.id", target = "id"),
-        @Mapping(source = "jpaSetupDeItemDeServico.precoUnitario", target = "precoUnitario"),
-        @Mapping(source = "jpaSetupDeItemDeServico.status", target = "status"),
-        @Mapping(source = "jpaSetupDeItemDeServico.itemDeServicoId", target = "itemDeServicoId")
-    })
-    SetupDeItemDeServicoDTO fromJpaToDto(SetupDeItemDoServico jpaSetupDeItemDeServico);
+        @Mappings({
+                        @Mapping(source = "jpaSetupDeItemDoServico.id", target = "id"),
+                        @Mapping(source = "jpaSetupDeItemDoServico.precoUnitario", target = "precoUnitario"),
+                        @Mapping(source = "jpaSetupDeItemDoServico.status", target = "status"),
+                        @Mapping(source = "jpaSetupDeItemDoServico.itemDeServicoId", target = "itemDeServicoId")
+        })
+        SetupDeItemDoServicoDTO fromJpaToDto(SetupDeItemDoServico jpaSetupDeItemDoServico);
 }

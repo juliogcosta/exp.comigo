@@ -42,4 +42,15 @@ public class JpaSetupDeItemDoServico {
         this.itemDeServicoId = setupDeItemDoServico.getItemDeServicoId();
         this.prestador = new JpaPrestador(setupDeItemDoServico.getPrestador());
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                " id='" + getId() + "'" +
+                ", precoUnitario='" + getPrecoUnitario() + "'" +
+                ", status='" + getStatus() + "'" +
+                ", itemDeServicoId='" + getItemDeServicoId() + "'" +
+                "}";
+    }
+
 }

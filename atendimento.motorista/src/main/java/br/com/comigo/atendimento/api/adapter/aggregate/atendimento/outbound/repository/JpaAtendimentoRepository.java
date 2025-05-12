@@ -27,13 +27,13 @@ public interface JpaAtendimentoRepository extends JpaRepository<JpaAtendimento, 
             + "a.dataHoraFinalizado AS dataHoraFinalizado, "
             + "a.origem AS origem, "
             + "a.destino AS destino, "
-            + "i.setupDeItemDeServicoId AS setupDeItemDeServicoId, "
+            + "i.setupDeItemDoServicoId AS setupDeItemDoServicoId, "
             + "i.quantidade AS quantidade "
-        + "FROM JpaAtendimento a "
-        + "LEFT JOIN JpaItemDeServicoDoAtendimento i ON a.id = i.atendimento.id "
-        + "WHERE a.prestadorId = :prestadorId")
+            + "FROM JpaAtendimento a "
+            + "LEFT JOIN JpaItemDeServicoDoAtendimento i ON a.id = i.atendimento.id "
+            + "WHERE a.prestadorId = :prestadorId")
     public Page<AtendimentoItemDeServicoDoAtendimentoProjection> findAtendimentosComItensDeServicoByPrestadorId(
-        @Param("prestadorId") Long prestadorId, Pageable pageable);
+            @Param("prestadorId") Long prestadorId, Pageable pageable);
 
     @Query("SELECT "
             + "a.id AS atendimentoId, "
@@ -51,13 +51,13 @@ public interface JpaAtendimentoRepository extends JpaRepository<JpaAtendimento, 
             + "a.dataHoraFinalizado AS dataHoraFinalizado, "
             + "a.origem AS origem, "
             + "a.destino AS destino, "
-            + "i.setupDeItemDeServicoId AS setupDeItemDeServicoId, "
+            + "i.setupDeItemDoServicoId AS setupDeItemDoServicoId, "
             + "i.quantidade AS quantidade "
-        + "FROM JpaAtendimento a "
-        + "LEFT JOIN JpaItemDeServicoDoAtendimento i ON a.id = i.atendimento.id "
-        + "WHERE a.veiculoPlaca = :veiculoPlaca")
+            + "FROM JpaAtendimento a "
+            + "LEFT JOIN JpaItemDeServicoDoAtendimento i ON a.id = i.atendimento.id "
+            + "WHERE a.veiculoPlaca = :veiculoPlaca")
     public Page<AtendimentoItemDeServicoDoAtendimentoProjection> findAtendimentosComItensDeServicoByVeiculoPlaca(
-        @Param("veiculoPlaca") String veiculoPlaca, Pageable pageable);
+            @Param("veiculoPlaca") String veiculoPlaca, Pageable pageable);
 
     @Query("SELECT "
             + "a.id AS atendimentoId, "
@@ -75,11 +75,11 @@ public interface JpaAtendimentoRepository extends JpaRepository<JpaAtendimento, 
             + "a.dataHoraFinalizado AS dataHoraFinalizado, "
             + "a.origem AS origem, "
             + "a.destino AS destino, "
-            + "i.setupDeItemDeServicoId AS setupDeItemDeServicoId, "
+            + "i.setupDeItemDoServicoId AS setupDeItemDoServicoId, "
             + "i.quantidade AS quantidade "
-        + "FROM JpaAtendimento a "
-        + "LEFT JOIN JpaItemDeServicoDoAtendimento i ON a.id = i.atendimento.id "
-        + "WHERE a.clienteTelefone.numero = :clienteTelefoneNumero")
+            + "FROM JpaAtendimento a "
+            + "LEFT JOIN JpaItemDeServicoDoAtendimento i ON a.id = i.atendimento.id "
+            + "WHERE a.clienteTelefone.numero = :clienteTelefoneNumero")
     public Page<AtendimentoItemDeServicoDoAtendimentoProjection> findAtendimentosComItensDeServicoByClienteTelefoneNumero(
-        @Param("clienteTelefoneNumero") String clienteTelefoneNumero, Pageable pageable);
+            @Param("clienteTelefoneNumero") String clienteTelefoneNumero, Pageable pageable);
 }

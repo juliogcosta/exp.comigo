@@ -25,9 +25,9 @@ public class JpaItemDeServicoDoAtendimento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false, nullable = false)
     private Long id;
-   
+
     @Column(nullable = false)
-    private Long setupDeItemDeServicoId;
+    private Long setupDeItemDoServicoId;
 
     @Column(nullable = false)
     private Integer quantidade;

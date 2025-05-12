@@ -43,8 +43,7 @@ public class PrestadorRepositoryImpl implements PrestadorRepository {
         jpaPrestador.setWhatsapp(new JpaTelefone(prestador.getWhatsapp().numero(), prestador.getWhatsapp().tipo()));
         jpaPrestador.setEndereco(new JpaEndereco(prestador.getEndereco().logradouro(), prestador.getEndereco().numero(),
                 prestador.getEndereco().complemento(), prestador.getEndereco().bairro(),
-                prestador.getEndereco().cidade(),
-                prestador.getEndereco().estado(), prestador.getEndereco().cep()));
+                prestador.getEndereco().cidade(), prestador.getEndereco().estado(), prestador.getEndereco().cep()));
         jpaPrestador.setStatus(prestador.getStatus());
         this.jpaPrestadorRepository.save(jpaPrestador);
     }

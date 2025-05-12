@@ -16,7 +16,6 @@ import br.com.comigo.atendimento.api.domain.aggregate.cliente.repository.Cliente
 import br.com.comigo.atendimento.api.domain.util.Cpf;
 import br.com.comigo.atendimento.api.domain.util.Telefone;
 import br.com.comigo.atendimento.api.mapper.aggregate.cliente.ClienteMapper;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,8 +44,8 @@ public class ClienteRepositoryImpl implements ClienteRepository {
         jpaCliente.setTelefone(new JpaTelefone(cliente.getTelefone().numero(), cliente.getTelefone().tipo()));
         jpaCliente.setWhatsapp(new JpaTelefone(cliente.getWhatsapp().numero(), cliente.getWhatsapp().tipo()));
         jpaCliente.setEndereco(new JpaEndereco(cliente.getEndereco().logradouro(), cliente.getEndereco().numero(),
-                cliente.getEndereco().complemento(), cliente.getEndereco().bairro(), cliente.getEndereco().cidade(),
-                cliente.getEndereco().estado(), cliente.getEndereco().cep()));
+                cliente.getEndereco().complemento(), cliente.getEndereco().bairro(),
+                cliente.getEndereco().cidade(), cliente.getEndereco().estado(), cliente.getEndereco().cep()));
         jpaCliente.setDataNascimento(cliente.getDataNascimento());
         this.jpaClienteRepository.save(jpaCliente);
     }

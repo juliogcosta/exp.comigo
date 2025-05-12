@@ -6,7 +6,7 @@ import java.util.Optional;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.SetupDeItemDoServico;
 
 public interface SetupDeItemDoServicoRepository {
-    public SetupDeItemDoServico create(SetupDeItemDoServico setupDeItemDoServico);
+    public void create(SetupDeItemDoServico setupDeItemDoServico, Long prestadorId);
 
     public Optional<SetupDeItemDoServico> findById(Long id);
 

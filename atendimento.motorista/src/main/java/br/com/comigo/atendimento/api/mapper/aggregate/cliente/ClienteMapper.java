@@ -67,8 +67,6 @@ public interface ClienteMapper {
                 if (jpaCliente.getVeiculos() == null) {
 
                 } else {
-                        LoggerFactory.getLogger(getClass()).info(" > veiculos: {}", jpaCliente.getVeiculos());
-
                         veiculos = jpaCliente.getVeiculos().stream()
                                         .map(veiculo -> new Veiculo(
                                                         veiculo.getId(),

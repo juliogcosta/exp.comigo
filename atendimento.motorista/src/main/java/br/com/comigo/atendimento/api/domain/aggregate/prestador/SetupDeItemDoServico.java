@@ -3,56 +3,68 @@ package br.com.comigo.atendimento.api.domain.aggregate.prestador;
 import br.com.comigo.atendimento.api.domain.util.StatusDeSetupDeItemDoServico;
 
 public class SetupDeItemDoServico {
-    private Long id = null;
-    private Integer precoUnitario = null;
-    private StatusDeSetupDeItemDoServico status = null;
-    private Long itemDeServicoId = null;
-    private Prestador prestador = null;
-    
-    public SetupDeItemDoServico(Long id, Integer precoUnitario, StatusDeSetupDeItemDoServico status, Long itemDeServicoId) {
-        this.id = id;
-        this.precoUnitario = precoUnitario;
-        this.status = status;
-        this.itemDeServicoId = itemDeServicoId;
-    }
+  private Long id = null;
+  private Integer precoUnitario = null;
+  private StatusDeSetupDeItemDoServico status = null;
+  private Long itemDeServicoId = null;
+  private Prestador prestador = null;
 
-    public Long getId() {
-        return this.id;
-    }
+  public SetupDeItemDoServico(Long id, Integer precoUnitario, StatusDeSetupDeItemDoServico status,
+      Long itemDeServicoId) {
+    this.id = id;
+    this.precoUnitario = precoUnitario;
+    this.status = StatusDeSetupDeItemDoServico.ATIVO;
+    this.itemDeServicoId = itemDeServicoId;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return this.id;
+  }
 
-    public Integer getPrecoUnitario() {
-        return this.precoUnitario;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setPrecoUnitario(Integer precoUnitario) {
-      this.precoUnitario = precoUnitario;
-    }
+  public Integer getPrecoUnitario() {
+    return this.precoUnitario;
+  }
 
-    public StatusDeSetupDeItemDoServico getStatus() {
-        return this.status;
-    }
+  public void setPrecoUnitario(Integer precoUnitario) {
+    this.precoUnitario = precoUnitario;
+  }
 
-    public void setStatus(StatusDeSetupDeItemDoServico status) {
-      this.status = status;
-    }
+  public StatusDeSetupDeItemDoServico getStatus() {
+    return this.status;
+  }
 
-    public Long getItemDeServicoId() {
-        return this.itemDeServicoId;
-    }
+  public void setStatus(StatusDeSetupDeItemDoServico status) {
+    this.status = status;
+  }
 
-    public void setItemDeServicoId(Long itemDeServicoId) {
-      this.itemDeServicoId = itemDeServicoId;
-    }
+  public Long getItemDeServicoId() {
+    return this.itemDeServicoId;
+  }
 
-    public Prestador getPrestador() {
-        return this.prestador;
-    }
+  public void setItemDeServicoId(Long itemDeServicoId) {
+    this.itemDeServicoId = itemDeServicoId;
+  }
 
-    public void setPrestador(Prestador prestador) {
-      this.prestador = prestador;
-    }
+  public Prestador getPrestador() {
+    return this.prestador;
+  }
+
+  public void setPrestador(Prestador prestador) {
+    this.prestador = prestador;
+  }
+
+  @Override
+  public String toString() {
+    return "{" +
+        " id=" + getId() +
+        ", precoUnitario='" + getPrecoUnitario() + "'" +
+        ", status='" + getStatus() + "'" +
+        ", itemDeServicoId='" + getItemDeServicoId() + "'" +
+        "}";
+  }
+
 }

@@ -6,24 +6,38 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
+import br.com.comigo.atendimento.api.adapter.aggregate.prestador.outbound.JpaPrestador;
 import br.com.comigo.atendimento.api.adapter.aggregate.prestador.outbound.JpaSetupDeItemDoServico;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.SetupDeItemDoServico;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.repository.SetupDeItemDoServicoRepository;
+import br.com.comigo.atendimento.api.mapper.aggregate.prestador.PrestadorMapper;
 import br.com.comigo.atendimento.api.mapper.aggregate.prestador.SetupDeItemDoServicoMapper;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Repository
 public class SetupDeItemDoServicoRepositoryImpl implements SetupDeItemDoServicoRepository {
+    private final JpaPrestadorRepository jpaPrestadorRepository;
+    private final PrestadorMapper prestadorMapper;
     private final JpaSetupDeItemDoServicoRepository jpaSetupDeItemDoServicoRepository;
     private final SetupDeItemDoServicoMapper setupDeItemDoServicoMapper;
-    
+
     @Override
-    public SetupDeItemDoServico create(SetupDeItemDoServico setupDeItemDoServico) {
-        JpaSetupDeItemDoServico jpaSetupDeItemDoServico = new JpaSetupDeItemDoServico(setupDeItemDoServico);
-        jpaSetupDeItemDoServico = this.jpaSetupDeItemDoServicoRepository.save(jpaSetupDeItemDoServico);
-        setupDeItemDoServico.setId(jpaSetupDeItemDoServico.getId());
-        return setupDeItemDoServico;
+    public void create(SetupDeItemDoServico setupDeItemDoServico, Long prestadorId) {
+        JpaPrestador jpaPrestador = this.jpaPrestadorRepository.findById(prestadorId)
+                .orElseThrow(() -> new IllegalArgumentException("Prestador não encontrado"));
+        setupDeItemDoServico.setPrestador(this.prestadorMapper.fromJpaToDomain(jpaPrestador));
+
+        JpaSetupDeItemDoServico jpaSetupDeItemDoServico = new JpaSetupDeItemDoServico();
+        jpaSetupDeItemDoServico.setPrecoUnitario(setupDeItemDoServico.getPrecoUnitario());
+        jpaSetupDeItemDoServico.setStatus(setupDeItemDoServico.getStatus());
+        jpaSetupDeItemDoServico.setItemDeServicoId(setupDeItemDoServico.getItemDeServicoId());
+        jpaSetupDeItemDoServico.setPrestador(jpaPrestador);
+
+        // Adicionar o novo SetupDeItemDoServico à lista do JpaPrestador
+        jpaPrestador.getSetupDeItemDoServicos().add(jpaSetupDeItemDoServico);
+
+        this.jpaPrestadorRepository.save(jpaPrestador);
     }
 
     @Override
@@ -31,12 +45,12 @@ public class SetupDeItemDoServicoRepositoryImpl implements SetupDeItemDoServicoR
         Optional<JpaSetupDeItemDoServico> optional = this.jpaSetupDeItemDoServicoRepository.findById(id);
         return optional.map(setupDeItemDoServicoMapper::fromJpaToDomain);
     }
-    
+
     @Override
     public List<SetupDeItemDoServico> findAll() {
         return this.jpaSetupDeItemDoServicoRepository.findAll().stream()
-            .map(setupDeItemDoServicoMapper::fromJpaToDomain)
-            .collect(Collectors.toList());
+                .map(setupDeItemDoServicoMapper::fromJpaToDomain)
+                .collect(Collectors.toList());
     }
 
     @Override
