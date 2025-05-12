@@ -1,6 +1,5 @@
 package br.com.comigo.atendimento.api.application.aggregate.service.prestador;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
