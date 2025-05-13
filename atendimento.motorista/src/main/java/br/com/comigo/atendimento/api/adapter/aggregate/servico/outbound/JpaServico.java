@@ -1,5 +1,7 @@
 package br.com.comigo.atendimento.api.adapter.aggregate.servico.outbound;
 
+import java.util.List;
+
 import br.com.comigo.atendimento.api.domain.aggregate.servico.Servico;
 import br.com.comigo.atendimento.api.domain.util.StatusDeServico;
 import jakarta.persistence.*;
@@ -31,10 +33,24 @@ public class JpaServico {
     @Column(nullable = false)
     private StatusDeServico status;
 
+    @OneToMany(mappedBy = "servico", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<JpaItemDeServico> itemDeServicos;
+
     public JpaServico(Servico servico) {
         this.id = servico.getId();
         this.nome = servico.getNome();
         this.descricao = servico.getDescricao();
-        this.status = servico.getStatus();
+        this.status = StatusDeServico.ATIVO;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", nome='" + getNome() + "'" +
+            ", descricao='" + getDescricao() + "'" +
+            ", status='" + getStatus() + "'" +
+            "}";
+    }
+
 }

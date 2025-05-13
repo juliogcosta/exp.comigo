@@ -37,6 +37,16 @@ public class JpaItemDeServico {
         this.nome = itemDeServico.getNome();
         this.descricao = itemDeServico.getDescricao();
         this.unidadeMedida = itemDeServico.getUnidadeMedida();
-        this.servico = new JpaServico(itemDeServico.getServico());
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", nome='" + getNome() + "'" +
+            ", descricao='" + getDescricao() + "'" +
+            ", unidadeMedida='" + getUnidadeMedida() + "'" +
+            "}";
+    }
+
 }

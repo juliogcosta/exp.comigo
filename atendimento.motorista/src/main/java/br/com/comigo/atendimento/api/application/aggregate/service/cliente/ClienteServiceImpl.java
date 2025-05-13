@@ -1,6 +1,5 @@
 package br.com.comigo.atendimento.api.application.aggregate.service.cliente;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -78,17 +77,7 @@ public class ClienteServiceImpl implements ClienteUseCases {
     @Override
     public void addVeiculoToCliente(VeiculoDTO veiculoDTO, Long clienteId) {
         Veiculo veiculo = this.veiculoMapper.toDomain(veiculoDTO);
-
-        Cliente cliente = this.clienteRepository.findById(clienteId)
-                .orElseThrow(() -> new RuntimeException("Cliente not found"));
-        if (cliente.getVeiculos() == null) {
-            cliente.setVeiculos(new ArrayList<>());
-        }
-
-        veiculo.setCliente(cliente);
-        cliente.getVeiculos().add(veiculo);
-
-        this.clienteRepository.update(cliente);
+        this.veiculoRepository.create(veiculo, clienteId);
     }
 
     @Override

@@ -34,7 +34,6 @@ public class SetupDeItemDoServicoRepositoryImpl implements SetupDeItemDoServicoR
         jpaSetupDeItemDoServico.setItemDeServicoId(setupDeItemDoServico.getItemDeServicoId());
         jpaSetupDeItemDoServico.setPrestador(jpaPrestador);
 
-        // Adicionar o novo SetupDeItemDoServico à lista do JpaPrestador
         jpaPrestador.getSetupDeItemDoServicos().add(jpaSetupDeItemDoServico);
 
         this.jpaPrestadorRepository.save(jpaPrestador);

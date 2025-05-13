@@ -30,7 +30,7 @@ public class ServicoRepositoryImpl implements ServicoRepository {
     @Override
     public void update(Servico servico) {
         JpaServico jpaServico = this.jpaServicoRepository.findById(servico.getId())
-            .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado"));
+            .orElseThrow(() -> new IllegalArgumentException("Servico não encontrado"));
         jpaServico.setNome(servico.getNome());
         jpaServico.setDescricao(servico.getDescricao());
         jpaServico.setStatus(servico.getStatus());

@@ -53,7 +53,6 @@ public class JpaVeiculo {
         this.cor = veiculo.getCor();
         this.placa = veiculo.getPlaca();
         this.ano = veiculo.getAno();
-        this.cliente = new JpaCliente(veiculo.getCliente());
     }
 
     @Override

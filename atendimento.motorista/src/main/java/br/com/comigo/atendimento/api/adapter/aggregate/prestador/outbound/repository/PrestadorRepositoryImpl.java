@@ -55,11 +55,6 @@ public class PrestadorRepositoryImpl implements PrestadorRepository {
     }
 
     @Override
-    public void deleteById(Long id) {
-        this.jpaPrestadorRepository.deleteById(id);
-    }
-
-    @Override
     public Optional<Prestador> findByCnpj(Cnpj cnpj) {
         Optional<JpaPrestador> optional = this.jpaPrestadorRepository.findByCnpj_Cnpj(cnpj.valor());
         return optional.map(prestadorMapper::fromJpaToDomain);
@@ -77,5 +72,10 @@ public class PrestadorRepositoryImpl implements PrestadorRepository {
         return this.jpaPrestadorRepository.findByTelefone_Numero(telefone.numero()).stream()
                 .map(prestadorMapper::fromJpaToDomain)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        this.jpaPrestadorRepository.deleteById(id);
     }
 }

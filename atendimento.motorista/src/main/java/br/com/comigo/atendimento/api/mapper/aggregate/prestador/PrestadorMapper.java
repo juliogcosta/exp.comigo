@@ -29,9 +29,8 @@ public interface PrestadorMapper {
                         @Mapping(source = "prestadorDTO.email", target = "email"),
                         @Mapping(source = "prestadorDTO.endereco", target = "endereco"),
                         @Mapping(source = "prestadorDTO.status", target = "status"),
-                        @Mapping(target = "setupDeItemDoServicos", ignore = true),
+                        @Mapping(target = "setupDeItemDoServicos", ignore = true)
         })
-        @SuppressWarnings("UnmappedTargetProperties")
         Prestador toDomain(PrestadorDTO prestadorDTO);
 
         @Mappings({
@@ -44,7 +43,6 @@ public interface PrestadorMapper {
                         @Mapping(source = "prestador.endereco", target = "endereco"),
                         @Mapping(source = "prestador.status", target = "status")
         })
-        @SuppressWarnings("UnmappedTargetProperties")
         PrestadorDTO toDto(Prestador prestador);
 
         default Prestador fromJpaToDomain(JpaPrestador jpaPrestador) {

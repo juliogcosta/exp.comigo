@@ -1,5 +1,7 @@
 package br.com.comigo.atendimento.api.domain.aggregate.servico;
 
+import java.util.List;
+
 import br.com.comigo.atendimento.api.domain.util.StatusDeServico;
 
 public class Servico {
@@ -7,12 +9,13 @@ public class Servico {
     private String nome = null;
     private String descricao;
     private StatusDeServico status = null;
+    private List<ItemDeServico> itemDeServicos = null;
 
     public Servico(Long id, String nome, String descricao, StatusDeServico status) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
-        this.status = status;
+        this.status = StatusDeServico.ATIVO;
     }
 
     public Long getId() {
@@ -45,5 +48,13 @@ public class Servico {
 
     public void setStatus(StatusDeServico status) {
       this.status = status;
+    }
+
+    public void setItemDeServicos(List<ItemDeServico> itemDeServicos) {
+      this.itemDeServicos = itemDeServicos;
+    }
+
+    public List<ItemDeServico> getItemDeServicos() {
+      return itemDeServicos;
     }
 }

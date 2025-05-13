@@ -6,7 +6,7 @@ import java.util.Optional;
 import br.com.comigo.atendimento.api.domain.aggregate.cliente.Veiculo;
 
 public interface VeiculoRepository {
-    public Veiculo create(Veiculo veiculo);
+    public void create(Veiculo veiculo, Long clienteId);
 
     public Optional<Veiculo> findById(Long id);
 

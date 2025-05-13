@@ -7,23 +7,35 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
 import br.com.comigo.atendimento.api.adapter.aggregate.servico.outbound.JpaItemDeServico;
+import br.com.comigo.atendimento.api.adapter.aggregate.servico.outbound.JpaServico;
 import br.com.comigo.atendimento.api.domain.aggregate.servico.ItemDeServico;
 import br.com.comigo.atendimento.api.domain.aggregate.servico.repository.ItemDeServicoRepository;
 import br.com.comigo.atendimento.api.mapper.aggregate.servico.ItemDeServicoMapper;
+import br.com.comigo.atendimento.api.mapper.aggregate.servico.ServicoMapper;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Repository
 public class ItemDeServicoRepositoryImpl implements ItemDeServicoRepository {
+    private final JpaServicoRepository jpaServicoRepository;
     private final JpaItemDeServicoRepository jpaItemDeServicoRepository;
+    private final ServicoMapper servicoMapper;
     private final ItemDeServicoMapper itemDeServicoMapper;
     
     @Override
-    public ItemDeServico create(ItemDeServico itemDeServico) {
-        JpaItemDeServico jpaItemDeServico = new JpaItemDeServico(itemDeServico);
-        jpaItemDeServico = this.jpaItemDeServicoRepository.save(jpaItemDeServico);
-        itemDeServico.setId(jpaItemDeServico.getId());
-        return itemDeServico;
+    public void create(ItemDeServico itemDeServico, Long servicoId) {
+        JpaServico jpaServico = this.jpaServicoRepository.findById(servicoId)
+                .orElseThrow(() -> new IllegalArgumentException("Prestador não encontrado"));
+        itemDeServico.setServico(this.servicoMapper.fromJpaToDomain(jpaServico));
+
+        JpaItemDeServico jpaItemDeServico = new JpaItemDeServico();
+        jpaItemDeServico.setDescricao(itemDeServico.getDescricao());
+        jpaItemDeServico.setNome(itemDeServico.getNome());
+        jpaItemDeServico.setUnidadeMedida(itemDeServico.getUnidadeMedida());
+        jpaItemDeServico.setServico(jpaServico);
+        jpaServico.getItemDeServicos().add(jpaItemDeServico);
+
+        this.jpaServicoRepository.save(jpaServico);
     }
 
     @Override

@@ -37,13 +37,15 @@ public class ServicoServiceImpl implements ServicoUseCases {
 
     @Override
     public ServicoDTO getServicoDetailsById(Long id) {
-        Servico servico = this.servicoRepository.findById(id).orElseThrow(() -> new RuntimeException("Prestador not found"));
+        Servico servico = this.servicoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Servico not found"));
         return this.servicoMapper.toDto(servico);
     }
 
     @Override
     public ServicoDTO getServicoDetailsByNome(String nome) {
-        Servico servico = this.servicoRepository.findByNome(nome).orElseThrow(() -> new RuntimeException("Prestador not found"));
+        Servico servico = this.servicoRepository.findByNome(nome)
+                .orElseThrow(() -> new RuntimeException("Prestador not found"));
         return this.servicoMapper.toDto(servico);
     }
 
@@ -54,12 +56,8 @@ public class ServicoServiceImpl implements ServicoUseCases {
 
     @Override
     public void addItemDeServicoToServico(ItemDeServicoDTO itemDeServicoDTO, Long servicoId) {
-        Servico prestador = this.servicoRepository.findById(servicoId)
-            .orElseThrow(() -> new RuntimeException("Servico not found"));
-        
         ItemDeServico itemDeServico = this.itemDeServicoMapper.toDomain(itemDeServicoDTO);
-        itemDeServico.setServico(prestador);
-        this.itemDeServicoRepository.create(itemDeServico);
+        this.itemDeServicoRepository.create(itemDeServico, servicoId);
     }
 
     @Override

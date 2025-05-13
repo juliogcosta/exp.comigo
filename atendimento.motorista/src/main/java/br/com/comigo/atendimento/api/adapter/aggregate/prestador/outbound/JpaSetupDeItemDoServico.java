@@ -40,7 +40,6 @@ public class JpaSetupDeItemDoServico {
         this.precoUnitario = setupDeItemDoServico.getPrecoUnitario();
         this.status = setupDeItemDoServico.getStatus();
         this.itemDeServicoId = setupDeItemDoServico.getItemDeServicoId();
-        this.prestador = new JpaPrestador(setupDeItemDoServico.getPrestador());
     }
 
     @Override
