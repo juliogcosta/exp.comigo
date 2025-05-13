@@ -53,4 +53,12 @@ public class ItemDeServico {
     public void setServico(Servico servico) {
       this.servico = servico;
     }
+
+    @Override
+    public String toString() {
+        return "ItemDeServico [id=" + id 
+            + ", nome=" + nome 
+            + ", descricao=" + descricao 
+            + ", unidadeMedida=" + unidadeMedida + "]";
+    }
 }

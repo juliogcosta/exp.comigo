@@ -1,30 +1,29 @@
 package br.com.comigo.atendimento.api.adapter.aggregate.atendimento.dto;
 
+import java.util.List;
+
 import br.com.comigo.atendimento.api.domain.util.Endereco;
 import br.com.comigo.atendimento.api.domain.util.StatusDeAtendimento;
 
 public record AtendimentoDTO(
         Long id,
-        PrestadorDTO prestadorDTO,
-        ClienteDTO clienteDTO,
-        VeiculoDTO veiculoDTO,
+        PrestadorDTO prestador,
+        ClienteDTO cliente,
+        VeiculoDTO veiculo,   
         String tipoOcorrencia,
         String tipoServico,
         StatusDeAtendimento status,
         Long dataHoraChamado,
-        Long dataHoraAutorizado,
+        Long dataHoraConfirmado,
         Long dataHoraEmAndamento,
         Long dataHoraFinalizado,
         Long dataHoraCancelado,
         String descricao,
         Endereco base,
         Endereco origem,
-        Endereco destino) {
+        Endereco destino,
+        List<ItemDeServicoDoAtendimentoDTO> itemDeServicoDoAtendimentos) {
     public record PrestadorDTO(
-            Long id) {
-    }
-
-    public record SetupDeItemDoServicoDTO(
             Long id) {
     }
 
@@ -37,6 +36,6 @@ public record AtendimentoDTO(
 
     public record VeiculoDTO(
             Long id,
-            String veiculoPlaca) {
+            String placa) {
     }
 }

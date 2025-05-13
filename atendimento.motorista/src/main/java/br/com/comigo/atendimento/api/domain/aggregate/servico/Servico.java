@@ -57,4 +57,16 @@ public class Servico {
     public List<ItemDeServico> getItemDeServicos() {
       return itemDeServicos;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", nome='" + getNome() + "'" +
+            ", descricao='" + getDescricao() + "'" +
+            ", status='" + getStatus() + "'" +
+            ", itemDeServicos='" + getItemDeServicos() + "'" +
+            "}";
+    }
+
 }

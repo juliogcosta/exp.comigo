@@ -45,8 +45,8 @@ public class ServicoController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/{id}/itemDoServico")
-    public ResponseEntity<Void> addItemDeervicoToServico(@PathVariable Long id,
+    @PostMapping("/{id}/itemDeServico")
+    public ResponseEntity<Void> addItemDeServicoToServico(@PathVariable Long id,
             @RequestBody ItemDeServicoDTO itemDeServicoDTO) {
         this.servicoService.addItemDeServicoToServico(itemDeServicoDTO, id);
         return ResponseEntity.ok().build();

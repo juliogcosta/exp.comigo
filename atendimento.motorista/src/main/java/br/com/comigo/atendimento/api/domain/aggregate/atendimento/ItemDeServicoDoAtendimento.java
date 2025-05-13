@@ -7,27 +7,38 @@ public class ItemDeServicoDoAtendimento {
   private String observacao = null;
   private Atendimento atendimento = null;
 
-  public ItemDeServicoDoAtendimento(Long id, Long setupDeItemDoServicoId, Integer quantidade, Atendimento atendimento) {
+  public ItemDeServicoDoAtendimento(Long id, Long setupDeItemDoServicoId, Integer quantidade) {
     this.id = id;
     this.setupDeItemDoServicoId = setupDeItemDoServicoId;
     this.quantidade = quantidade;
-    this.atendimento = atendimento;
   }
 
   public Long getId() {
-    return id;
+    return this.id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public Long getSetupDeItemDoServicoId() {
-    return setupDeItemDoServicoId;
+    return this.setupDeItemDoServicoId;
+  }
+
+  public void setSetupDeItemDoServicoId(Long setupDeItemDoServicoId) {
+    this.setupDeItemDoServicoId = setupDeItemDoServicoId;
   }
 
   public Integer getQuantidade() {
-    return quantidade;
+    return this.quantidade;
+  }
+
+  public void setQuantidade(Integer quantidade) {
+    this.quantidade = quantidade;
   }
 
   public String getObservacao() {
-    return observacao;
+    return this.observacao;
   }
 
   public void setObservacao(String observacao) {
@@ -35,6 +46,19 @@ public class ItemDeServicoDoAtendimento {
   }
 
   public Atendimento getAtendimento() {
-    return atendimento;
+    return this.atendimento;
+  }
+
+  public void setAtendimento(Atendimento atendimento) {
+    this.atendimento = atendimento;
+  }
+
+  @Override
+  public String toString() {
+    return "ItemDeServicoDoAtendimento [id=" + id 
+      + ", setupDeItemDoServicoId=" + setupDeItemDoServicoId
+      + ", quantidade=" + quantidade 
+      + ", observacao=" + observacao
+      + "]";
   }
 }

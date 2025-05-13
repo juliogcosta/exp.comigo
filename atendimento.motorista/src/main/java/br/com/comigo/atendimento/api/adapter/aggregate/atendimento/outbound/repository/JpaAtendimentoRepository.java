@@ -3,6 +3,10 @@ package br.com.comigo.atendimento.api.adapter.aggregate.atendimento.outbound.rep
 import br.com.comigo.atendimento.api.adapter.aggregate.atendimento.outbound.JpaAtendimento;
 import br.com.comigo.atendimento.api.domain.projection.AtendimentoItemDeServicoDoAtendimentoProjection;
 
+import java.sql.Timestamp;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -82,4 +86,10 @@ public interface JpaAtendimentoRepository extends JpaRepository<JpaAtendimento, 
             + "WHERE a.clienteTelefone.numero = :clienteTelefoneNumero")
     public Page<AtendimentoItemDeServicoDoAtendimentoProjection> findAtendimentosComItensDeServicoByClienteTelefoneNumero(
             @Param("clienteTelefoneNumero") String clienteTelefoneNumero, Pageable pageable);
+
+    public Optional<JpaAtendimento> findByVeiculoPlaca(String veiculoPlaca);
+    
+    public List<JpaAtendimento> findByStatus(String status);
+    
+    public List<JpaAtendimento> findByDataHoraConfirmado(Timestamp dataHoraConfirmado);
 }
