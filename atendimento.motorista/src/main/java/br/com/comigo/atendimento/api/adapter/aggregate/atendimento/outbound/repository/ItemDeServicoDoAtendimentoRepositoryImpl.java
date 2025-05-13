@@ -29,7 +29,7 @@ public class ItemDeServicoDoAtendimentoRepositoryImpl implements ItemDeServicoDo
         itemDeServicoDoAtendimento.setAtendimento(this.atendimentoMapper.fromJpaToDomain(jpaAtendimento));
 
         JpaItemDeServicoDoAtendimento jpaItemDeServicoDoAtendimento = new JpaItemDeServicoDoAtendimento();
-        jpaItemDeServicoDoAtendimento.setSetupDeItemDoServicoId(itemDeServicoDoAtendimento.getId());
+        jpaItemDeServicoDoAtendimento.setSetupDeItemDoServicoId(itemDeServicoDoAtendimento.getSetupDeItemDoServicoId());
         jpaItemDeServicoDoAtendimento.setQuantidade(itemDeServicoDoAtendimento.getQuantidade());
         jpaItemDeServicoDoAtendimento.setObservacao(itemDeServicoDoAtendimento.getObservacao());
         jpaItemDeServicoDoAtendimento.setAtendimento(jpaAtendimento);

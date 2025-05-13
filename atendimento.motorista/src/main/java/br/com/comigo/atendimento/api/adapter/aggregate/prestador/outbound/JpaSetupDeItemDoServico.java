@@ -38,7 +38,7 @@ public class JpaSetupDeItemDoServico {
     public JpaSetupDeItemDoServico(SetupDeItemDoServico setupDeItemDoServico) {
         this.id = setupDeItemDoServico.getId();
         this.precoUnitario = setupDeItemDoServico.getPrecoUnitario();
-        this.status = setupDeItemDoServico.getStatus();
+        this.status = StatusDeSetupDeItemDoServico.ATIVO;
         this.itemDeServicoId = setupDeItemDoServico.getItemDeServicoId();
     }
 

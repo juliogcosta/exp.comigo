@@ -38,4 +38,14 @@ public class JpaItemDeServicoDoAtendimento {
     @ManyToOne
     @JoinColumn(name = "atendimento_id", nullable = false)
     private JpaAtendimento atendimento;
+
+    @Override
+    public String toString() {
+        return "{" +
+            " id='" + getId() + "'" +
+            ", setupDeItemDoServicoId='" + getSetupDeItemDoServicoId() + "'" +
+            ", quantidade='" + getQuantidade() + "'" +
+            ", observacao='" + getObservacao() + "'" +
+            "}";
+    }
 }

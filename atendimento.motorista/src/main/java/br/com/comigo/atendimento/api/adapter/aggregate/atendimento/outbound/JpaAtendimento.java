@@ -1,6 +1,7 @@
 package br.com.comigo.atendimento.api.adapter.aggregate.atendimento.outbound;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.comigo.atendimento.api.adapter.util.JpaEndereco;
@@ -140,10 +141,12 @@ public class JpaAtendimento {
         private JpaEndereco destino;
         
         @OneToMany(mappedBy = "atendimento", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-        private List<JpaItemDeServicoDoAtendimento> itemDeServicoDoAtendimentos;
+        private List<JpaItemDeServicoDoAtendimento> itemDeServicoDoAtendimentos = new ArrayList<>();
 
         public JpaAtendimento(Atendimento atendimento) {
                 this.id = atendimento.getId();
+                this.prestadorId = atendimento.getPrestadorId();
+                this.clienteId = atendimento.getClienteId();
                 this.clienteNome = atendimento.getClienteNome();
                 this.clienteTelefone = atendimento.getClienteTelefone() != null 
                         ? new JpaTelefone(atendimento.getClienteTelefone().numero(), atendimento.getClienteTelefone().tipo()) : null;
@@ -152,7 +155,9 @@ public class JpaAtendimento {
                 this.veiculoId = atendimento.getVeiculoId();
                 this.veiculoPlaca = atendimento.getVeiculoPlaca();
                 this.tipoOcorrencia = atendimento.getTipoOcorrencia();
+                this.tipoServico = atendimento.getTipoServico();
                 this.status = StatusDeAtendimento.CHAMADO;
+                this.descricao = atendimento.getDescricao();
                 this.dataHoraChamado = new Timestamp(System.currentTimeMillis());
                 this.origem = atendimento.getOrigem() != null 
                         ? new JpaEndereco(atendimento.getOrigem().logradouro(), atendimento.getOrigem().numero(), atendimento.getOrigem().complemento(), 
@@ -164,4 +169,33 @@ public class JpaAtendimento {
                         ? new JpaEndereco(atendimento.getBase().logradouro(), atendimento.getBase().numero(), atendimento.getBase().complemento(), 
                                 atendimento.getBase().bairro(), atendimento.getBase().cidade(), atendimento.getBase().estado(), atendimento.getBase().cep()) : null;
         }
+
+
+        @Override
+        public String toString() {
+                return "{" +
+                        " id='" + getId() + "'" +
+                        ", prestadorId='" + getPrestadorId() + "'" +
+                        ", clienteId='" + getClienteId() + "'" +
+                        ", clienteNome='" + getClienteNome() + "'" +
+                        ", clienteTelefone='" + getClienteTelefone() + "'" +
+                        ", clienteWhatsapp='" + getClienteWhatsapp() + "'" +
+                        ", veiculoId='" + getVeiculoId() + "'" +
+                        ", veiculoPlaca='" + getVeiculoPlaca() + "'" +
+                        ", tipoOcorrencia='" + getTipoOcorrencia() + "'" +
+                        ", tipoServico='" + getTipoServico() + "'" +
+                        ", status='" + getStatus() + "'" +
+                        ", dataHoraChamado='" + getDataHoraChamado() + "'" +
+                        ", dataHoraConfirmado='" + getDataHoraConfirmado() + "'" +
+                        ", dataHoraEmAndamento='" + getDataHoraEmAndamento() + "'" +
+                        ", dataHoraFinalizado='" + getDataHoraFinalizado() + "'" +
+                        ", dataHoraCancelado='" + getDataHoraCancelado() + "'" +
+                        ", descricao='" + getDescricao() + "'" +
+                        ", base='" + getBase() + "'" +
+                        ", origem='" + getOrigem() + "'" +
+                        ", destino='" + getDestino() + "'" +
+                        ", itemDeServicoDoAtendimentos='" + getItemDeServicoDoAtendimentos() + "'" +
+                        "}";
+        }
+
 }

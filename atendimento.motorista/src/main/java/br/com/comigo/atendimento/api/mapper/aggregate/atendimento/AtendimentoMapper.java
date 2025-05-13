@@ -6,6 +6,7 @@ import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.slf4j.LoggerFactory;
 
 import br.com.comigo.atendimento.api.adapter.aggregate.atendimento.dto.AtendimentoDTO;
 import br.com.comigo.atendimento.api.adapter.aggregate.atendimento.dto.ItemDeServicoDoAtendimentoDTO;
@@ -61,7 +62,6 @@ public interface AtendimentoMapper {
     @Mapping(source = "atendimento.dataHoraCancelado", target = "dataHoraCancelado", qualifiedByName = "timestampToEpoch")
     @Mapping(source = "atendimento.origem", target = "origem")
     @Mapping(source = "atendimento.base", target = "base")
-    @Mapping(target = "itemDeServicoDoAtendimentos", ignore = true)
     AtendimentoDTO toDto(Atendimento atendimento);
 
     @Named("epochToTimestamp")
@@ -97,6 +97,7 @@ public interface AtendimentoMapper {
                     return itemDeServicoDoAtendimento;
                 })
                 .toList();
+        LoggerFactory.getLogger(getClass()).info("> itemDeServicoDoAtendimentos: {}", itemDeServicoDoAtendimentos);
 
         Atendimento atendimento = new Atendimento(
             jpaAtendimento.getId(),

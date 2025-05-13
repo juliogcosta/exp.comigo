@@ -37,9 +37,9 @@ public class AtendimentoServiceImpl  implements AtendimentoUseCases {
 
     @Override
     public AtendimentoDTO getAtendimentoDetailsById(Long id) {
-        Atendimento servico = this.atendimentoRepository.findById(id)
+        Atendimento atendimento = this.atendimentoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Servico not found"));
-        return this.atendimentoMapper.toDto(servico);
+        return this.atendimentoMapper.toDto(atendimento);
     }
 
     @Override
@@ -48,9 +48,9 @@ public class AtendimentoServiceImpl  implements AtendimentoUseCases {
     }
 
     @Override
-    public void addItemDeServicoDoAtendimentoToAtendimento(ItemDeServicoDoAtendimentoDTO itemDeServicoDTO, Long atendimentoId) {
-        ItemDeServicoDoAtendimento itemDeServico = this.itemDeServicoDoAtendimentoMapper.toDomain(itemDeServicoDTO);
-        this.itemDeServicoDoAtendimentoRepository.create(itemDeServico, atendimentoId);
+    public void addItemDeServicoDoAtendimentoToAtendimento(ItemDeServicoDoAtendimentoDTO itemDeServicoDoAtendimentoDTO, Long atendimentoId) {
+        ItemDeServicoDoAtendimento itemDeServicoDoAtendimento = this.itemDeServicoDoAtendimentoMapper.toDomain(itemDeServicoDoAtendimentoDTO);
+        this.itemDeServicoDoAtendimentoRepository.create(itemDeServicoDoAtendimento, atendimentoId);
     }
 
     @Override

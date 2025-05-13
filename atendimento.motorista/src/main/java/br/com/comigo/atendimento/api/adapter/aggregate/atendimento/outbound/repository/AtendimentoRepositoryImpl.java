@@ -15,7 +15,9 @@ import br.com.comigo.atendimento.api.domain.aggregate.atendimento.repository.Ate
 import br.com.comigo.atendimento.api.domain.util.StatusDeAtendimento;
 import br.com.comigo.atendimento.api.mapper.aggregate.atendimento.AtendimentoMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Repository
 public class AtendimentoRepositoryImpl implements AtendimentoRepository {
@@ -24,11 +26,13 @@ public class AtendimentoRepositoryImpl implements AtendimentoRepository {
   private final AtendimentoMapper atendimentoMapper;
 
   @Override
-  public Atendimento create(Atendimento servico) {
-        JpaAtendimento jpaAtendimento = new JpaAtendimento(servico);
+  public Atendimento create(Atendimento atendimento) {
+        log.info(" > atendimento: {}", atendimento);
+        JpaAtendimento jpaAtendimento = new JpaAtendimento(atendimento);
+        log.info(" > jpaAtendimento: {}", jpaAtendimento);
         jpaAtendimento = this.jpaAtendimentoRepository.save(jpaAtendimento);
-        servico.setId(jpaAtendimento.getId());
-        return servico;
+        atendimento.setId(jpaAtendimento.getId());
+        return atendimento;
   }
 
   @Override

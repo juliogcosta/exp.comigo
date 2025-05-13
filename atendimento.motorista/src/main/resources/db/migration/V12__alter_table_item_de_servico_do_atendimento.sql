@@ -1,0 +1,1 @@
+ALTER TABLE atendimento.item_de_servico_do_atendimento DROP COLUMN setup_de_item_de_servico_id;
