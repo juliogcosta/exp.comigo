@@ -49,6 +49,6 @@
     </dependencyManagement>
     <modules>
         <module>atendimento.motorista</module>
-        <module>events.facilities</module>
+        <module>usuario.autenticador</module>
     </modules>
 </project>
