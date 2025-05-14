@@ -1,13 +1,8 @@
 package br.com.comigo.autenticacao.service;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
-
 import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

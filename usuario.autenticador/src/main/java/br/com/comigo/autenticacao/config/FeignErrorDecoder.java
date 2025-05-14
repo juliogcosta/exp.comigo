@@ -1,10 +1,7 @@
 package br.com.comigo.autenticacao.config;
 
-
 import java.nio.charset.StandardCharsets;
-import java.util.regex.Pattern;
 
-import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 import feign.Response;
@@ -15,7 +12,10 @@ public class FeignErrorDecoder implements ErrorDecoder {
     @Override
     public Exception decode(String methodKey, Response response) {
         try {
-            String from = response.request().url().split(Pattern.quote("/"))[2];
+            /**
+             * String from = response.request().url().split(Pattern.quote("/"))[2];
+             * 
+             */
             String originalMessage = new String(response.body().asInputStream().readAllBytes(), StandardCharsets.UTF_8);
             return new Exception(String.valueOf(response.status()).concat(":").concat(originalMessage));
         } catch (Exception e) {
