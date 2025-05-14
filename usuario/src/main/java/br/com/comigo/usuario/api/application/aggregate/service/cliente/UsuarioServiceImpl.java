@@ -75,8 +75,8 @@ public class UsuarioServiceImpl implements UsuarioUseCases {
     @Transactional
     @Override
     public void addPapelDeUsuarioToUsuario(PapelDeUsuarioDTO papelDeUsuarioDTO, Long usuarioId) {
-        PapelDeUsuario veiculo = this.papelDeUsuarioMapper.toDomain(papelDeUsuarioDTO);
-        this.papelDeUsuarioRepository.create(veiculo, usuarioId);
+        PapelDeUsuario papelDeUsuario = this.papelDeUsuarioMapper.toDomain(papelDeUsuarioDTO);
+        this.papelDeUsuarioRepository.create(papelDeUsuario, usuarioId);
     }
 
     @Override

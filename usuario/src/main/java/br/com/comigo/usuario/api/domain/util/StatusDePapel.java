@@ -1,6 +1,6 @@
 package br.com.comigo.usuario.api.domain.util;
 
-public enum StatusDePrestador {
+public enum StatusDePapel {
   ATIVO,
   INATIVO
 }
