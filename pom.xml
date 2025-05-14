@@ -42,6 +42,7 @@
     </dependencyManagement>
     <modules>
         <module>atendimento.motorista</module>
+        <module>usuario</module>
         <module>usuario.autenticador</module>
     </modules>
 </project>

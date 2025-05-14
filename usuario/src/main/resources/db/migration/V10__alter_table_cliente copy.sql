@@ -1,0 +1,1 @@
+ALTER TABLE atendimento.cliente RENAME COLUMN endereco_rua TO endereco_logradouro;
