@@ -1,3 +1,0 @@
-ALTER TABLE atendimento.atendimento RENAME COLUMN endereco_base_rua TO endereco_base_logradouro;
-ALTER TABLE atendimento.atendimento RENAME COLUMN endereco_origem_rua TO endereco_origem_logradouro;
-ALTER TABLE atendimento.atendimento RENAME COLUMN endereco_destino_rua TO endereco_destino_logradouro;
