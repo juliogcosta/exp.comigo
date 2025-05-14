@@ -1,7 +1,0 @@
-CREATE TABLE address (
-    id BIGSERIAL PRIMARY KEY,
-    city VARCHAR(100) NOT NULL,
-    state VARCHAR(100) NOT NULL,
-    event_id BIGINT,
-    FOREIGN KEY (event_id) REFERENCES event(id) ON DELETE CASCADE
-);
