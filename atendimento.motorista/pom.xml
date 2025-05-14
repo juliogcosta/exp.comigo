@@ -7,10 +7,10 @@
         <artifactId>modulos</artifactId>
         <version>0.0.1</version>
     </parent>
-    <groupId>atendimento</groupId>
+    <groupId>com.comigo</groupId>
     <artifactId>atendimento.api</artifactId>
     <version>0.0.1</version>
-    <name>api</name>
+    <name>atendimento.api</name>
     <description>Backend para casos de uso de comigo.atendimento</description>
     <properties>
         <java.version>17</java.version>

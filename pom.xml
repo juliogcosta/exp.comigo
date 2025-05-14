@@ -41,6 +41,7 @@
         </dependencies>
     </dependencyManagement>
     <modules>
+        <module>common</module>
         <module>atendimento.motorista</module>
         <module>usuario</module>
         <module>usuario.autenticador</module>

@@ -2,7 +2,7 @@ package br.com.comigo.usuario.api.application.usecase.prestador;
 
 import java.util.List;
 
-import br.com.comigo.usuario.api.adapter.aggregate.prestador.dto.PapelDTO;
+import br.com.comigo.usuario.api.adapter.aggregate.papel.dto.PapelDTO;
 
 public interface PapelUseCases {
     public PapelDTO create(PapelDTO dto);
