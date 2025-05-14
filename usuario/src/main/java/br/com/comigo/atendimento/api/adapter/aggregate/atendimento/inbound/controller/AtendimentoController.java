@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 
 import br.com.comigo.atendimento.api.adapter.aggregate.atendimento.dto.AtendimentoDTO;
 import br.com.comigo.atendimento.api.adapter.aggregate.atendimento.dto.ItemDeServicoDoAtendimentoDTO;
-import br.com.comigo.atendimento.api.application.aggregate.service.atendimento.AtendimentoServiceImpl;
 
 @RestController
 @RequiredArgsConstructor
