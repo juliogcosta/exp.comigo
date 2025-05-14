@@ -12,10 +12,10 @@ import br.com.comigo.atendimento.api.adapter.aggregate.prestador.dto.SetupDeItem
 import br.com.comigo.atendimento.api.adapter.aggregate.prestador.outbound.JpaPrestador;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.Prestador;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.SetupDeItemDoServico;
-import br.com.comigo.atendimento.api.domain.util.Cnpj;
-import br.com.comigo.atendimento.api.domain.util.Email;
-import br.com.comigo.atendimento.api.domain.util.Endereco;
-import br.com.comigo.atendimento.api.domain.util.Telefone;
+import br.com.comigo.common.model.utils.Cnpj;
+import br.com.comigo.common.model.utils.Email;
+import br.com.comigo.common.model.utils.Endereco;
+import br.com.comigo.common.model.utils.Telefone;
 
 @Mapper(componentModel = "spring")
 public interface PrestadorMapper {

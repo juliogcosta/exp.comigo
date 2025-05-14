@@ -16,8 +16,8 @@ import br.com.comigo.atendimento.api.adapter.aggregate.atendimento.dto.Atendimen
 import br.com.comigo.atendimento.api.adapter.aggregate.atendimento.outbound.JpaAtendimento;
 import br.com.comigo.atendimento.api.domain.aggregate.atendimento.Atendimento;
 import br.com.comigo.atendimento.api.domain.aggregate.atendimento.ItemDeServicoDoAtendimento;
-import br.com.comigo.atendimento.api.domain.util.Endereco;
-import br.com.comigo.atendimento.api.domain.util.Telefone;
+import br.com.comigo.common.model.utils.Endereco;
+import br.com.comigo.common.model.utils.Telefone;
 
 @Mapper(componentModel = "spring")
 public interface AtendimentoMapper {

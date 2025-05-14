@@ -4,8 +4,8 @@ import java.util.List;
 
 import br.com.comigo.atendimento.api.adapter.aggregate.cliente.dto.ClienteDTO;
 import br.com.comigo.atendimento.api.adapter.aggregate.cliente.dto.VeiculoDTO;
-import br.com.comigo.atendimento.api.domain.util.Cpf;
-import br.com.comigo.atendimento.api.domain.util.Telefone;
+import br.com.comigo.common.model.utils.Cpf;
+import br.com.comigo.common.model.utils.Telefone;
 
 public interface ClienteUseCases {
     public ClienteDTO create(ClienteDTO dto);

@@ -2,11 +2,11 @@ package br.com.comigo.atendimento.api.adapter.aggregate.prestador.dto;
 
 import java.util.List;
 
-import br.com.comigo.atendimento.api.domain.util.Cnpj;
-import br.com.comigo.atendimento.api.domain.util.Email;
-import br.com.comigo.atendimento.api.domain.util.Endereco;
 import br.com.comigo.atendimento.api.domain.util.StatusDePrestador;
-import br.com.comigo.atendimento.api.domain.util.Telefone;
+import br.com.comigo.common.model.utils.Cnpj;
+import br.com.comigo.common.model.utils.Email;
+import br.com.comigo.common.model.utils.Endereco;
+import br.com.comigo.common.model.utils.Telefone;
 
 public record PrestadorDTO(
         Long id,

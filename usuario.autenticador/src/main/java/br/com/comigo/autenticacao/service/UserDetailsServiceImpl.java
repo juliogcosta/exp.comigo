@@ -13,9 +13,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.comigo.autenticacao.domain.Role;
 import br.com.comigo.autenticacao.domain.User;
+import br.com.comigo.autenticacao.domain.UserStatus;
 import br.com.comigo.autenticacao.rest.client.UsuarioRestClient;
 import br.com.comigo.common.model.utils.Email;
-import br.com.comigo.common.model.utils.SecUserStatus;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -33,9 +33,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 String raw = responseEntity.getBody();
                 JSONObject jsUsuario = new JSONObject(raw);
-                SecUserStatus status = SecUserStatus.ACTIVE;
+                UserStatus status = UserStatus.ACTIVE;
                 if (jsUsuario.has("status")) {
-                    status = jsUsuario.getString("status").equals("ATIVO") ? SecUserStatus.ACTIVE : SecUserStatus.INACTIVE;
+                    status = jsUsuario.getString("status").equals("ATIVO") ? UserStatus.ACTIVE : UserStatus.INACTIVE;
                 }
                 Email email = null;
                 if (jsUsuario.has("email")) {

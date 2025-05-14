@@ -9,18 +9,16 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.comigo.common.model.utils.Email;
-import br.com.comigo.common.model.utils.SecRoleStatus;
-import br.com.comigo.common.model.utils.SecUserStatus;
 
 public class User implements UserDetails {
     String username;
     String password;
     String name;
     Email email;
-    SecUserStatus status;
+    UserStatus status;
     List<Role> roles;
 
-    public User(String username, String password, String name, Email email, SecUserStatus status, List<Role> roles) {
+    public User(String username, String password, String name, Email email, UserStatus status, List<Role> roles) {
         super();
         this.username = username;
         this.password = password;
@@ -62,11 +60,11 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public SecUserStatus getStatus() {
+    public UserStatus getStatus() {
         return this.status;
     }
 
-    public void setStatus(SecUserStatus status) {
+    public void setStatus(UserStatus status) {
         this.status = status;
     }
 
@@ -80,7 +78,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-            return this.roles.stream().filter(role -> role.getStatus().name().equals(SecRoleStatus.ACTIVE.name())).map(role -> {
+            return this.roles.stream().filter(role -> role.getStatus().name().equals(RoleStatus.ACTIVE.name())).map(role -> {
                 if (role.getName().startsWith("ROLE_")) {
                     return new SimpleGrantedAuthority(role.getName());
                 } else {

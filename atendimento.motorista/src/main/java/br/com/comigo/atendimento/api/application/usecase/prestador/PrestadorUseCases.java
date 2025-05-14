@@ -4,8 +4,8 @@ import java.util.List;
 
 import br.com.comigo.atendimento.api.adapter.aggregate.prestador.dto.PrestadorDTO;
 import br.com.comigo.atendimento.api.adapter.aggregate.prestador.dto.SetupDeItemDoServicoDTO;
-import br.com.comigo.atendimento.api.domain.util.Cnpj;
-import br.com.comigo.atendimento.api.domain.util.Telefone;
+import br.com.comigo.common.model.utils.Cnpj;
+import br.com.comigo.common.model.utils.Telefone;
 
 public interface PrestadorUseCases {
     public PrestadorDTO create(PrestadorDTO dto);

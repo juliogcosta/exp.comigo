@@ -2,8 +2,8 @@ package br.com.comigo.atendimento.api.adapter.aggregate.atendimento.dto;
 
 import java.util.List;
 
-import br.com.comigo.atendimento.api.domain.util.Endereco;
 import br.com.comigo.atendimento.api.domain.util.StatusDeAtendimento;
+import br.com.comigo.common.model.utils.Endereco;
 
 public record AtendimentoDTO(
         Long id,

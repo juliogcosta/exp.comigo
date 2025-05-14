@@ -3,9 +3,9 @@ package br.com.comigo.atendimento.api.domain.aggregate.atendimento;
 import java.sql.Timestamp;
 import java.util.List;
 
-import br.com.comigo.atendimento.api.domain.util.Endereco;
 import br.com.comigo.atendimento.api.domain.util.StatusDeAtendimento;
-import br.com.comigo.atendimento.api.domain.util.Telefone;
+import br.com.comigo.common.model.utils.Endereco;
+import br.com.comigo.common.model.utils.Telefone;
 
 public class Atendimento {
     private Long id;

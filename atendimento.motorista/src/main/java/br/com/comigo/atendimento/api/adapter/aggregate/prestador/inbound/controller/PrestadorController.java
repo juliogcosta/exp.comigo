@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import br.com.comigo.atendimento.api.adapter.aggregate.prestador.dto.PrestadorDTO;
 import br.com.comigo.atendimento.api.adapter.aggregate.prestador.dto.SetupDeItemDoServicoDTO;
 import br.com.comigo.atendimento.api.application.aggregate.service.prestador.PrestadorServiceImpl;
-import br.com.comigo.atendimento.api.domain.util.Cnpj;
-import br.com.comigo.atendimento.api.domain.util.Telefone;
+import br.com.comigo.common.model.utils.Cnpj;
+import br.com.comigo.common.model.utils.Telefone;
 
 import java.util.List;
 

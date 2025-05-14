@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.Prestador;
-import br.com.comigo.atendimento.api.domain.util.Cnpj;
-import br.com.comigo.atendimento.api.domain.util.Telefone;
+import br.com.comigo.common.model.utils.Cnpj;
+import br.com.comigo.common.model.utils.Telefone;
 
 public interface PrestadorRepository {
     public Prestador create(Prestador prestador);

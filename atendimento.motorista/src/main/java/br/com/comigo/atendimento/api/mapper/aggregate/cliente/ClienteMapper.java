@@ -13,10 +13,10 @@ import br.com.comigo.atendimento.api.adapter.aggregate.cliente.dto.VeiculoDTO;
 import br.com.comigo.atendimento.api.adapter.aggregate.cliente.outbound.JpaCliente;
 import br.com.comigo.atendimento.api.domain.aggregate.cliente.Cliente;
 import br.com.comigo.atendimento.api.domain.aggregate.cliente.Veiculo;
-import br.com.comigo.atendimento.api.domain.util.Cpf;
-import br.com.comigo.atendimento.api.domain.util.Email;
-import br.com.comigo.atendimento.api.domain.util.Endereco;
-import br.com.comigo.atendimento.api.domain.util.Telefone;
+import br.com.comigo.common.model.utils.Cpf;
+import br.com.comigo.common.model.utils.Email;
+import br.com.comigo.common.model.utils.Endereco;
+import br.com.comigo.common.model.utils.Telefone;
 
 @Mapper(componentModel = "spring")
 public interface ClienteMapper {

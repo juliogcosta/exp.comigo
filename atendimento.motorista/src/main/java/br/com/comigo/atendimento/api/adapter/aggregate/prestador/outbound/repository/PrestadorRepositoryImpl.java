@@ -13,9 +13,9 @@ import br.com.comigo.atendimento.api.adapter.util.JpaEndereco;
 import br.com.comigo.atendimento.api.adapter.util.JpaTelefone;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.Prestador;
 import br.com.comigo.atendimento.api.domain.aggregate.prestador.repository.PrestadorRepository;
-import br.com.comigo.atendimento.api.domain.util.Cnpj;
-import br.com.comigo.atendimento.api.domain.util.Telefone;
 import br.com.comigo.atendimento.api.mapper.aggregate.prestador.PrestadorMapper;
+import br.com.comigo.common.model.utils.Cnpj;
+import br.com.comigo.common.model.utils.Telefone;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import br.com.comigo.atendimento.api.domain.aggregate.cliente.Cliente;
-import br.com.comigo.atendimento.api.domain.util.Cpf;
-import br.com.comigo.atendimento.api.domain.util.Telefone;
+import br.com.comigo.common.model.utils.Cpf;
+import br.com.comigo.common.model.utils.Telefone;
 
 public interface ClienteRepository {
     public Cliente create(Cliente event);

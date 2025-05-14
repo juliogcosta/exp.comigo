@@ -1,10 +1,8 @@
 package br.com.comigo.autenticacao.domain;
 
-import br.com.comigo.common.model.utils.SecRoleStatus;
-
 public class Role {
     private String name;
-    private SecRoleStatus status;
+    private RoleStatus status;
 
     public String getName() {
         return this.name;
@@ -14,11 +12,11 @@ public class Role {
         this.name = name;
     }
 
-    public SecRoleStatus getStatus() {
+    public RoleStatus getStatus() {
         return this.status;
     }
 
-    public void setStatus(SecRoleStatus status) {
+    public void setStatus(RoleStatus status) {
         this.status = status;
     }
 }

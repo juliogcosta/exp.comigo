@@ -13,9 +13,9 @@ import br.com.comigo.atendimento.api.adapter.util.JpaEndereco;
 import br.com.comigo.atendimento.api.adapter.util.JpaTelefone;
 import br.com.comigo.atendimento.api.domain.aggregate.cliente.Cliente;
 import br.com.comigo.atendimento.api.domain.aggregate.cliente.repository.ClienteRepository;
-import br.com.comigo.atendimento.api.domain.util.Cpf;
-import br.com.comigo.atendimento.api.domain.util.Telefone;
 import br.com.comigo.atendimento.api.mapper.aggregate.cliente.ClienteMapper;
+import br.com.comigo.common.model.utils.Cpf;
+import br.com.comigo.common.model.utils.Telefone;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
