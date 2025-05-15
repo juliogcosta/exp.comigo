@@ -9,7 +9,7 @@
         <version>3.3.4</version>
         <relativePath />
     </parent>
-    <groupId>com.comigo</groupId>
+    <groupId>br.com.comigo</groupId>
     <artifactId>modulos</artifactId>
     <version>0.0.1</version>
     <name>Comigo - Modulos</name>
@@ -43,6 +43,7 @@
     <modules>
         <module>common</module>
         <module>gateway</module>
+        <module>eureka</module>
         <module>usuario</module>
         <module>usuario.autenticador</module>
         <module>atendimento.motorista</module>
