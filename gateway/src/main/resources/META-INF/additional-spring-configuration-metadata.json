@@ -190,13 +190,8 @@
     "description": "A description for 'app.auth.port'"
   },
   {
-    "name": "yc.management.log.trace.enable",
+    "name": "yc.api.management.log.trace.enable",
     "type": "java.lang.String",
-    "description": "A description for 'yc.management.log.trace.enable'"
-  },
-  {
-    "name": "yc.management.log.trace.enable",
-    "type": "java.lang.String",
-    "description": "A description for 'yc.management.log.trace.enable'"
+    "description": "A description for 'yc.api.management.log.trace.enable'"
   }
 ]}

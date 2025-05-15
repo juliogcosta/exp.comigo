@@ -24,7 +24,7 @@ server:
     include-stacktrace: never
 spring:
   application:
-    name: ${yc.app.name}
+    name: ${app.gateway.name}
   sleuth:
     trace-id128: true
     sampler:
@@ -142,11 +142,11 @@ resilience4j:
         automatic-transition-from-open-to-half-open-enabled: true
 
 yc:
-  management:
-    log:
-      trace:
-        enable: false
   api:
+    management:
+      log:
+        trace:
+          enable: false
     gateway:
       cache:
         request-limit:
