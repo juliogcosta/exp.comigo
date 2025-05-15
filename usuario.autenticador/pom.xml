@@ -8,9 +8,9 @@
         <version>0.0.1</version>
     </parent>
 	<groupId>com.comigo</groupId>
-	<artifactId>autenticador</artifactId>
+	<artifactId>usuario.autenticador</artifactId>
 	<version>0.0.1</version>
-	<name>autenticador</name>
+	<name>usuario.autenticador</name>
 	<description>Servico de Autenticação</description>
 	<url/>
 	<licenses>

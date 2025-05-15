@@ -8,9 +8,9 @@
         <version>0.0.1</version>
     </parent>
     <groupId>com.comigo</groupId>
-    <artifactId>atendimento.api</artifactId>
+    <artifactId>atendimento.motorista</artifactId>
     <version>0.0.1</version>
-    <name>atendimento</name>
+    <name>atendimento.motorista</name>
     <description>Backend para casos de uso de comigo.atendimento</description>
     <properties>
         <java.version>17</java.version>
