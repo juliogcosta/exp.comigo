@@ -2,11 +2,15 @@ app:
   eureka:
     address: localhost
     port: 8010
+  id:
+    name: id
+    address: localhost
+    port: 8040
 server:
-  port: 8030
+  port: ${app.id.port}
 spring:
   application:
-    name: usuario
+    name: ${app.id.name}
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/experimenter_db}
     username: ${DB_USER:experimenter_db_admin}
@@ -35,6 +39,10 @@ management:
       show-details: always
     shutdown:
       access: read-only
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 feign:
   client:
     config:
@@ -51,7 +59,7 @@ eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
-    service-url.defaultZone: http://localhost:8010/eureka
+    service-url.defaultZone: http://${app.eureka.address}:${app.eureka.port}/eureka
     healthcheck.enabled: true
 
 admin.key: ${ADMIN_KEY:admin}

@@ -26,7 +26,177 @@
   },
   {
     "name": "app.eureka.port",
-    "type": "java.lang.String",
+    "type": "java.lang.Integer",
     "description": "A description for 'app.eureka.port'"
+  },
+  {
+    "name": "yc.api.management.client.user.name",
+    "type": "java.lang.String",
+    "description": "A description for 'yc.api.management.client.user.name'"
+  },
+  {
+    "name": "yc.api.management.server.user.name",
+    "type": "java.lang.String",
+    "description": "A description for 'yc.api.management.server.user.name'"
+  },
+  {
+    "name": "yc.api.management.client.user.password",
+    "type": "java.lang.String",
+    "description": "A description for 'yc.api.management.client.user.password'"
+  },
+  {
+    "name": "yc.api.gateway.cache.request-limit.ttl",
+    "type": "java.lang.String",
+    "description": "A description for 'yc.api.gateway.cache.request-limit.ttl'"
+  },
+  {
+    "name": "yc.api.management.server.user.password",
+    "type": "java.lang.String",
+    "description": "A description for 'yc.api.management.server.user.password'"
+  },
+  {
+    "name": "yc.api.gateway.cache.request-limit.ttl-increment",
+    "type": "java.lang.String",
+    "description": "A description for 'yc.api.gateway.cache.request-limit.ttl-increment'"
+  },
+  {
+    "name": "yc.api.gateway.cache.contract-query.offset",
+    "type": "java.lang.String",
+    "description": "A description for 'yc.api.gateway.cache.contract-query.offset'"
+  },
+  {
+    "name": "app.gateway.address",
+    "type": "java.lang.String",
+    "description": "A description for 'app.gateway.address'"
+  },
+  {
+    "name": "app.gateway.port",
+    "type": "java.lang.Integer",
+    "description": "A description for 'app.gateway.port'"
+  },
+  {
+    "name": "app.gateway.name",
+    "type": "java.lang.String",
+    "description": "A description for 'app.gateway.name'"
+  },
+  {
+    "name": "feign.circuitbreaker.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'feign.circuitbreaker.enabled'"
+  },
+  {
+    "name": "feign.circuitbreaker.alphanumeric-ids.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'feign.circuitbreaker.alphanumeric-ids.enabled'"
+  },
+  {
+    "name": "spring.boot.admin.client.url",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.boot.admin.client.url'"
+  },
+  {
+    "name": "spring.boot.admin.client.url",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.boot.admin.client.url'"
+  },
+  {
+    "name": "spring.boot.admin.client.username",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.boot.admin.client.username'"
+  },
+  {
+    "name": "spring.boot.admin.client.password",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.boot.admin.client.password'"
+  },
+  {
+    "name": "spring.sleuth.trace-id128",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.sleuth.trace-id128'"
+  },
+  {
+    "name": "spring.sleuth.sampler.probability",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.sleuth.sampler.probability'"
+  },
+  {
+    "name": "spring.sleuth.propagation.type",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.sleuth.propagation.type'"
+  },
+  {
+    "name": "spring.sleuth.supports-join",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.sleuth.supports-join'"
+  },
+  {
+    "name": "spring.web.resources.static-locations[0]",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.web.resources.static-locations[0]'"
+  },
+  {
+    "name": "spring.web.resources.static-locations[1]",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.web.resources.static-locations[1]'"
+  },
+  {
+    "name": "spring.cloud.gateway.filter.request-rate-limiter.deny-empty-key",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.cloud.gateway.filter.request-rate-limiter.deny-empty-key'"
+  },
+  {
+    "name": "app.id.name",
+    "type": "java.lang.String",
+    "description": "A description for 'app.id.name'"
+  },
+  {
+    "name": "app.id.address",
+    "type": "java.lang.String",
+    "description": "A description for 'app.id.address'"
+  },
+  {
+    "name": "app.id.port",
+    "type": "java.lang.Integer",
+    "description": "A description for 'app.id.port'"
+  },
+  {
+    "name": "app.atendimento.name",
+    "type": "java.lang.String",
+    "description": "A description for 'app.atendimento.name'"
+  },
+  {
+    "name": "app.atendimento.address",
+    "type": "java.lang.String",
+    "description": "A description for 'app.atendimento.address'"
+  },
+  {
+    "name": "app.atendimento.port",
+    "type": "java.lang.Integer",
+    "description": "A description for 'app.atendimento.port'"
+  },
+  {
+    "name": "app.auth.name",
+    "type": "java.lang.String",
+    "description": "A description for 'app.auth.name'"
+  },
+  {
+    "name": "app.auth.address",
+    "type": "java.lang.String",
+    "description": "A description for 'app.auth.address'"
+  },
+  {
+    "name": "app.auth.port",
+    "type": "java.lang.Integer",
+    "description": "A description for 'app.auth.port'"
+  },
+  {
+    "name": "yc.management.log.trace.enable",
+    "type": "java.lang.String",
+    "description": "A description for 'yc.management.log.trace.enable'"
+  },
+  {
+    "name": "yc.management.log.trace.enable",
+    "type": "java.lang.String",
+    "description": "A description for 'yc.management.log.trace.enable'"
   }
 ]}

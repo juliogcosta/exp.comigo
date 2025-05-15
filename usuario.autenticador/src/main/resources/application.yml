@@ -2,11 +2,15 @@ app:
   eureka:
     address: localhost
     port: 8010
+  auth:
+    address: localhost
+    port: 8030
+    name: auth
 server:
-  port: 8040
+  port: ${app.auth.port}
 spring:
   application:
-    name: usuario.autenticador
+    name: ${app.auth.name}
 endpoints:
   shutdown:
     enabled: false
@@ -16,6 +20,10 @@ management:
       show-details: always
     shutdown:
       access: read-only
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 feign:
   client:
     config:

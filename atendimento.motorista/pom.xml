@@ -87,7 +87,7 @@
         </dependency>
 
         <dependency>
-            <groupId>com.comigo</groupId>
+            <groupId>br.com.comigo</groupId>
             <artifactId>common</artifactId>
             <version>${project.version}</version> <!-- Usa a mesma versão do pai -->
         </dependency>

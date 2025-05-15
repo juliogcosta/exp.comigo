@@ -41,7 +41,22 @@
   },
   {
     "name": "app.eureka.port",
-    "type": "java.lang.String",
+    "type": "java.lang.Integer",
     "description": "A description for 'app.eureka.port'"
+  },
+  {
+    "name": "app.id.name",
+    "type": "java.lang.String",
+    "description": "A description for 'app.id.name'"
+  },
+  {
+    "name": "app.id.address",
+    "type": "java.lang.String",
+    "description": "A description for 'app.id.address'"
+  },
+  {
+    "name": "app.id.port",
+    "type": "java.lang.Integer",
+    "description": "A description for 'app.id.port'"
   }
 ]}

@@ -2,11 +2,97 @@ app:
   eureka:
     address: localhost
     port: 8010
+  gateway:
+    name: gateway
+    address: localhost
+    port: 8020
+  auth:
+    name: auth
+    address: localhost
+    port: 8030
+  id:
+    name: gateway
+    address: localhost
+    port: 8040
+  atendimento:
+    name: atendimento
+    address: localhost
+    port: 8050
 server:
-  port: 8020
+  port: ${app.gateway.port}
+  error:
+    include-stacktrace: never
 spring:
   application:
-    name: gateway
+    name: ${yc.app.name}
+  sleuth:
+    trace-id128: true
+    sampler:
+      probability: 1.0
+    propagation:
+      type: w3c, b3
+    supports-join: false
+  web:
+    resources:
+      static-locations[0]: file:src/main/resources/static/
+      static-locations[1]: classpath:/static/
+  cloud:
+    gateway:
+      filter:
+        request-rate-limiter:
+          deny-empty-key: false
+      routes:
+        - id: deny-service
+          uri: no://op
+          predicates:
+            - Path=/unsecured/**
+          filters:
+            - SetStatus=404
+        - id: ${app.auth.name}-service
+          uri: lb://${app.auth.name}
+          predicates:
+            - Path=/v1/${app.auth.name}/**
+            - Method=POST,GET,PUT,DELETE,OPTIONS
+          filters:
+            - AddRequestHeader=X-Client,web
+            - RewritePath=/v1/${app.auth.name}/(?<segment>.*),/$\{segment}
+            - name: Retry
+              args:
+                retries: 3
+                methods: POST,GET,PUT,DELETE,OPTIONS
+                backoff:
+                  firstBackoff: 50ms
+                  maxBackoff: 500ms
+        - id: ${app.id.name}-service
+          uri: lb://${app.id.name}
+          predicates:
+            - Path=/v1/${app.id.name}/**
+            - Method=POST,GET,PUT,DELETE,OPTIONS
+          filters:
+            - AddRequestHeader=X-Client,web
+            - RewritePath=/v1/${app.id.name}/(?<segment>.*),/$\{segment}
+            - name: Retry
+              args:
+                retries: 3
+                methods: POST,GET,PUT,DELETE,OPTIONS
+                backoff:
+                  firstBackoff: 50ms
+                  maxBackoff: 500ms
+        - id: ${app.atendimento.name}-service
+          uri: lb://${app.atendimento.name}
+          predicates:
+            - Path=/v1/${app.atendimento.name}/**
+            - Method=POST,GET,PUT,DELETE,OPTIONS
+          filters:
+            - AddRequestHeader=X-Client,web
+            - RewritePath=/v1/${app.atendimento.name}/(?<segment>.*),/$\{segment}
+            - name: Retry
+              args:
+                retries: 3
+                methods: POST,GET,PUT,DELETE,OPTIONS
+                backoff:
+                  firstBackoff: 50ms
+                  maxBackoff: 500ms
 endpoints:
   shutdown:
     enabled: false
@@ -15,20 +101,56 @@ management:
     health:
       show-details: always
     shutdown:
-      enabled: false
+      access: read-only
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 feign:
   client:
     config:
       default:
         connectTimeout: 10000
         readTimeout: 60000
+  circuitbreaker:
+    enabled: true
+    alphanumeric-ids:
+      enabled: true
 logging.level:
-  '[com.zaxxer.hikari.pool.HikariPool]': INFO
   '[org.springframework]': INFO
-  '[org.springframework.data.mongodb.repository.query]': INFO
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     service-url.defaultZone: http://${app.eureka.address}:${app.eureka.port}/eureka
     healthcheck.enabled: true
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        register-health-indicator: true
+        wait-duration-in-open-state: 60s
+        permitted-number-of-calls-in-half-open-state: 10
+        sliding-window-type: count-based
+        sliding-window-size: 60
+        minimum-number-of-calls: 100
+        slow-call-duration-threshold: 60s
+        slow-call-rate-threshold: 100
+        failure-rate-threshold: 50
+        max-wait-duration-in-half-open-state: 5s
+        writable-stack-trace-enabled: true
+        automatic-transition-from-open-to-half-open-enabled: true
+
+yc:
+  management:
+    log:
+      trace:
+        enable: false
+  api:
+    gateway:
+      cache:
+        request-limit:
+          ttl: 86400
+          ttl-increment: 7200
+        contract-query:
+          offset: 30
