@@ -10,7 +10,7 @@
     <groupId>com.comigo</groupId>
     <artifactId>usuario</artifactId>
     <version>0.0.1</version>
-    <name>usuario.api</name>
+    <name>usuario</name>
     <description>Backend para gerenciamento de contas de usuarios da comigo</description>
     <properties>
         <java.version>17</java.version>

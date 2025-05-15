@@ -10,7 +10,7 @@
 	<groupId>com.comigo</groupId>
 	<artifactId>autenticador</artifactId>
 	<version>0.0.1</version>
-	<name>usuario.autenticador.api</name>
+	<name>autenticador</name>
 	<description>Servico de Autenticação</description>
 	<url/>
 	<licenses>
