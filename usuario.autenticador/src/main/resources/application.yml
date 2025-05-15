@@ -31,5 +31,10 @@ eureka:
     service-url.defaultZone: http://${app.eureka.address}:${app.eureka.port}/eureka
     healthcheck.enabled: true
 
-admin.key: ${ADMIN_KEY:admin}
+yc:
+  security:
+    keys:
+      accessToken:
+        secret: AR35cal3wrr8ZW80F7Rybj8QjdejPpl6BI7cYZBEN8UwcBWovpT25z8YRjkyQ1dwqj1uCT9SjI8KUWyoqzz8lQ
+        expirationMinutes: 259200
 

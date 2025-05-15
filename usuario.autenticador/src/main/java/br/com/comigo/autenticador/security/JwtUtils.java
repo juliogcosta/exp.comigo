@@ -30,9 +30,9 @@ public class JwtUtils
     private long accessTokenExpirationMs;
 
     private Algorithm accessTokenAlgorithm;
-    private Algorithm refreshTokenAlgorithm;
+    //private Algorithm refreshTokenAlgorithm;
     private JWTVerifier accessTokenVerifier;
-    private JWTVerifier refreshTokenVerifier;
+    //private JWTVerifier refreshTokenVerifier;
 
     public JwtUtils(@Value("${yc.security.keys.accessToken.secret}") String accessTokenSecret, 
             @Value("${yc.security.keys.accessToken.expirationMinutes}") int accessTokenExpirationMinutes) {
@@ -41,9 +41,9 @@ public class JwtUtils
         accessTokenVerifier = JWT.require(accessTokenAlgorithm)
             .withIssuer(issuer)
             .build();
-        refreshTokenVerifier = JWT.require(refreshTokenAlgorithm)
+        /*refreshTokenVerifier = JWT.require(refreshTokenAlgorithm)
             .withIssuer(issuer)
-            .build();
+            .build();*/
     }
 
     public String generateAccessToken(User user) {
@@ -93,21 +93,8 @@ public class JwtUtils
         return Optional.empty();
     }
 
-    private Optional<DecodedJWT> decodeRefreshToken(String token) {
-        try {
-            return Optional.of(refreshTokenVerifier.verify(token));
-        } catch (JWTVerificationException e) {
-            logger.error("invalid refresh token", e);
-        }
-        return Optional.empty();
-    }
-
     public boolean validateAccessToken(String token) {
         return decodeAccessToken(token).isPresent();
-    }
-
-    public boolean validateRefreshToken(String token) {
-        return decodeRefreshToken(token).isPresent();
     }
 
     public Long getUserIdFromAccessToken(String token) {

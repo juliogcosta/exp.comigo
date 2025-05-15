@@ -53,5 +53,15 @@
     "name": "management.endpoint.shutdown.access",
     "type": "java.lang.String",
     "description": "A description for 'management.endpoint.shutdown.access'"
+  },
+  {
+    "name": "yc.security.keys.access-token.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'yc.security.keys.access-token.secret'"
+  },
+  {
+    "name": "yc.security.keys.access-token.expirationMinutes",
+    "type": "java.lang.String",
+    "description": "A description for 'yc.security.keys.access-token.expirationMinutes'"
   }
 ]}
