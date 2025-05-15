@@ -1,0 +1,56 @@
+app:
+  eureka:
+    address: localhost
+    port: 8010
+server:
+  port: 8030
+spring:
+  application:
+    name: usuario
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/experimenter_db}
+    username: ${DB_USER:experimenter_db_admin}
+    password: ${DB_PASSWORD:12345}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+    hibernate.ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        '[format_sql]': true
+        '[default_schema]': usuario
+  flyway.clean-disabled: false
+  flyway.schemas: usuario
+  flyway.default-schema: usuario
+endpoints:
+  shutdown:
+    enabled: false
+management:
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: false
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 60000
+logging.level:
+  '[com.zaxxer.hikari.pool.HikariPool]': INFO
+  '[org.springframework]': INFO
+  '[org.springframework.data.mongodb.repository.query]': INFO
+  '[org.hibernate]':
+    SQL: DEBUG
+    '[type.descriptor.sql.BasicBinder]': TRACE
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url.defaultZone: http://${app.eureka.address}:${app.eureka.port}/eureka
+    healthcheck.enabled: true
+
+admin.key: ${ADMIN_KEY:admin}
+

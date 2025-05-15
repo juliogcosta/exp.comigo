@@ -19,6 +19,16 @@
       "projectName": "atendimento.api",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-EurekaApplication<eureka>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "br.com.comigo.eureka.EurekaApplication",
+      "projectName": "eureka",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }

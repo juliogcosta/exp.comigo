@@ -1,10 +1,5 @@
 {"properties": [
   {
-    "name": "admin.key",
-    "type": "java.lang.String",
-    "description": "A description for 'admin.key'"
-  },
-  {
     "name": "endpoints.shutdown.enabled",
     "type": "java.lang.String",
     "description": "A description for 'endpoints.shutdown.enabled'"
@@ -20,19 +15,9 @@
     "description": "A description for 'feign.client.config.default.readTimeout'"
   },
   {
-    "name": "eureka.instance.instance-id",
+    "name": "eureka.client.service-url.defaultZone",
     "type": "java.lang.String",
-    "description": "A description for 'eureka.instance.instance-id'"
-  },
-  {
-    "name": "eureka.client.service-url.default-zone",
-    "type": "java.lang.String",
-    "description": "A description for 'eureka.client.service-url.default-zone'"
-  },
-  {
-    "name": "eureka.client.healthcheck.enabled",
-    "type": "java.lang.String",
-    "description": "A description for 'eureka.client.healthcheck.enabled'"
+    "description": "A description for 'eureka.client.service-url.defaultZone'"
   },
   {
     "name": "app.eureka.address",
