@@ -1,4 +1,4 @@
-package br.com.comigo.autenticador.config;
+package br.com.comigo.autenticador.infrastructure.config;
 
 import java.nio.charset.StandardCharsets;
 

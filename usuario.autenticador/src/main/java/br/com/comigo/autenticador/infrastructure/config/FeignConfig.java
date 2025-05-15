@@ -1,5 +1,6 @@
-package br.com.comigo.autenticador.config;
+package br.com.comigo.autenticador.infrastructure.config;
 
+import feign.Contract;
 import feign.RequestInterceptor;
 
 import java.lang.System.Logger;
@@ -25,5 +26,10 @@ public class FeignConfig {
     @Bean
     public Logger.Level feignLoggerLevel() {
         return Logger.Level.ALL;
+    }
+    
+    @Bean
+    Contract feignContract() {
+        return new feign.Contract.Default();
     }
 }

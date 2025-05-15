@@ -7,12 +7,17 @@ eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
+    service-url:
+      defaultZone: http://localhost:8010/eureka/
   server:
     evictionIntervalTimerInMs: 2000
+    enable-self-preservation: false
+    peer-node-connect-timeout-ms: 2000
+
 management:
   endpoint:
     shutdown:
-      enabled: false
+      access: read-only
 endpoints:
   shutdown:
     enabled: false

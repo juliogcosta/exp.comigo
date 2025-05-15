@@ -1,0 +1,35 @@
+app:
+  eureka:
+    address: localhost
+    port: 8010
+server:
+  port: 8040
+spring:
+  application:
+    name: usuario.autenticador
+endpoints:
+  shutdown:
+    enabled: false
+management:
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      access: read-only
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 60000
+logging.level:
+  '[org.springframework]': INFO
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+  client:
+    service-url.defaultZone: http://${app.eureka.address}:${app.eureka.port}/eureka
+    healthcheck.enabled: true
+
+admin.key: ${ADMIN_KEY:admin}
+

@@ -46,6 +46,7 @@ public class UsuarioServiceImpl implements UsuarioUseCases {
     public UsuarioDTO getUsuarioDetailsById(Long id) {
         Usuario cliente = this.usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente not found"));
+        cliente.setPassword(null);
         return this.clienteMapper.toDto(cliente);
     }
 
@@ -53,20 +54,41 @@ public class UsuarioServiceImpl implements UsuarioUseCases {
     public UsuarioDTO getUsuarioDetailsByUsername(String username) {
         Usuario usuario = this.usuarioRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("Usuario not found"));
+        usuario.setPassword(null);
         return this.clienteMapper.toDto(usuario);
     }
 
     @Override
     public List<UsuarioDTO> getFilteredUsuariosByNome(String nome) {
-        return this.usuarioRepository.findByNome(nome).stream()
+        List<UsuarioDTO> usuarioDTOs = this.usuarioRepository.findByNome(nome).stream()
                 .map(clienteMapper::toDto)
+                .toList().stream().map(usuarioDTO -> new UsuarioDTO(
+                    usuarioDTO.id(), 
+                    usuarioDTO.username(), 
+                    null, 
+                    usuarioDTO.nome(), 
+                    usuarioDTO.telefone(), 
+                    usuarioDTO.email(), 
+                    usuarioDTO.status(), 
+                    usuarioDTO.papelDeUsuarios()))
                 .toList();
+
+        return usuarioDTOs;
     }
 
     @Override
     public List<UsuarioDTO> getFilteredUsuariosByTelefone(Telefone telefone) {
         return this.usuarioRepository.findByTelefone(telefone).stream()
                 .map(clienteMapper::toDto)
+                .toList().stream().map(usuarioDTO -> new UsuarioDTO(
+                    usuarioDTO.id(), 
+                    usuarioDTO.username(), 
+                    null, 
+                    usuarioDTO.nome(), 
+                    usuarioDTO.telefone(), 
+                    usuarioDTO.email(), 
+                    usuarioDTO.status(), 
+                    usuarioDTO.papelDeUsuarios()))
                 .toList();
     }
 

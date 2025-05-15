@@ -24,7 +24,7 @@ public interface JpaUsuarioRepository extends JpaRepository<JpaUsuario, Long> {
         "u.email AS email, " + 
         "u.telefone AS telefone, " + 
         "u.status AS status, " + 
-        "pu.status AS papelDeUsuarioStatus, " +
+        "p.status AS papelStatus, " +
         "p.nome AS papelNome " + 
         "FROM JpaUsuario u " + 
             "LEFT JOIN JpaPapelDeUsuario pu ON u.id = pu.usuario.id " +

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import br.com.comigo.common.model.utils.Telefone;
@@ -27,6 +28,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     @Override
     public Usuario create(Usuario usuario) {
         JpaUsuario jpaUsuario = new JpaUsuario(usuario);
+        jpaUsuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
         jpaUsuario = this.jpaUsuarioRepository.save(jpaUsuario);
         usuario.setId(jpaUsuario.getId());
         return usuario;

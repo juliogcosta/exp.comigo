@@ -1,34 +1,15 @@
-package br.com.comigo.autenticador;
+package br.com.comigo.autenticador.infrastructure.config;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.lang.NonNull;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import feign.Contract;
-
 @Configuration
-@EnableFeignClients
-@EnableWebSecurity
-@SpringBootApplication
-public class Startup {
-
-	public static void main(String[] args) {
-		SpringApplication.run(Startup.class, args);
-	}
-
-    @Bean
-    public Contract feignContract()
-    {
-        return new feign.Contract.Default();
-    }
+public class WebCorsConfig  implements WebMvcConfigurer {
 
     @Bean
     WebMvcConfigurer corsConfigurer() 

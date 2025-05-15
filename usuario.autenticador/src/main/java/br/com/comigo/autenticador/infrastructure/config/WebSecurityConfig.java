@@ -1,4 +1,4 @@
-package br.com.comigo.autenticador.config;
+package br.com.comigo.autenticador.infrastructure.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,8 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import br.com.comigo.autenticador.security.AuthenticationEntryPointJwt;
 import br.com.comigo.autenticador.security.AuthorizationTokenFilter;
@@ -22,8 +20,6 @@ import br.com.comigo.autenticador.security.RestAccessDeniedHandler;
 import br.com.comigo.autenticador.service.UserDetailsServiceImpl;
 
 import static org.springframework.security.config.Customizer.withDefaults;
-
-import org.springframework.lang.NonNull;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
@@ -77,15 +73,5 @@ public class WebSecurityConfig {
         http.addFilterBefore(this.jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
-    }
-
-    @Bean
-    WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(@NonNull CorsRegistry registry) {
-                registry.addMapping("/**").allowedOriginPatterns("*").allowedMethods("POST","GET","OPTIONS");
-            }
-        };
     }
 }
