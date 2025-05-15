@@ -1,5 +1,62 @@
-{"properties": [{
-  "name": "admin.key",
-  "type": "java.lang.String",
-  "description": "A description for 'admin.key'"
-}]}
+{"properties": [
+  {
+    "name": "admin.key",
+    "type": "java.lang.String",
+    "description": "A description for 'admin.key'"
+  },
+  {
+    "name": "endpoints.shutdown.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'endpoints.shutdown.enabled'"
+  },
+  {
+    "name": "feign.client.config.default.connect-timeout",
+    "type": "java.lang.String",
+    "description": "A description for 'feign.client.config.default.connect-timeout'"
+  },
+  {
+    "name": "feign.client.config.default.readTimeout",
+    "type": "java.lang.String",
+    "description": "A description for 'feign.client.config.default.readTimeout'"
+  },
+  {
+    "name": "eureka.instance.instance-id",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.instance.instance-id'"
+  },
+  {
+    "name": "eureka.client.service-url.default-zone",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.client.service-url.default-zone'"
+  },
+  {
+    "name": "eureka.client.healthcheck.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'eureka.client.healthcheck.enabled'"
+  },
+  {
+    "name": "app.eureka.address",
+    "type": "java.lang.String",
+    "description": "A description for 'app.eureka.address'"
+  },
+  {
+    "name": "app.eureka.port",
+    "type": "java.lang.Integer",
+    "description": "A description for 'app.eureka.port'"
+  },
+  {
+    "name": "app.atendimento.name",
+    "type": "java.lang.String",
+    "description": "A description for 'app.atendimento.name'"
+  },
+  {
+    "name": "app.atendimento.address",
+    "type": "java.lang.String",
+    "description": "A description for 'app.atendimento.address'"
+  },
+  {
+    "name": "app.atendimento.port",
+    "type": "java.lang.Integer",
+    "description": "A description for 'app.atendimento.port'"
+  }
+]}

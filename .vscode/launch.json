@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Startup",
+      "request": "launch",
+      "mainClass": "br.com.comigo.eureka.Startup",
+      "projectName": "eureka"
+    },
+    {
+      "type": "java",
       "name": "Spring Boot-Startup<atendimento.api>",
       "request": "launch",
       "cwd": "${workspaceFolder}",
@@ -70,6 +77,17 @@
       "cwd": "${workspaceFolder}",
       "mainClass": "br.com.comigo.gateway.Startup",
       "projectName": "gateway",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=39621 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=gateway"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-Startup<atendimento.motorista>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "br.com.comigo.atendimento.Startup",
+      "projectName": "atendimento.motorista",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
     }
