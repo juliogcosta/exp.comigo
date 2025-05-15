@@ -1,4 +1,4 @@
-package br.com.comigo.usuario.api.domain.util;
+package br.com.comigo.common.utils;
 
 import java.util.List;
 

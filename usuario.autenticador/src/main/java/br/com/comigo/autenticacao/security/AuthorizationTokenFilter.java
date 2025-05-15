@@ -19,8 +19,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-public class AuthorizationTokenFilter extends OncePerRequestFilter
-{
+public class AuthorizationTokenFilter extends OncePerRequestFilter{
     @Autowired
     private JwtUtils jwtUtils;
 
@@ -31,14 +30,10 @@ public class AuthorizationTokenFilter extends OncePerRequestFilter
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)
-            throws ServletException, IOException
-    {
-        try
-        {
+            throws ServletException, IOException {
+        try {
             String jwt = parseJwt(request);
-
-            if (jwt != null && this.jwtUtils.validateAccessToken(jwt))
-            {
+            if (jwt != null && this.jwtUtils.validateAccessToken(jwt)) {
                 String username = this.jwtUtils.getUserUsernameFromAccessToken(jwt);
 
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
@@ -47,24 +42,17 @@ public class AuthorizationTokenFilter extends OncePerRequestFilter
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
         filterChain.doFilter(request, response);
     }
 
-    private String parseJwt(HttpServletRequest request)
-    {
+    private String parseJwt(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization");
-
-        if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer "))
-        {
+        if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
             return headerAuth.substring(7, headerAuth.length());
         }
-
         return null;
     }
 }

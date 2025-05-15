@@ -2,9 +2,9 @@ package br.com.comigo.usuario.api.domain.aggregate.usuario;
 
 import java.util.List;
 
-import br.com.comigo.usuario.api.domain.util.Email;
+import br.com.comigo.common.model.utils.Email;
+import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.api.domain.util.StatusDeUsuario;
-import br.com.comigo.usuario.api.domain.util.Telefone;
 
 public class Usuario {
     private Long id;

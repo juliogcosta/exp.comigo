@@ -7,13 +7,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import br.com.comigo.common.model.utils.Email;
+import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.api.adapter.aggregate.usuario.dto.PapelDeUsuarioDTO;
 import br.com.comigo.usuario.api.adapter.aggregate.usuario.dto.UsuarioDTO;
 import br.com.comigo.usuario.api.adapter.aggregate.usuario.outbound.JpaUsuario;
 import br.com.comigo.usuario.api.domain.aggregate.usuario.PapelDeUsuario;
 import br.com.comigo.usuario.api.domain.aggregate.usuario.Usuario;
-import br.com.comigo.usuario.api.domain.util.Email;
-import br.com.comigo.usuario.api.domain.util.Telefone;
 
 @Mapper(componentModel = "spring")
 public interface UsuarioMapper {

@@ -3,10 +3,10 @@ package br.com.comigo.usuario.api.adapter.aggregate.usuario.dto;
 import java.util.Date;
 import java.util.List;
 
-import br.com.comigo.usuario.api.domain.util.Cpf;
-import br.com.comigo.usuario.api.domain.util.Email;
-import br.com.comigo.usuario.api.domain.util.Endereco;
-import br.com.comigo.usuario.api.domain.util.Telefone;
+import br.com.comigo.common.model.utils.Cpf;
+import br.com.comigo.common.model.utils.Email;
+import br.com.comigo.common.model.utils.Endereco;
+import br.com.comigo.common.model.utils.Telefone;
 
 public record ClienteVeiculoProjectionDTO(
     Long id,

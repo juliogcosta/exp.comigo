@@ -13,7 +13,10 @@ public class FeignConfig {
     @Bean
     public RequestInterceptor requestInterceptor() {
         return requestTemplate -> {
-            requestTemplate.header("Accept", "application/json");
+            /*
+             * requestTemplate.header("Accept", "application/json");
+             * 
+             */
             requestTemplate.header("X-Custom-Header", "custom-value");
         };
     }

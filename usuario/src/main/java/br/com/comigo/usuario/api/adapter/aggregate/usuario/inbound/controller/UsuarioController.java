@@ -5,10 +5,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.api.adapter.aggregate.usuario.dto.PapelDeUsuarioDTO;
 import br.com.comigo.usuario.api.adapter.aggregate.usuario.dto.UsuarioDTO;
 import br.com.comigo.usuario.api.application.aggregate.service.usuario.UsuarioServiceImpl;
-import br.com.comigo.usuario.api.domain.util.Telefone;
 
 import java.util.List;
 

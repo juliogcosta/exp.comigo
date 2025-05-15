@@ -1,4 +1,4 @@
-package br.com.comigo.usuario.api.application.usecase.prestador;
+package br.com.comigo.usuario.api.application.usecase.papel;
 
 import java.util.List;
 

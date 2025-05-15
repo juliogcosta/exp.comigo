@@ -15,8 +15,7 @@ public class AuthrorizationResponse {
             String username, 
             String name, 
             String email, 
-            List<String> roles)
-    {
+            List<String> roles) {
         this.token = accessToken;
         this.username = username;
         this.name = name;
@@ -24,58 +23,47 @@ public class AuthrorizationResponse {
         this.roles = roles;
     }
 
-    public String getAccessToken()
-    {
+    public String getAccessToken() {
         return token;
     }
 
-    public void setAccessToken(String accessToken)
-    {
+    public void setAccessToken(String accessToken) {
         this.token = accessToken;
     }
 
-    public String getTokenType()
-    {
+    public String getTokenType() {
         return type;
     }
 
-    public void setTokenType(String tokenType)
-    {
+    public void setTokenType(String tokenType) {
         this.type = tokenType;
     }
 
-    public String getEmail()
-    {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
-    public void setName(String name)
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username)
-    {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public List<String> getRoles()
-    {
+    public List<String> getRoles() {
         return roles;
     }
 }

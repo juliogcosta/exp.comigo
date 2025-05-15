@@ -18,14 +18,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-public class AuthenticationEntryPointJwt implements AuthenticationEntryPoint
-{
+public class AuthenticationEntryPointJwt implements AuthenticationEntryPoint {
     Logger logger = LoggerFactory.getLogger(AuthenticationEntryPointJwt.class);
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) 
-            throws IOException, ServletException
-    {
+        throws IOException, ServletException {
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
 
@@ -38,5 +36,4 @@ public class AuthenticationEntryPointJwt implements AuthenticationEntryPoint
         final ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(response.getOutputStream(), body);
     }
-
 }

@@ -6,12 +6,13 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
+import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.api.adapter.aggregate.usuario.outbound.JpaUsuario;
 import br.com.comigo.usuario.api.adapter.util.JpaEmail;
 import br.com.comigo.usuario.api.adapter.util.JpaTelefone;
+import br.com.comigo.usuario.api.domain.projection.UsuarioAndPapelProjection;
 import br.com.comigo.usuario.api.domain.aggregate.usuario.Usuario;
 import br.com.comigo.usuario.api.domain.aggregate.usuario.repository.UsuarioRepository;
-import br.com.comigo.usuario.api.domain.util.Telefone;
 import br.com.comigo.usuario.api.mapper.aggregate.usuario.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -72,5 +73,10 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     @Override
     public void deleteById(Long id) {
         this.jpaUsuarioRepository.deleteById(id);
+    }
+
+    @Override
+    public List<UsuarioAndPapelProjection> findUsuarioVsPapel(String username) {
+        return this.jpaUsuarioRepository.findUsuarioVsPapel(username);
     }
 }

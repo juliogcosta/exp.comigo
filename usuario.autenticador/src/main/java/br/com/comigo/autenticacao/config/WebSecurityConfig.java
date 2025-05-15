@@ -27,8 +27,7 @@ import br.com.comigo.autenticacao.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
-public class WebSecurityConfig
-{
+public class WebSecurityConfig {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
@@ -39,14 +38,12 @@ public class WebSecurityConfig
     private RestAccessDeniedHandler restAccessDeniedHandler;
 
     @Bean
-    AuthorizationTokenFilter jwtTokenFilter()
-    {
+    AuthorizationTokenFilter jwtTokenFilter() {
         return new AuthorizationTokenFilter();
     }
 
     @Bean
-    DaoAuthenticationProvider authenticationProvider()
-    {
+    DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(this.userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
@@ -54,20 +51,17 @@ public class WebSecurityConfig
     }
 
     @Bean
-    AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception
-    {
+    AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
         return authConfig.getAuthenticationManager();
     }
 
     @Bean
-    PasswordEncoder passwordEncoder()
-    {
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    SecurityFilterChain filterChain(HttpSecurity http) throws Exception
-    {
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors(withDefaults())
                 .csrf(csrf -> csrf.disable())
                 .exceptionHandling(handling -> handling
@@ -86,12 +80,10 @@ public class WebSecurityConfig
     }
 
     @Bean
-    WebMvcConfigurer corsConfigurer() 
-    {
+    WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
-            public void addCorsMappings(@NonNull CorsRegistry registry) 
-            {
+            public void addCorsMappings(@NonNull CorsRegistry registry) {
                 registry.addMapping("/**").allowedOriginPatterns("*").allowedMethods("POST","GET","OPTIONS");
             }
         };

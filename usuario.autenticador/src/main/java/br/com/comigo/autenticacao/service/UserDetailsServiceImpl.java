@@ -13,7 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.comigo.autenticacao.domain.Role;
 import br.com.comigo.autenticacao.domain.User;
-import br.com.comigo.autenticacao.domain.UserStatus;
+import br.com.comigo.autenticacao.exception.InconsistentUserRegisterException;
 import br.com.comigo.autenticacao.rest.client.UsuarioRestClient;
 import br.com.comigo.common.model.utils.Email;
 import lombok.RequiredArgsConstructor;
@@ -33,13 +33,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 String raw = responseEntity.getBody();
                 JSONObject jsUsuario = new JSONObject(raw);
-                UserStatus status = UserStatus.ACTIVE;
+                User.Status status = User.Status.ACTIVE;
                 if (jsUsuario.has("status")) {
-                    status = jsUsuario.getString("status").equals("ATIVO") ? UserStatus.ACTIVE : UserStatus.INACTIVE;
+                    status = jsUsuario.getString("status").equals("ATIVO") ? User.Status.ACTIVE : User.Status.INACTIVE;
+                } else {
+                    status = User.Status.INACTIVE;
                 }
                 Email email = null;
                 if (jsUsuario.has("email")) {
                     email = new Email(jsUsuario.getString("email"));
+                } else {
+                    throw new InconsistentUserRegisterException("Email not registered for user: " + username);
                 }
                 List<Role> roles = new ObjectMapper().readValue(jsUsuario.getString("roles"), new TypeReference<List<Role>>() {});
                 return new User(
@@ -49,14 +53,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                     email,
                     status,
                     roles);
-            }
-            else
-            {
+            } else {
                 throw new UsernameNotFoundException("User not found with username: " + username);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new UsernameNotFoundException(e.getMessage(), e.getCause());
         }
     }

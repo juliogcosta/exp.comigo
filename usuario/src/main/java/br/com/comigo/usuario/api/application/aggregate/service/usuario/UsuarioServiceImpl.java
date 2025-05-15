@@ -1,17 +1,21 @@
 package br.com.comigo.usuario.api.application.aggregate.service.usuario;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.api.adapter.aggregate.usuario.dto.PapelDeUsuarioDTO;
 import br.com.comigo.usuario.api.adapter.aggregate.usuario.dto.UsuarioDTO;
-import br.com.comigo.usuario.api.application.usecase.cliente.UsuarioUseCases;
+import br.com.comigo.usuario.api.adapter.aggregate.usuario.dto.UsuarioForLoginDTO;
+import br.com.comigo.usuario.api.application.usecase.usuario.UsuarioUseCases;
 import br.com.comigo.usuario.api.domain.aggregate.usuario.PapelDeUsuario;
 import br.com.comigo.usuario.api.domain.aggregate.usuario.Usuario;
 import br.com.comigo.usuario.api.domain.aggregate.usuario.repository.PapelDeUsuarioRepository;
 import br.com.comigo.usuario.api.domain.aggregate.usuario.repository.UsuarioRepository;
-import br.com.comigo.usuario.api.domain.util.Telefone;
+import br.com.comigo.usuario.api.domain.projection.UsuarioAndPapelProjection;
 import br.com.comigo.usuario.api.mapper.aggregate.usuario.PapelDeUsuarioMapper;
 import br.com.comigo.usuario.api.mapper.aggregate.usuario.UsuarioMapper;
 import jakarta.transaction.Transactional;
@@ -82,5 +86,26 @@ public class UsuarioServiceImpl implements UsuarioUseCases {
     @Override
     public void deletePapelDeUsuario(Long id) {
         this.papelDeUsuarioRepository.deleteById(id);
+    }
+
+    @Override
+    public UsuarioForLoginDTO getUsuarioForLogin(String username) {
+        List<UsuarioAndPapelProjection> usuarioAndPapelProjections = this.usuarioRepository.findUsuarioVsPapel(username);
+        if (usuarioAndPapelProjections == null || usuarioAndPapelProjections.size() > 0) {
+            return new UsuarioForLoginDTO(null, null, null, null, null, null, null);
+        } else {
+            List<UsuarioForLoginDTO.PapelForLoginDTO> papelForLoginDTOs = usuarioAndPapelProjections.stream().map(usuarioAndPapelProjection -> {
+                return new UsuarioForLoginDTO.PapelForLoginDTO(usuarioAndPapelProjection.getPapelNome(), usuarioAndPapelProjection.getPapelStatus());
+            }).collect(Collectors.toList());
+            UsuarioAndPapelProjection usuarioAndPapelProjection = usuarioAndPapelProjections.get(0);
+            return new UsuarioForLoginDTO(
+                usuarioAndPapelProjection.getNome(), 
+                usuarioAndPapelProjection.getUsername(), 
+                usuarioAndPapelProjection.getPassword(), 
+                usuarioAndPapelProjection.getEmail(), 
+                usuarioAndPapelProjection.getTelefone(), 
+                usuarioAndPapelProjection.getStatus(), 
+                papelForLoginDTOs);
+        }
     }
 }

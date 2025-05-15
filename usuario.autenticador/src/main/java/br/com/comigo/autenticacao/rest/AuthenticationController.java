@@ -29,10 +29,8 @@ public class AuthenticationController {
     private JwtUtils jwtUtils;
 
     @PostMapping(path = "/sign-in", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> authenticateUser(@RequestBody Credential credential)
-    {
-        try
-        {
+    public ResponseEntity<?> authenticateUser(@RequestBody Credential credential) {
+        try {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(credential.getUsername().concat(":*"), credential.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -46,19 +44,12 @@ public class AuthenticationController {
             }).collect(Collectors.toList());
 
             AuthrorizationResponse jwtResponse = new AuthrorizationResponse(jwt, user.getUsername(), user.getName(), user.getEmail().valor(), roles);
-
             return ResponseEntity.ok(jwtResponse);
-        }
-        catch (BadCredentialsException e)
-        {
+        } catch (BadCredentialsException e) {
             e.printStackTrace();
-
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
-
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).build();
         }
     }

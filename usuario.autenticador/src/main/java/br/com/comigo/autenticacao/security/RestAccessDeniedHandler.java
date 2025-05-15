@@ -18,13 +18,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Component
-public class RestAccessDeniedHandler implements AccessDeniedHandler
-{
+public class RestAccessDeniedHandler implements AccessDeniedHandler {
     Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) throws IOException, ServletException {
-
         Map<String,Object> responseMap = new HashMap<>();
         responseMap.put("status","34");
         responseMap.put("message","unauthorized api access");

@@ -35,37 +35,35 @@ public class JwtUtils
     private JWTVerifier refreshTokenVerifier;
 
     public JwtUtils(@Value("${yc.security.keys.accessToken.secret}") String accessTokenSecret, 
-            @Value("${yc.security.keys.accessToken.expirationMinutes}") int accessTokenExpirationMinutes) 
-    {
+            @Value("${yc.security.keys.accessToken.expirationMinutes}") int accessTokenExpirationMinutes) {
         accessTokenExpirationMs = (long) accessTokenExpirationMinutes * 60 * 1000;
         accessTokenAlgorithm = Algorithm.HMAC512(accessTokenSecret);
         accessTokenVerifier = JWT.require(accessTokenAlgorithm)
-                .withIssuer(issuer)
-                .build();
+            .withIssuer(issuer)
+            .build();
         refreshTokenVerifier = JWT.require(refreshTokenAlgorithm)
-                .withIssuer(issuer)
-                .build();
+            .withIssuer(issuer)
+            .build();
     }
 
-    public String generateAccessToken(User user) 
-    {
+    public String generateAccessToken(User user) {
         JSONArray roles = new JSONArray();
         JSONArray authorities = new JSONArray();
 
         user.getRoles().forEach(role -> {
             StringBuffer value = new StringBuffer();
-            if (role.getName() == null)
-            {
+            if (role.getName() == null) {
                 value.append("--");
+            } else {
+                value.append(role.getName());
             }
-            else value.append(role.getName());
             value.append(":");
 
-            if (role.getStatus() == null)
-            {
+            if (role.getStatus() == null) {
                 value.append("--");
+            } else {
+                value.append(role.getStatus());
             }
-            else value.append(role.getStatus());
             value.append(":");
 
             roles.put(value.toString());
@@ -86,74 +84,56 @@ public class JwtUtils
                 .sign(accessTokenAlgorithm);
     }
 
-    private Optional<DecodedJWT> decodeAccessToken(String token) 
-    {
-        try 
-        {
+    private Optional<DecodedJWT> decodeAccessToken(String token) {
+        try {
             return Optional.of(accessTokenVerifier.verify(token));
-        } 
-        catch (JWTVerificationException e) 
-        {
+        } catch (JWTVerificationException e) {
             logger.error("invalid access token", e);
         }
-
         return Optional.empty();
     }
 
-    private Optional<DecodedJWT> decodeRefreshToken(String token) 
-    {
-        try 
-        {
+    private Optional<DecodedJWT> decodeRefreshToken(String token) {
+        try {
             return Optional.of(refreshTokenVerifier.verify(token));
-        } 
-        catch (JWTVerificationException e) 
-        {
+        } catch (JWTVerificationException e) {
             logger.error("invalid refresh token", e);
         }
-
         return Optional.empty();
     }
 
-    public boolean validateAccessToken(String token) 
-    {
+    public boolean validateAccessToken(String token) {
         return decodeAccessToken(token).isPresent();
     }
 
-    public boolean validateRefreshToken(String token) 
-    {
+    public boolean validateRefreshToken(String token) {
         return decodeRefreshToken(token).isPresent();
     }
 
-    public Long getUserIdFromAccessToken(String token) 
-    {
+    public Long getUserIdFromAccessToken(String token) {
         return Long.parseLong(decodeAccessToken(token).get().getSubject());
     }
 
-    public String getUserUsernameFromAccessToken(String token) 
-    {
+    public String getUserUsernameFromAccessToken(String token) {
         return decodeAccessToken(token).get().getClaim("username").asString();
     }
 
-    public String getUserEmailFromAccessToken(String token) 
-    {
+    public String getUserEmailFromAccessToken(String token) {
         return decodeAccessToken(token).get().getClaim("email").asString();
     }
 
-    public String getUserStatusFromAccessToken(String token) 
-    {
+    public String getUserStatusFromAccessToken(String token) {
         return decodeAccessToken(token).get().getClaim("status").asString();
     }
 
-    public List<SimpleGrantedAuthority> getUserAuthoritiesFromAccessToken(String token) 
-    {
+    public List<SimpleGrantedAuthority> getUserAuthoritiesFromAccessToken(String token) {
         return new JSONArray(decodeAccessToken(token).get().getClaim("authorities").asString()).toList()
             .stream().map(authority -> {
                 return new SimpleGrantedAuthority(authority.toString());
             }).collect(Collectors.toList());
     }
 
-    public List<String> getUserTenantIDsFromAccessToken(String token) 
-    {
+    public List<String> getUserTenantIDsFromAccessToken(String token) {
         return new JSONArray(decodeAccessToken(token).get().getClaim("tenantIds").asString()).toList()
             .stream().map(tenantID -> {
                 return tenantID.toString();

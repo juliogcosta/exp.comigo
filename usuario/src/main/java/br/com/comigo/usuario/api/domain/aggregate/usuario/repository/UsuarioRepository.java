@@ -3,8 +3,9 @@ package br.com.comigo.usuario.api.domain.aggregate.usuario.repository;
 import java.util.List;
 import java.util.Optional;
 
+import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.api.domain.aggregate.usuario.Usuario;
-import br.com.comigo.usuario.api.domain.util.Telefone;
+import br.com.comigo.usuario.api.domain.projection.UsuarioAndPapelProjection;
 
 public interface UsuarioRepository {
     public Usuario create(Usuario usuario);
@@ -20,4 +21,6 @@ public interface UsuarioRepository {
     public List<Usuario> findByTelefone(Telefone telefone);
 
     public void deleteById(Long id);
+
+    public List<UsuarioAndPapelProjection> findUsuarioVsPapel(String username);
 }

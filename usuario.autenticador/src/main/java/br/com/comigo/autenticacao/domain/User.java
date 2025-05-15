@@ -11,14 +11,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import br.com.comigo.common.model.utils.Email;
 
 public class User implements UserDetails {
+    public enum Status {
+        ACTIVE,
+        INACTIVE,
+    }
+
     String username;
     String password;
     String name;
     Email email;
-    UserStatus status;
+    Status status;
     List<Role> roles;
 
-    public User(String username, String password, String name, Email email, UserStatus status, List<Role> roles) {
+    public User(String username, String password, String name, Email email, Status status, List<Role> roles) {
         super();
         this.username = username;
         this.password = password;
@@ -60,11 +65,11 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public UserStatus getStatus() {
+    public Status getStatus() {
         return this.status;
     }
 
-    public void setStatus(UserStatus status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -78,7 +83,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-            return this.roles.stream().filter(role -> role.getStatus().name().equals(RoleStatus.ACTIVE.name())).map(role -> {
+            return this.roles.stream().filter(role -> role.getStatus().name().equals(Role.Status.ACTIVE.name())).map(role -> {
                 if (role.getName().startsWith("ROLE_")) {
                     return new SimpleGrantedAuthority(role.getName());
                 } else {

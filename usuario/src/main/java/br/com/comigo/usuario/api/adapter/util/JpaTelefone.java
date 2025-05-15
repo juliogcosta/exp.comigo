@@ -1,6 +1,6 @@
 package br.com.comigo.usuario.api.adapter.util;
 
-import br.com.comigo.usuario.api.domain.util.TipoDeTelefone;
+import br.com.comigo.common.model.utils.TipoDeTelefone;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.EnumType;

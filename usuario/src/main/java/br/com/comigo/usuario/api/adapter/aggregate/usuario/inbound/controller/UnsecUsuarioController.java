@@ -1,0 +1,24 @@
+package br.com.comigo.usuario.api.adapter.aggregate.usuario.inbound.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.comigo.usuario.api.adapter.aggregate.usuario.dto.UsuarioForLoginDTO;
+import br.com.comigo.usuario.api.application.aggregate.service.usuario.UsuarioServiceImpl;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@RequiredArgsConstructor
+@RestController("/api/unsec/usuario")
+public class UnsecUsuarioController {
+    private final UsuarioServiceImpl usuarioService;
+    
+    @GetMapping("/usuario/username/{username}/to-login")
+    public ResponseEntity<UsuarioForLoginDTO> getUsuario(@PathVariable String username) {
+        UsuarioForLoginDTO usuarioForLoginDTO = this.usuarioService.getUsuarioForLogin(username);
+        return ResponseEntity.ok().body(usuarioForLoginDTO);
+    }
+}

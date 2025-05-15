@@ -1,8 +1,13 @@
 package br.com.comigo.autenticacao.domain;
 
 public class Role {
+    public enum Status {
+        ACTIVE,
+        INACTIVE,
+    }
+
     private String name;
-    private RoleStatus status;
+    private Status status;
 
     public String getName() {
         return this.name;
@@ -12,11 +17,11 @@ public class Role {
         this.name = name;
     }
 
-    public RoleStatus getStatus() {
+    public Status getStatus() {
         return this.status;
     }
 
-    public void setStatus(RoleStatus status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 }

@@ -1,10 +1,11 @@
-package br.com.comigo.usuario.api.application.usecase.cliente;
+package br.com.comigo.usuario.api.application.usecase.usuario;
 
 import java.util.List;
 
+import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.api.adapter.aggregate.usuario.dto.PapelDeUsuarioDTO;
 import br.com.comigo.usuario.api.adapter.aggregate.usuario.dto.UsuarioDTO;
-import br.com.comigo.usuario.api.domain.util.Telefone;
+import br.com.comigo.usuario.api.adapter.aggregate.usuario.dto.UsuarioForLoginDTO;
 
 public interface UsuarioUseCases {
     public UsuarioDTO create(UsuarioDTO dto);
@@ -24,4 +25,6 @@ public interface UsuarioUseCases {
     public void addPapelDeUsuarioToUsuario(PapelDeUsuarioDTO veiculoDTO, Long clienteId);
 
     public void deletePapelDeUsuario(Long id);
+
+    public UsuarioForLoginDTO getUsuarioForLogin(String username);
 }

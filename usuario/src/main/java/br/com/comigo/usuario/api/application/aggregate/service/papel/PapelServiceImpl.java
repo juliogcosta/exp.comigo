@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.com.comigo.usuario.api.adapter.aggregate.papel.dto.PapelDTO;
-import br.com.comigo.usuario.api.application.usecase.prestador.PapelUseCases;
+import br.com.comigo.usuario.api.application.usecase.papel.PapelUseCases;
 import br.com.comigo.usuario.api.domain.aggregate.papel.Papel;
 import br.com.comigo.usuario.api.domain.aggregate.papel.repository.PapelRepository;
 import br.com.comigo.usuario.api.mapper.aggregate.papel.PapelMapper;
