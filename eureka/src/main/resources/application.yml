@@ -21,8 +21,3 @@ management:
 endpoints:
   shutdown:
     enabled: false
-
-yc:
-  app:
-    name: ${spring.application.name}
-    port: ${server.port}
