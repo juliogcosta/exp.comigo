@@ -15,15 +15,15 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Repository
 public class PapelRepositoryImpl implements PapelRepository {
-    private final JpaPrestadorRepository jpaPapelRepository;
+    private final JpaPapelRepository jpaPapelRepository;
     private final PapelMapper papelMapper;
 
     @Override
-    public Papel create(Papel prestador) {
-        JpaPapel jpaPrestador = new JpaPapel(prestador);
-        jpaPrestador = this.jpaPapelRepository.save(jpaPrestador);
-        prestador.setId(jpaPrestador.getId());
-        return prestador;
+    public Papel create(Papel papel) {
+        JpaPapel jpaPapel = new JpaPapel(papel);
+        jpaPapel = this.jpaPapelRepository.save(jpaPapel);
+        papel.setId(jpaPapel.getId());
+        return papel;
     }
 
     @Override

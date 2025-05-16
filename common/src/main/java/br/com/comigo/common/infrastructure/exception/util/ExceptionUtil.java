@@ -1,4 +1,4 @@
-package br.com.comigo.usuario.infrastructure.exception.util;
+package br.com.comigo.common.infrastructure.exception.util;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.convert.ConversionFailedException;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import br.com.comigo.usuario.infrastructure.exception.RegisterNotFoundException;
+import br.com.comigo.common.infrastructure.exception.RegisterNotFoundException;
 
 import java.util.Optional;
 
@@ -22,6 +22,8 @@ public final class ExceptionUtil {
     }
 
     public static ProblemDetails getProblemDetails(HttpServletRequest request, Exception ex) {
+        System.out.println("pass by ".concat(ExceptionUtil.class.getCanonicalName()));
+
         return switch (ex.getClass().getSimpleName()) {
             case "MethodArgumentTypeMismatchException" ->
                 handleMethodArgumentTypeMismatch((MethodArgumentTypeMismatchException) ex, request);
@@ -44,7 +46,7 @@ public final class ExceptionUtil {
 
     private static ProblemDetails handleMethodArgumentTypeMismatch(MethodArgumentTypeMismatchException ex,
             HttpServletRequest request) {
-        String title = "Campo inválido informado";
+        String title = "Campo inválido informado.";
         String fieldName = ex.getName();
         String requiredType = Optional.ofNullable(ex.getRequiredType())
                 .map(Class::getSimpleName)
@@ -62,7 +64,7 @@ public final class ExceptionUtil {
 
     private static ProblemDetails handleMissingServletRequestParameter(MissingServletRequestParameterException ex,
             HttpServletRequest request) {
-        String title = "Campo não informado";
+        String title = "Campo não informado.";
         String detail = String.format("O dado do campo '%s' não foi informado.", ex.getParameterName());
 
         return new ProblemDetails(title, HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(),
@@ -70,7 +72,7 @@ public final class ExceptionUtil {
     }
 
     private static ProblemDetails handleDataIntegrityViolation(HttpServletRequest request) {
-        String title = "Violação de integridade de campo";
+        String title = "Violação de integridade de campo.";
         String detail = "Violação de integridade detectada no banco de dados.";
 
         return new ProblemDetails(title, HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(),
@@ -79,7 +81,9 @@ public final class ExceptionUtil {
 
     private static ProblemDetails handleRegisterNotFound(RegisterNotFoundException ex,
             HttpServletRequest request) {
-        String title = "Não doi encontrado o registro no banco de dados";
+        System.out.println("pass by ".concat(ExceptionUtil.class.getCanonicalName()));
+        
+        String title = "Registro não encontrado.";
         String detail = null;
 
         return new ProblemDetails(title, HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(),
@@ -88,7 +92,7 @@ public final class ExceptionUtil {
 
     private static ProblemDetails handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
             HttpServletRequest request) {
-        String title = "Validação de campo violada";
+        String title = "Validação de campo violada.";
         String failedValidationMessage = "A validação falhou em um campo não identificado.";
         String detail;
 
@@ -118,7 +122,7 @@ public final class ExceptionUtil {
     }
 
     private static ProblemDetails handleConversionFailed(ConversionFailedException ex, HttpServletRequest request) {
-        String title = "Campo inválido informado";
+        String title = "Campo inválido informado.";
         String invalidValue = Optional.ofNullable(ex.getValue())
                 .map(Object::toString)
                 .orElse(VALOR_NAO_INFORMADO);

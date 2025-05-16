@@ -5,17 +5,18 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import br.com.comigo.common.infrastructure.exception.RegisterNotFoundException;
 import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.PapelDeUsuarioDTO;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.UsuarioDTO;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.UsuarioForLoginDTO;
+import br.com.comigo.usuario.adapter.util.JpaTelefone;
 import br.com.comigo.usuario.application.usecase.usuario.UsuarioUseCases;
 import br.com.comigo.usuario.domain.aggregate.usuario.PapelDeUsuario;
 import br.com.comigo.usuario.domain.aggregate.usuario.Usuario;
 import br.com.comigo.usuario.domain.aggregate.usuario.repository.PapelDeUsuarioRepository;
 import br.com.comigo.usuario.domain.aggregate.usuario.repository.UsuarioRepository;
 import br.com.comigo.usuario.domain.projection.UsuarioAndPapelProjection;
-import br.com.comigo.usuario.infrastructure.exception.RegisterNotFoundException;
 import br.com.comigo.usuario.mapper.aggregate.usuario.PapelDeUsuarioMapper;
 import br.com.comigo.usuario.mapper.aggregate.usuario.UsuarioMapper;
 import jakarta.transaction.Transactional;
@@ -112,20 +113,22 @@ public class UsuarioServiceImpl implements UsuarioUseCases {
 
     @Override
     public UsuarioForLoginDTO getUsuarioForLogin(String username) {
+        log.info(" > username: {}", username);
         List<UsuarioAndPapelProjection> usuarioAndPapelProjections = this.usuarioRepository.findUsuarioVsPapel(username);
-        if (usuarioAndPapelProjections == null || usuarioAndPapelProjections.size() > 0) {
+        if (usuarioAndPapelProjections == null || usuarioAndPapelProjections.size() == 0) {
             return new UsuarioForLoginDTO(null, null, null, null, null, null, null);
         } else {
             List<UsuarioForLoginDTO.PapelForLoginDTO> papelForLoginDTOs = usuarioAndPapelProjections.stream().map(usuarioAndPapelProjection -> {
                 return new UsuarioForLoginDTO.PapelForLoginDTO(usuarioAndPapelProjection.getPapelNome(), usuarioAndPapelProjection.getPapelStatus());
             }).collect(Collectors.toList());
             UsuarioAndPapelProjection usuarioAndPapelProjection = usuarioAndPapelProjections.get(0);
+            
             return new UsuarioForLoginDTO(
                 usuarioAndPapelProjection.getNome(), 
                 usuarioAndPapelProjection.getUsername(), 
                 usuarioAndPapelProjection.getPassword(), 
                 usuarioAndPapelProjection.getEmail(), 
-                usuarioAndPapelProjection.getTelefone(), 
+                usuarioAndPapelProjection.getTelefone().getNumero(), 
                 usuarioAndPapelProjection.getStatus(), 
                 papelForLoginDTOs);
         }

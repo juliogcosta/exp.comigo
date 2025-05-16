@@ -5,11 +5,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import br.com.comigo.common.infrastructure.exception.RegisterNotFoundException;
 import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.PapelDeUsuarioDTO;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.UsuarioDTO;
 import br.com.comigo.usuario.application.aggregate.service.usuario.UsuarioServiceImpl;
-import br.com.comigo.usuario.infrastructure.exception.RegisterNotFoundException;
 
 import java.util.List;
 
@@ -62,7 +62,7 @@ public class UsuarioController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/{id}/veiculo")
+    @PostMapping("/{id}/papelDeUsuario")
     public ResponseEntity<Void> addPapelDeUsuarioToUsuario(@PathVariable Long id, @RequestBody PapelDeUsuarioDTO papelDeUsuarioDTO) {
         this.usuarioService.addPapelDeUsuarioToUsuario(papelDeUsuarioDTO, id);
         return ResponseEntity.ok().build();

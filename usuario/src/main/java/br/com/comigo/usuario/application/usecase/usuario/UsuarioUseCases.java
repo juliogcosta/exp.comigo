@@ -2,11 +2,11 @@ package br.com.comigo.usuario.application.usecase.usuario;
 
 import java.util.List;
 
+import br.com.comigo.common.infrastructure.exception.RegisterNotFoundException;
 import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.PapelDeUsuarioDTO;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.UsuarioDTO;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.UsuarioForLoginDTO;
-import br.com.comigo.usuario.infrastructure.exception.RegisterNotFoundException;
 
 public interface UsuarioUseCases {
     public UsuarioDTO create(UsuarioDTO dto);

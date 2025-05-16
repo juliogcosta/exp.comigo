@@ -1,4 +1,4 @@
-package br.com.comigo.usuario.infrastructure.config;
+package br.com.comigo.common.infrastructure.config;
 
 import feign.Contract;
 import feign.RequestInterceptor;

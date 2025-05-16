@@ -75,7 +75,15 @@
 								<groupId>org.springframework.boot</groupId>
 								<artifactId>spring-boot-starter-web</artifactId>
 						</exclusion>
-				</exclusions> <!-- Usa a mesma versão do pai -->
+						<exclusion>
+								<groupId>org.springframework.cloud</groupId>
+								<artifactId>spring-cloud-starter-openfeign</artifactId>
+						</exclusion>
+						<exclusion>
+								<groupId>org.projectlombok</groupId>
+								<artifactId>lombok</artifactId>
+						</exclusion>
+				</exclusions>
 		</dependency>
 	</dependencies>
 

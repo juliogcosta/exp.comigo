@@ -13,7 +13,7 @@ import br.com.comigo.usuario.application.aggregate.service.papel.PapelServiceImp
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/prestador")
+@RequestMapping("/api/id/papel")
 public class PapelController {
     private final PapelServiceImpl papelService;
 

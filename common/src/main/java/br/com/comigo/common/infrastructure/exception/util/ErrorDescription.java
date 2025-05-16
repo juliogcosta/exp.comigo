@@ -1,4 +1,4 @@
-package br.com.comigo.usuario.infrastructure.exception.util;
+package br.com.comigo.common.infrastructure.exception.util;
 
 public class ErrorDescription {
     private String description = null;

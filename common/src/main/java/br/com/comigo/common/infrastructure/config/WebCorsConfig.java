@@ -1,4 +1,4 @@
-package br.com.comigo.usuario.infrastructure.config;
+package br.com.comigo.common.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,8 @@ public class WebCorsConfig  implements WebMvcConfigurer {
     WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override
-            public void addCorsMappings(@NonNull CorsRegistry registry) {
+            public void addCorsMappings(@NonNull CorsRegistry registry) 
+            {
                 registry.addMapping("/**")
                     .allowCredentials(true)
                     .allowedOriginPatterns("*")

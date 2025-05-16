@@ -31,6 +31,7 @@ public class PapelDeUsuarioRepositoryImpl implements PapelDeUsuarioRepository {
         JpaPapelDeUsuario jpaPapelDeUsuario = new JpaPapelDeUsuario();
         jpaPapelDeUsuario.setPapelId(papelDeUsuario.getPapelId());
 
+        jpaPapelDeUsuario.setUsuario(jpaUsuario);
         jpaUsuario.getPapelDeUsuarios().add(jpaPapelDeUsuario);
 
         this.jpaUsuarioRepository.save(jpaUsuario);

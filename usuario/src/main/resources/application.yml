@@ -30,6 +30,9 @@ spring:
   flyway.clean-disabled: false
   flyway.schemas: usuario
   flyway.default-schema: usuario
+  web:
+    resources:
+      add-mappings: false
 endpoints:
   shutdown:
     enabled: false

@@ -1,8 +1,7 @@
-package br.com.comigo.usuario.infrastructure.exception.util;
+package br.com.comigo.common.infrastructure.exception.util;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.convert.ConversionFailedException;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -11,7 +10,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import br.com.comigo.usuario.infrastructure.exception.RegisterNotFoundException;
+import br.com.comigo.common.infrastructure.exception.RegisterNotFoundException;
 
 @ControllerAdvice
 public class ApiExceptionHandler {
@@ -19,12 +18,14 @@ public class ApiExceptionHandler {
     @ExceptionHandler({
             MethodArgumentTypeMismatchException.class,
             MissingServletRequestParameterException.class,
-            DataIntegrityViolationException.class,
             MethodArgumentNotValidException.class,
             ConversionFailedException.class,
             RegisterNotFoundException.class
     })
     public ResponseEntity<ProblemDetails> handleException(Exception ex, HttpServletRequest request) {
+        
+        System.out.println("pass by ".concat(getClass().getCanonicalName()));
+        
         ProblemDetails problemDetails = ExceptionUtil.getProblemDetails(request, ex);
         return new ResponseEntity<>(problemDetails, HttpStatus.BAD_REQUEST);
     }

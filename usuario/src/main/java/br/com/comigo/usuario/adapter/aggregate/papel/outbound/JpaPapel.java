@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "prestador", schema = "atendimento")
+@Table(name = "papel", schema = "usuario")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -28,8 +28,8 @@ public class JpaPapel {
         @Column(nullable = false)
         private StatusDePapel status;
         
-        public JpaPapel(Papel prestador) {
-                this.nome = prestador.getNome();
+        public JpaPapel(Papel papel) {
+                this.nome = papel.getNome();
                 this.status = StatusDePapel.ATIVO;
         }
 

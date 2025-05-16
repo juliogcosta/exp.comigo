@@ -81,7 +81,25 @@
         <dependency>
             <groupId>br.com.comigo</groupId>
             <artifactId>common</artifactId>
-            <version>${project.version}</version> <!-- Usa a mesma versão do pai -->
+            <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                        <groupId>org.json</groupId>
+                        <artifactId>json</artifactId>
+                </exclusion>
+                <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-web</artifactId>
+                </exclusion>
+                <exclusion>
+                        <groupId>org.springframework.cloud</groupId>
+                        <artifactId>spring-cloud-starter-openfeign</artifactId>
+                </exclusion>
+                <exclusion>
+                        <groupId>org.projectlombok</groupId>
+                        <artifactId>lombok</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 	</dependencies>
 

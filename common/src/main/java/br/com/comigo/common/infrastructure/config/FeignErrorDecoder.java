@@ -1,4 +1,4 @@
-package br.com.comigo.usuario.infrastructure.config;
+package br.com.comigo.common.infrastructure.config;
 
 import java.nio.charset.StandardCharsets;
 
