@@ -15,6 +15,7 @@ import br.com.comigo.usuario.domain.aggregate.usuario.Usuario;
 import br.com.comigo.usuario.domain.aggregate.usuario.repository.PapelDeUsuarioRepository;
 import br.com.comigo.usuario.domain.aggregate.usuario.repository.UsuarioRepository;
 import br.com.comigo.usuario.domain.projection.UsuarioAndPapelProjection;
+import br.com.comigo.usuario.infrastructure.exception.RegisterNotFoundException;
 import br.com.comigo.usuario.mapper.aggregate.usuario.PapelDeUsuarioMapper;
 import br.com.comigo.usuario.mapper.aggregate.usuario.UsuarioMapper;
 import jakarta.transaction.Transactional;
@@ -43,9 +44,9 @@ public class UsuarioServiceImpl implements UsuarioUseCases {
     }
 
     @Override
-    public UsuarioDTO getUsuarioDetailsById(Long id) {
+    public UsuarioDTO getUsuarioDetailsById(Long id) throws RegisterNotFoundException {
         Usuario cliente = this.usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente not found"));
+                .orElseThrow(() -> new RegisterNotFoundException("Usuario not found"));
         cliente.setPassword(null);
         return this.clienteMapper.toDto(cliente);
     }

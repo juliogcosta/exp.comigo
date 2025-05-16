@@ -10,8 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @EnableFeignClients
 @EnableWebSecurity
 @SpringBootApplication
-public class Startup {
+public class AuthStartup {
 	public static void main(String[] args) {
-		SpringApplication.run(Startup.class, args);
+		SpringApplication.run(AuthStartup.class, args);
 	}
 }

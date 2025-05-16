@@ -1,4 +1,4 @@
-package br.com.comigo.usuario.util;
+package br.com.comigo.usuario.infrastructure.exception.util;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.convert.ConversionFailedException;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import br.com.comigo.usuario.infrastructure.exception.ProblemDetails;
+import br.com.comigo.usuario.infrastructure.exception.RegisterNotFoundException;
 
 import java.util.Optional;
 
@@ -30,6 +30,8 @@ public final class ExceptionUtil {
             case "DataIntegrityViolationException" -> handleDataIntegrityViolation(request);
             case "MethodArgumentNotValidException" ->
                 handleMethodArgumentNotValid((MethodArgumentNotValidException) ex, request);
+            case "RegisterNotFoundException" ->
+                handleRegisterNotFound((RegisterNotFoundException) ex, request);
             case "ConversionFailedException" -> handleConversionFailed((ConversionFailedException) ex, request);
             default -> new ProblemDetails(
                     "Erro não especificado",
@@ -70,6 +72,15 @@ public final class ExceptionUtil {
     private static ProblemDetails handleDataIntegrityViolation(HttpServletRequest request) {
         String title = "Violação de integridade de campo";
         String detail = "Violação de integridade detectada no banco de dados.";
+
+        return new ProblemDetails(title, HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(),
+                detail, request.getRequestURI());
+    }
+
+    private static ProblemDetails handleRegisterNotFound(RegisterNotFoundException ex,
+            HttpServletRequest request) {
+        String title = "Não doi encontrado o registro no banco de dados";
+        String detail = null;
 
         return new ProblemDetails(title, HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(),
                 detail, request.getRequestURI());

@@ -1,4 +1,4 @@
-package br.com.comigo.usuario;
+package br.com.comigo.atendimento;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +6,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableFeignClients
 @SpringBootApplication
-public class Startup {
+public class AtendimentoStartup {
 	public static void main(String[] args) {
-		SpringApplication.run(Startup.class, args);
+		SpringApplication.run(AtendimentoStartup.class, args);
 	}
 }

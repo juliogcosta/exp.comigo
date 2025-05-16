@@ -6,13 +6,14 @@ import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.PapelDeUsuarioDTO;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.UsuarioDTO;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.UsuarioForLoginDTO;
+import br.com.comigo.usuario.infrastructure.exception.RegisterNotFoundException;
 
 public interface UsuarioUseCases {
     public UsuarioDTO create(UsuarioDTO dto);
 
     public void update(UsuarioDTO dto);
 
-    public UsuarioDTO getUsuarioDetailsById(Long id);
+    public UsuarioDTO getUsuarioDetailsById(Long id) throws RegisterNotFoundException;
 
     public UsuarioDTO getUsuarioDetailsByUsername(String username);
     

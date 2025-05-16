@@ -9,12 +9,13 @@ import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.PapelDeUsuarioDTO;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.UsuarioDTO;
 import br.com.comigo.usuario.application.aggregate.service.usuario.UsuarioServiceImpl;
+import br.com.comigo.usuario.infrastructure.exception.RegisterNotFoundException;
 
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/usuario/usuario")
+@RequestMapping("/api/id/usuario")
 public class UsuarioController {
     private final UsuarioServiceImpl usuarioService;
 
@@ -31,7 +32,7 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioDTO> getUsuarioDetailsById(@PathVariable Long id) {
+    public ResponseEntity<UsuarioDTO> getUsuarioDetailsById(@PathVariable Long id) throws RegisterNotFoundException {
         UsuarioDTO usuarioDTO = this.usuarioService.getUsuarioDetailsById(id);
         return ResponseEntity.ok(usuarioDTO);
     }

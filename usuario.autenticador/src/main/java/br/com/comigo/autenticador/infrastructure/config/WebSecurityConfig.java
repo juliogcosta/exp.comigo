@@ -65,7 +65,7 @@ public class WebSecurityConfig {
                         .accessDeniedHandler(restAccessDeniedHandler))
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/sign-in").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
                         .anyRequest().authenticated());
 
         http.authenticationProvider(this.authenticationProvider());

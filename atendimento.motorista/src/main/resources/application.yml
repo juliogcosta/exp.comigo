@@ -49,12 +49,15 @@ feign:
       default:
         connectTimeout: 10000
         readTimeout: 60000
-logging.level:
-  '[com.zaxxer.hikari.pool.HikariPool]': INFO
-  '[org.springframework]': ERROR
-  '[org.hibernate]':
-    SQL: ERROR
-    '[type.descriptor.sql.BasicBinder]': ERROR
+logging:
+  level:
+    '[com.zaxxer.hikari.pool.HikariPool]': INFO
+    '[org.springframework]': ERROR
+    '[org.hibernate]':
+      SQL: ERROR
+      '[type.descriptor.sql.BasicBinder]': ERROR
+  pattern:
+    console: "%clr(%d{HH:mm:ss}){faint} %clr(%5p) %clr(${PID}){magenta} %clr(:){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n"
 eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}

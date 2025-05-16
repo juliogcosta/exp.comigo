@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.comigo.gateway.Startup;
+import br.com.comigo.gateway.GatewayStartup;
 
 @Component
 public class GlobalErrorAttributes extends DefaultErrorAttributes 
@@ -41,17 +41,17 @@ public class GlobalErrorAttributes extends DefaultErrorAttributes
             throw new RuntimeException("RemoteAddress is null");
         } else address = request.exchange().getRequest().getRemoteAddress().getAddress().getHostAddress();
 
-        if (Startup.monitorNotFoundError) {
-            if (Startup.monitorNotFoundErrorMap.containsKey(address)) {
+        if (GatewayStartup.monitorNotFoundError) {
+            if (GatewayStartup.monitorNotFoundErrorMap.containsKey(address)) {
                 
             } else {
-                Startup.monitorNotFoundErrorMap.put(address, new JSONArray());
+                GatewayStartup.monitorNotFoundErrorMap.put(address, new JSONArray());
             }
 
             JSONObject jsStat = new JSONObject();
             jsStat.put("path", request.exchange().getRequest().getPath().value());
             jsStat.put("method", request.exchange().getRequest().getMethod());
-            Startup.monitorNotFoundErrorMap.get(address).put(jsStat);
+            GatewayStartup.monitorNotFoundErrorMap.get(address).put(jsStat);
         }
 
         MergedAnnotation<ResponseStatus> responseStatusAnnotation = MergedAnnotations

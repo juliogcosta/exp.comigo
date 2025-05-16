@@ -1,4 +1,4 @@
-package br.com.comigo.usuario.infrastructure.exception;
+package br.com.comigo.usuario.infrastructure.exception.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

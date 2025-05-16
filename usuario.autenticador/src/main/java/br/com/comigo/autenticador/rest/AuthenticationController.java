@@ -14,12 +14,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.comigo.autenticador.domain.User;
 import br.com.comigo.autenticador.dto.AuthrorizationResponse;
 import br.com.comigo.autenticador.dto.Credential;
 import br.com.comigo.autenticador.security.JwtUtils;
 
+@RestController("/api/auth")
 public class AuthenticationController {
     
     @Autowired

@@ -1,4 +1,4 @@
-package br.com.comigo.usuario.infrastructure.exception;
+package br.com.comigo.usuario.infrastructure.exception.util;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.convert.ConversionFailedException;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-import br.com.comigo.usuario.util.ExceptionUtil;
+import br.com.comigo.usuario.infrastructure.exception.RegisterNotFoundException;
 
 @ControllerAdvice
 public class ApiExceptionHandler {
@@ -21,7 +21,8 @@ public class ApiExceptionHandler {
             MissingServletRequestParameterException.class,
             DataIntegrityViolationException.class,
             MethodArgumentNotValidException.class,
-            ConversionFailedException.class
+            ConversionFailedException.class,
+            RegisterNotFoundException.class
     })
     public ResponseEntity<ProblemDetails> handleException(Exception ex, HttpServletRequest request) {
         ProblemDetails problemDetails = ExceptionUtil.getProblemDetails(request, ex);

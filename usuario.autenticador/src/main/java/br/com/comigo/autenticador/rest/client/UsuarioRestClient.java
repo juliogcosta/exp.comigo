@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "usuarioRestClient", url = "http://localhost:8020")
 public interface UsuarioRestClient {
-    @GetMapping("/api/usuario/for-login/usuario/username/{username}")
+    @GetMapping("/unsec/api/id/username/{username}/to-login")
     ResponseEntity<String> getUsuario(@PathVariable String username);
 }

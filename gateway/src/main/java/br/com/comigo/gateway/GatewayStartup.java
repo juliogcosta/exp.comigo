@@ -12,7 +12,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication()
-public class Startup implements CommandLineRunner {
+public class GatewayStartup implements CommandLineRunner {
 
     @Value("${yc.api.gateway.cache.request-limit.ttl}")
     private Integer ttl;
@@ -25,7 +25,7 @@ public class Startup implements CommandLineRunner {
     final static public Map<String, JSONArray> monitorNotFoundErrorMap = new HashMap<>();
 
 	public static void main(String[] args) {
-		SpringApplication.run(Startup.class, args);
+		SpringApplication.run(GatewayStartup.class, args);
 	}
 
     @Override

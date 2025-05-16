@@ -12,11 +12,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-@RestController("/api/unsec/usuario")
+@RestController("/unsec/api/id")
 public class UnsecUsuarioController {
     private final UsuarioServiceImpl usuarioService;
     
-    @GetMapping("/usuario/username/{username}/to-login")
+    @GetMapping("/unsec/api/id/username/{username}/to-login")
     public ResponseEntity<UsuarioForLoginDTO> getUsuario(@PathVariable String username) {
         UsuarioForLoginDTO usuarioForLoginDTO = this.usuarioService.getUsuarioForLogin(username);
         return ResponseEntity.ok().body(usuarioForLoginDTO);
