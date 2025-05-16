@@ -1,6 +1,8 @@
-package br.com.comigo.autenticador.service;
+package br.com.comigo.autenticador.application.service;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,28 +10,24 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import br.com.comigo.autenticador.adaper.outbound.restclient.UnsecUsuarioRestClient;
 import br.com.comigo.autenticador.domain.Role;
 import br.com.comigo.autenticador.domain.User;
-import br.com.comigo.autenticador.exception.InconsistentUserRegisterException;
-import br.com.comigo.autenticador.rest.client.UsuarioRestClient;
+import br.com.comigo.common.infrastructure.exception.RegisterNotFoundException;
 import br.com.comigo.common.model.utils.Email;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class UserDetailsServiceImpl implements UserDetailsService {
-    private UsuarioRestClient usuarioRestClient;
+    private final UnsecUsuarioRestClient unsecUsuarioRestClient;
 
     @Override
     public UserDetails loadUserByUsername(String username) {
         try {
-            ResponseEntity<String> responseEntity = usuarioRestClient.getUsuario(username);
-
+            ResponseEntity<String> responseEntity = unsecUsuarioRestClient.getUsuario(username);
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
                 String raw = responseEntity.getBody();
                 JSONObject jsUsuario = new JSONObject(raw);
@@ -43,13 +41,21 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 if (jsUsuario.has("email")) {
                     email = new Email(jsUsuario.getString("email"));
                 } else {
-                    throw new InconsistentUserRegisterException("Email not registered for user: " + username);
+                    throw new RegisterNotFoundException("Email not registered for user: " + username);
                 }
-                List<Role> roles = new ObjectMapper().readValue(jsUsuario.getString("roles"), new TypeReference<List<Role>>() {});
+                
+                final List<Role> roles = new ArrayList<>(); 
+                jsUsuario.getJSONArray("papeis").forEach(item -> {
+                    JSONObject jsRole = (JSONObject) item;
+                    Role role = new Role(jsRole.getString("nome"), 
+                        jsRole.getString("status").equals("ATIVO") ? Role.Status.ACTIVE : Role.Status.INACTIVE);
+                    roles.add(role);
+                });
+
                 return new User(
                     jsUsuario.getString("username"), 
                     jsUsuario.getString("password"),
-                    jsUsuario.getString("name"), 
+                    jsUsuario.getString("nome"), 
                     email,
                     status,
                     roles);
@@ -57,6 +63,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 throw new UsernameNotFoundException("User not found with username: " + username);
             }
         } catch (Exception e) {
+            e.printStackTrace();
+
             throw new UsernameNotFoundException(e.getMessage(), e.getCause());
         }
     }

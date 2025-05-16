@@ -193,5 +193,20 @@
     "name": "yc.api.management.log.trace.enable",
     "type": "java.lang.String",
     "description": "A description for 'yc.api.management.log.trace.enable'"
+  },
+  {
+    "name": "yc.security.keys.access-token.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'yc.security.keys.access-token.secret'"
+  },
+  {
+    "name": "yc.security.keys.access-token.expirationMinutes",
+    "type": "java.lang.String",
+    "description": "A description for 'yc.security.keys.access-token.expirationMinutes'"
+  },
+  {
+    "name": "yc.security.public-paths",
+    "type": "java.util.List<java.lang.String>",
+    "description": "A description for 'yc.security.public-paths'"
   }
 ]}

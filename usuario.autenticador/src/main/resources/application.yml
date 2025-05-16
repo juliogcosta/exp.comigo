@@ -6,6 +6,10 @@ app:
     address: localhost
     port: 8030
     name: auth
+  id:
+    address: localhost
+    port: 8040
+    name: id
 server:
   port: ${app.auth.port}
 spring:
@@ -30,8 +34,15 @@ feign:
       default:
         connectTimeout: 10000
         readTimeout: 60000
+        loggerLevel: full
+  compression:
+    request:
+      enabled: true
+    response:
+      enabled: true
 logging:
   level:
+    '[br.com.comigo.autenticador.adaper.outbound.restclient]': DEBUG
     '[com.zaxxer.hikari.pool.HikariPool]': INFO
     '[org.springframework]': ERROR
     '[org.hibernate]':
@@ -52,4 +63,3 @@ yc:
       accessToken:
         secret: AR35cal3wrr8ZW80F7Rybj8QjdejPpl6BI7cYZBEN8UwcBWovpT25z8YRjkyQ1dwqj1uCT9SjI8KUWyoqzz8lQ
         expirationMinutes: 259200
-

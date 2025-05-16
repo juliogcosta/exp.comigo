@@ -1,4 +1,4 @@
-package br.com.comigo.autenticador.security;
+package br.com.comigo.autenticador.infrastructure.security;
 
 import java.util.Date;
 import java.util.List;
@@ -25,7 +25,7 @@ public class JwtUtils
 {
     final private Logger logger = LoggerFactory.getLogger(getClass());
 
-    static final String issuer = "YC-AuthService";
+    static final String issuer = "Comigo Auth-Service";
 
     private long accessTokenExpirationMs;
 

@@ -6,6 +6,8 @@ import java.util.Optional;
 import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.domain.aggregate.usuario.Usuario;
 import br.com.comigo.usuario.domain.projection.UsuarioAndPapelProjection;
+import br.com.comigo.usuario.domain.util.StatusDePapel;
+import br.com.comigo.usuario.domain.util.StatusDeUsuario;
 
 public interface UsuarioRepository {
     public Usuario create(Usuario usuario);
@@ -22,5 +24,5 @@ public interface UsuarioRepository {
 
     public void deleteById(Long id);
 
-    public List<UsuarioAndPapelProjection> findUsuarioVsPapel(String username);
+    public List<UsuarioAndPapelProjection> findUsuarioVsPapel(String username, StatusDeUsuario uStatus, StatusDePapel pStatus);
 }

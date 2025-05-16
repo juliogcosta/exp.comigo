@@ -3,6 +3,7 @@ package br.com.comigo.common.infrastructure.exception.util;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -22,8 +23,6 @@ public final class ExceptionUtil {
     }
 
     public static ProblemDetails getProblemDetails(HttpServletRequest request, Exception ex) {
-        System.out.println("pass by ".concat(ExceptionUtil.class.getCanonicalName()));
-
         return switch (ex.getClass().getSimpleName()) {
             case "MethodArgumentTypeMismatchException" ->
                 handleMethodArgumentTypeMismatch((MethodArgumentTypeMismatchException) ex, request);
@@ -35,6 +34,7 @@ public final class ExceptionUtil {
             case "RegisterNotFoundException" ->
                 handleRegisterNotFound((RegisterNotFoundException) ex, request);
             case "ConversionFailedException" -> handleConversionFailed((ConversionFailedException) ex, request);
+            case "BadCredentialsException" -> handleCredentialError((BadCredentialsException) ex, request);
             default -> new ProblemDetails(
                     "Erro não especificado",
                     HttpStatus.BAD_REQUEST.value(),
@@ -87,6 +87,17 @@ public final class ExceptionUtil {
         String detail = null;
 
         return new ProblemDetails(title, HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(),
+                detail, request.getRequestURI());
+    }
+
+    private static ProblemDetails handleCredentialError(BadCredentialsException ex,
+            HttpServletRequest request) {
+        System.out.println("pass by ".concat(ExceptionUtil.class.getCanonicalName()));
+        
+        String title = "Falha na avaliação da credencial.";
+        String detail = null;
+
+        return new ProblemDetails(title, HttpStatus.UNAUTHORIZED.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(),
                 detail, request.getRequestURI());
     }
 

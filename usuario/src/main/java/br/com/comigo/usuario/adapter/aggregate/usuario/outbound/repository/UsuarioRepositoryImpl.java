@@ -14,6 +14,8 @@ import br.com.comigo.usuario.adapter.util.JpaTelefone;
 import br.com.comigo.usuario.domain.aggregate.usuario.Usuario;
 import br.com.comigo.usuario.domain.aggregate.usuario.repository.UsuarioRepository;
 import br.com.comigo.usuario.domain.projection.UsuarioAndPapelProjection;
+import br.com.comigo.usuario.domain.util.StatusDePapel;
+import br.com.comigo.usuario.domain.util.StatusDeUsuario;
 import br.com.comigo.usuario.mapper.aggregate.usuario.UsuarioMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -78,7 +80,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
     }
 
     @Override
-    public List<UsuarioAndPapelProjection> findUsuarioVsPapel(String username) {
-        return this.jpaUsuarioRepository.findUsuarioVsPapel(username);
+    public List<UsuarioAndPapelProjection> findUsuarioVsPapel(String username, StatusDeUsuario uStatus, StatusDePapel pStatus) {
+        return this.jpaUsuarioRepository.findUsuarioVsPapel(username, uStatus, pStatus);
     }
 }

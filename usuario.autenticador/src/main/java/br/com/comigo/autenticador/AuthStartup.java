@@ -8,9 +8,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 @Configuration
-@EnableFeignClients
 @EnableWebSecurity
-@ComponentScan(basePackages = { "br.com.comigo.common" })
+@EnableFeignClients(basePackages = "br.com.comigo.autenticador.adaper.outbound.restclient")
+@ComponentScan(basePackages = { 
+    "br.com.comigo.autenticador",
+    "br.com.comigo.common.infrastructure.exception"
+})
 @SpringBootApplication
 public class AuthStartup {
 	public static void main(String[] args) {

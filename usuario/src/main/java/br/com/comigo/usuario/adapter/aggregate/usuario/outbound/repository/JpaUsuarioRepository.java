@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 
 import br.com.comigo.usuario.adapter.aggregate.usuario.outbound.JpaUsuario;
 import br.com.comigo.usuario.domain.projection.UsuarioAndPapelProjection;
+import br.com.comigo.usuario.domain.util.StatusDePapel;
+import br.com.comigo.usuario.domain.util.StatusDeUsuario;
 
 public interface JpaUsuarioRepository extends JpaRepository<JpaUsuario, Long> {
     public Optional<JpaUsuario> findByUsername(String username);
@@ -29,7 +31,7 @@ public interface JpaUsuarioRepository extends JpaRepository<JpaUsuario, Long> {
         "FROM JpaUsuario u " + 
             "LEFT JOIN JpaPapelDeUsuario pu ON u.id = pu.usuario.id " +
             "LEFT JOIN JpaPapel p ON p.id = pu.papelId " +
-        "WHERE u.username = :username")
-    public List<UsuarioAndPapelProjection> findUsuarioVsPapel(String username);
+        "WHERE u.username = :username AND u.status = :uStatus AND p.status = :pStatus")
+    public List<UsuarioAndPapelProjection> findUsuarioVsPapel(String username, StatusDeUsuario uStatus, StatusDePapel pStatus);
 
 }

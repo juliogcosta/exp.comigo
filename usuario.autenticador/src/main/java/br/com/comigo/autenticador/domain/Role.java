@@ -9,6 +9,13 @@ public class Role {
     private String name;
     private Status status;
 
+    public Role() {}
+
+    public Role(String name, Status status) {
+        this.name = name;
+        this.status = status;
+    }
+
     public String getName() {
         return this.name;
     }

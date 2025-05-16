@@ -45,7 +45,7 @@ spring:
         - id: deny-service
           uri: no://op
           predicates:
-            - Path=/unsecured/**
+            - Path=/unsec/**
           filters:
             - SetStatus=404
         - id: ${app.auth.name}-service
@@ -157,3 +157,12 @@ yc:
           ttl-increment: 7200
         contract-query:
           offset: 30
+  security:
+    keys:
+      accessToken:
+        secret: AR35cal3wrr8ZW80F7Rybj8QjdejPpl6BI7cYZBEN8UwcBWovpT25z8YRjkyQ1dwqj1uCT9SjI8KUWyoqzz8lQ
+        expirationMinutes: 259200
+    public-paths:
+      - /api/auth/sign-in
+      - /api/auth/refresh-token
+      - /actuator/health

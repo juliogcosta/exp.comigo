@@ -1,4 +1,4 @@
-package br.com.comigo.autenticador.security;
+package br.com.comigo.autenticador.infrastructure.security;
 
 import java.io.IOException;
 
@@ -13,7 +13,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import br.com.comigo.autenticador.service.UserDetailsServiceImpl;
+import br.com.comigo.autenticador.application.service.UserDetailsServiceImpl;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

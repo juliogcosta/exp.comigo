@@ -16,6 +16,8 @@ import br.com.comigo.usuario.domain.aggregate.usuario.Usuario;
 import br.com.comigo.usuario.domain.aggregate.usuario.repository.PapelDeUsuarioRepository;
 import br.com.comigo.usuario.domain.aggregate.usuario.repository.UsuarioRepository;
 import br.com.comigo.usuario.domain.projection.UsuarioAndPapelProjection;
+import br.com.comigo.usuario.domain.util.StatusDePapel;
+import br.com.comigo.usuario.domain.util.StatusDeUsuario;
 import br.com.comigo.usuario.mapper.aggregate.usuario.PapelDeUsuarioMapper;
 import br.com.comigo.usuario.mapper.aggregate.usuario.UsuarioMapper;
 import jakarta.transaction.Transactional;
@@ -112,8 +114,7 @@ public class UsuarioServiceImpl implements UsuarioUseCases {
 
     @Override
     public UsuarioForLoginDTO getUsuarioForLogin(String username) {
-        log.info(" > username: {}", username);
-        List<UsuarioAndPapelProjection> usuarioAndPapelProjections = this.usuarioRepository.findUsuarioVsPapel(username);
+        List<UsuarioAndPapelProjection> usuarioAndPapelProjections = this.usuarioRepository.findUsuarioVsPapel(username, StatusDeUsuario.ATIVO, StatusDePapel.ATIVO);
         if (usuarioAndPapelProjections == null || usuarioAndPapelProjections.size() == 0) {
             return new UsuarioForLoginDTO(null, null, null, null, null, null, null);
         } else {
@@ -126,7 +127,7 @@ public class UsuarioServiceImpl implements UsuarioUseCases {
                 usuarioAndPapelProjection.getNome(), 
                 usuarioAndPapelProjection.getUsername(), 
                 usuarioAndPapelProjection.getPassword(), 
-                usuarioAndPapelProjection.getEmail(), 
+                usuarioAndPapelProjection.getEmail().getEmail(), 
                 usuarioAndPapelProjection.getTelefone().getNumero(), 
                 usuarioAndPapelProjection.getStatus(), 
                 papelForLoginDTOs);

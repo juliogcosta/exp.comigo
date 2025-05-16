@@ -78,5 +78,40 @@
     "name": "app.auth.port",
     "type": "java.lang.Integer",
     "description": "A description for 'app.auth.port'"
+  },
+  {
+    "name": "app.id.name",
+    "type": "java.lang.String",
+    "description": "A description for 'app.id.name'"
+  },
+  {
+    "name": "app.id.address",
+    "type": "java.lang.String",
+    "description": "A description for 'app.id.address'"
+  },
+  {
+    "name": "app.id.port",
+    "type": "java.lang.Integer",
+    "description": "A description for 'app.id.port'"
+  },
+  {
+    "name": "feign.client.config.default.loggerLevel",
+    "type": "java.lang.String",
+    "description": "A description for 'feign.client.config.default.loggerLevel'"
+  },
+  {
+    "name": "feign.compression.response.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'feign.compression.response.enabled'"
+  },
+  {
+    "name": "feign.compression.request.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'feign.compression.request.enabled'"
+  },
+  {
+    "name": "yc.security.public-paths",
+    "type": "java.util.List<java.lang.String>",
+    "description": "A description for 'yc.security.public-paths'"
   }
 ]}

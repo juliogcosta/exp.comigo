@@ -1,4 +1,4 @@
-package br.com.comigo.autenticador.dto;
+package br.com.comigo.autenticador.adaper.dto;
 
 import java.util.List;
 

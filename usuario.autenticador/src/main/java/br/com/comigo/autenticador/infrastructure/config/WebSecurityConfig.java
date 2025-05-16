@@ -14,10 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import br.com.comigo.autenticador.security.AuthenticationEntryPointJwt;
-import br.com.comigo.autenticador.security.AuthorizationTokenFilter;
-import br.com.comigo.autenticador.security.RestAccessDeniedHandler;
-import br.com.comigo.autenticador.service.UserDetailsServiceImpl;
+import br.com.comigo.autenticador.application.service.UserDetailsServiceImpl;
+import br.com.comigo.autenticador.infrastructure.security.AuthenticationEntryPointJwt;
+import br.com.comigo.autenticador.infrastructure.security.AuthorizationTokenFilter;
+import br.com.comigo.autenticador.infrastructure.security.RestAccessDeniedHandler;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 

@@ -4,6 +4,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.convert.ConversionFailedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -20,12 +21,10 @@ public class ApiExceptionHandler {
             MissingServletRequestParameterException.class,
             MethodArgumentNotValidException.class,
             ConversionFailedException.class,
-            RegisterNotFoundException.class
+            RegisterNotFoundException.class,
+            BadCredentialsException.class
     })
     public ResponseEntity<ProblemDetails> handleException(Exception ex, HttpServletRequest request) {
-        
-        System.out.println("pass by ".concat(getClass().getCanonicalName()));
-        
         ProblemDetails problemDetails = ExceptionUtil.getProblemDetails(request, ex);
         return new ResponseEntity<>(problemDetails, HttpStatus.BAD_REQUEST);
     }

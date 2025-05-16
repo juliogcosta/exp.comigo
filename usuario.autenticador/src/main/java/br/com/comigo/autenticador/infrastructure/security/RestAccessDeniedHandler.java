@@ -1,4 +1,4 @@
-package br.com.comigo.autenticador.security;
+package br.com.comigo.autenticador.infrastructure.security;
 
 import java.io.IOException;
 import java.io.OutputStream;

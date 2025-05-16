@@ -1,5 +1,6 @@
 package br.com.comigo.usuario.domain.projection;
 
+import br.com.comigo.usuario.adapter.util.JpaEmail;
 import br.com.comigo.usuario.adapter.util.JpaTelefone;
 
 public interface UsuarioAndPapelProjection {
@@ -8,7 +9,7 @@ public interface UsuarioAndPapelProjection {
     String getPassword();
     String getNome();
     JpaTelefone getTelefone();
-    String getEmail();
+    JpaEmail getEmail();
     String getStatus();
     String getPapelNome();
     String getPapelStatus();
