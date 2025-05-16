@@ -10,7 +10,6 @@ import br.com.comigo.common.model.utils.Telefone;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.PapelDeUsuarioDTO;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.UsuarioDTO;
 import br.com.comigo.usuario.adapter.aggregate.usuario.dto.UsuarioForLoginDTO;
-import br.com.comigo.usuario.adapter.util.JpaTelefone;
 import br.com.comigo.usuario.application.usecase.usuario.UsuarioUseCases;
 import br.com.comigo.usuario.domain.aggregate.usuario.PapelDeUsuario;
 import br.com.comigo.usuario.domain.aggregate.usuario.Usuario;
