@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/id/usuario")
+@RequestMapping("/usuario")
 public class UsuarioController {
     private final UsuarioServiceImpl usuarioService;
 

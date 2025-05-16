@@ -18,9 +18,15 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 import reactor.core.publisher.Mono;
 
+@Slf4j
+@ConfigurationProperties(prefix = "yc.security")
 @Component
 public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
     
@@ -28,14 +34,12 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
     private final Algorithm algorithm;
     private final JWTVerifier verifier;
     private final SecurityRules securityRules;
-    private final List<String> publicPaths;
+    private List<String> publicPaths;
     
     public JwtAuthenticationFilter(
             @Value("${yc.security.keys.accessToken.secret}") String secret,
-            @Value("${yc.security.public-paths}") List<String> publicPaths,
             SecurityRules securityRules) {
         this.algorithm = Algorithm.HMAC512(secret);
-        this.publicPaths = publicPaths;
         this.verifier = JWT.require(algorithm)
             .withIssuer("Comigo Auth-Service")
             .build();
@@ -44,6 +48,8 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+        log.info(" > publicPaths: {}", this.publicPaths);
+
         String path = exchange.getRequest().getPath().value();
         
         if (isPublicPath(path)) {

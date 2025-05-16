@@ -44,10 +44,6 @@
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
-		<dependency>
-				<groupId>io.micrometer</groupId>
-				<artifactId>micrometer-tracing-bridge-brave</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -56,6 +52,16 @@
 			<optional>true</optional>
 		</dependency>
 
+		<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+				<scope>provided</scope>
+		</dependency>
+		<dependency>
+				<groupId>io.micrometer</groupId>
+				<artifactId>micrometer-tracing-bridge-brave</artifactId>
+		</dependency>
 		<dependency>
 				<groupId>com.auth0</groupId>
 				<artifactId>java-jwt</artifactId>
@@ -66,7 +72,6 @@
 				<artifactId>json</artifactId>
 				<version>20200518</version>
 		</dependency>
-        
 		<dependency>
 				<groupId>br.com.comigo</groupId>
 				<artifactId>common</artifactId>

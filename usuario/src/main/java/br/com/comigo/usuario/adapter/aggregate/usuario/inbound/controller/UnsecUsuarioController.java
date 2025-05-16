@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/unsec/api/id")
+@RequestMapping("/unsec")
 public class UnsecUsuarioController {
     private final UsuarioServiceImpl usuarioService;
     
