@@ -10,32 +10,31 @@ import br.com.comigo.usuario.domain.aggregate.papel.Papel;
 
 @Mapper(componentModel = "spring")
 public interface PapelMapper {
-
         @Mappings({
-                        @Mapping(source = "papelDTO.id", target = "id"),
-                        @Mapping(source = "papelDTO.nome", target = "nome"),
-                        @Mapping(source = "papelDTO.status", target = "status")
+                @Mapping(source = "papelDTO.id", target = "id"),
+                @Mapping(source = "papelDTO.nome", target = "nome"),
+                @Mapping(source = "papelDTO.status", target = "status")
         })
         Papel toDomain(PapelDTO papelDTO);
 
         @Mappings({
-                        @Mapping(source = "papel.id", target = "id"),
-                        @Mapping(source = "papel.nome", target = "nome"),
-                        @Mapping(source = "papel.status", target = "status")
+                @Mapping(source = "papel.id", target = "id"),
+                @Mapping(source = "papel.nome", target = "nome"),
+                @Mapping(source = "papel.status", target = "status")
         })
         PapelDTO toDto(Papel papel);
 
         @Mappings({
-                        @Mapping(source = "jpaPapel.id", target = "id"),
-                        @Mapping(source = "jpaPapel.nome", target = "nome"),
-                        @Mapping(source = "jpaPapel.status", target = "status"),
+                @Mapping(source = "jpaPapel.id", target = "id"),
+                @Mapping(source = "jpaPapel.nome", target = "nome"),
+                @Mapping(source = "jpaPapel.status", target = "status"),
         })
         Papel fromJpaToDomain(JpaPapel jpaPapel);
 
         @Mappings({
-                        @Mapping(source = "jpaPapel.id", target = "id"),
-                        @Mapping(source = "jpaPapel.nome", target = "nome"),
-                        @Mapping(source = "jpaPapel.status", target = "status"),
+                @Mapping(source = "jpaPapel.id", target = "id"),
+                @Mapping(source = "jpaPapel.nome", target = "nome"),
+                @Mapping(source = "jpaPapel.status", target = "status"),
         })
         PapelDTO fromJpaToDto(JpaPapel jpaPapel);
 }

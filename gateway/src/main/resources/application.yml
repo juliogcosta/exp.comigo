@@ -119,6 +119,7 @@ feign:
 logging:
   level:
     '[org.springframework]': ERROR
+    '[br.com.comigo.gateway.service]': DEBUG
   pattern:
     console: "%clr(%d{HH:mm:ss}){faint} %clr(%5p) %clr(${PID}){magenta} %clr(:){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n"
 eureka:
@@ -143,7 +144,6 @@ resilience4j:
         max-wait-duration-in-half-open-state: 5s
         writable-stack-trace-enabled: true
         automatic-transition-from-open-to-half-open-enabled: true
-
 yc:
   api:
     management:
@@ -163,4 +163,4 @@ yc:
         secret: AR35cal3wrr8ZW80F7Rybj8QjdejPpl6BI7cYZBEN8UwcBWovpT25z8YRjkyQ1dwqj1uCT9SjI8KUWyoqzz8lQ
         expirationMinutes: 259200
     public-paths:
-      - "/api/auth/sign-in"
+      - "/v1/auth/sign-in"

@@ -36,6 +36,14 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
     private final SecurityRules securityRules;
     private List<String> publicPaths;
     
+    public void setPublicPaths(List<String> publicPaths) {
+      this.publicPaths = publicPaths;
+    }
+    
+    public List<String> getPublicPaths() {
+      return publicPaths;
+    }
+
     public JwtAuthenticationFilter(
             @Value("${yc.security.keys.accessToken.secret}") String secret,
             SecurityRules securityRules) {
@@ -48,11 +56,20 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.info(" > publicPaths: {}", this.publicPaths);
+        log.info("Request path: {}", exchange.getRequest().getPath().value());
+        log.info("Public paths: {}", this.publicPaths);
 
+        if (this.publicPaths == null) {
+            log.warn("Public paths is null! Check configuration.");
+            return chain.filter(exchange);
+        }
+        
         String path = exchange.getRequest().getPath().value();
         
-        if (isPublicPath(path)) {
+        boolean isPublic = isPublicPath(path);
+
+        if (isPublic) {
+            log.debug("Allowing public path access");
             return chain.filter(exchange);
         }
 
@@ -85,8 +102,16 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
         return Arrays.asList(roles.replaceAll("[\\[\\]\"]", "").split(","));
     }
 
+    
     private boolean isPublicPath(String path) {
-        return this.publicPaths.stream().anyMatch(path::contains);
+        if (this.publicPaths == null) return false;
+        boolean matches = this.publicPaths.stream()
+            .anyMatch(publicPath -> {
+                boolean result = path.contains(publicPath);
+                log.debug("Checking if {} contains {}: {}", path, publicPath, result);
+                return result;
+            });
+        return matches;
     }
 
     @Override
