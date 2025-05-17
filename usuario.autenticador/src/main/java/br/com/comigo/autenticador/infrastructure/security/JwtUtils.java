@@ -19,6 +19,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
 import br.com.comigo.autenticador.domain.User;
+import br.com.comigo.autenticador.domain.Role.Status;
 
 @Component
 public class JwtUtils 
@@ -51,22 +52,19 @@ public class JwtUtils
         JSONArray authorities = new JSONArray();
 
         user.getRoles().forEach(role -> {
-            StringBuffer value = new StringBuffer();
             if (role.getName() == null) {
-                value.append("--");
-            } else {
-                value.append(role.getName());
+                new RuntimeException("Há uma instancia de papel definido como ".concat(role.getName()));
             }
-            value.append(":");
-
+            
             if (role.getStatus() == null) {
-                value.append("--");
-            } else {
-                value.append(role.getStatus());
-            }
-            value.append(":");
+                new RuntimeException("O papel ".concat(role.getName()).concat(" parece não ter um status definido."));
+            } else if (role.getStatus() == Status.ACTIVE) {
 
-            roles.put(value.toString());
+            } else {
+
+            }
+
+            roles.put(role.getName());
 
             authorities.put(role.getName());
         });

@@ -208,5 +208,10 @@
     "name": "yc.security.public-paths",
     "type": "java.util.List<java.lang.String>",
     "description": "A description for 'yc.security.public-paths'"
+  },
+  {
+    "name": "app.eureka.name",
+    "type": "java.lang.String",
+    "description": "A description for 'app.eureka.name'"
   }
 ]}

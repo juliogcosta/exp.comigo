@@ -1,5 +1,6 @@
 app:
   eureka:
+    name: eureka
     address: localhost
     port: 8010
   gateway:
@@ -11,7 +12,7 @@ app:
     address: localhost
     port: 8030
   id:
-    name: gateway
+    name: id
     address: localhost
     port: 8040
   atendimento:

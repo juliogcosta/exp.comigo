@@ -56,25 +56,19 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        log.info("Request path: {}", exchange.getRequest().getPath().value());
-        log.info("Public paths: {}", this.publicPaths);
-
         if (this.publicPaths == null) {
             log.warn("Public paths is null! Check configuration.");
             return chain.filter(exchange);
         }
         
         String path = exchange.getRequest().getPath().value();
-        
         boolean isPublic = isPublicPath(path);
-
         if (isPublic) {
             log.debug("Allowing public path access");
             return chain.filter(exchange);
         }
 
         String authHeader = exchange.getRequest().getHeaders().getFirst(HttpHeaders.AUTHORIZATION);
-        
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
             return exchange.getResponse().setComplete();
